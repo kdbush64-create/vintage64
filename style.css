@@ -1,0 +1,270 @@
+/* 1. GLOBAL SYSTEM RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffb000; 
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+/* 2. THE CHASSIS (Page Container) */
+.container {
+    width: 100%;
+    max-width: 650px; 
+    border: 2px solid #5c3d2e;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.95); /* Deep black for consistent logo contrast */
+    box-shadow: 0 0 20px rgba(255, 176, 0, 0.1);
+    overflow: hidden; 
+    position: relative;
+    z-index: 5;
+}
+
+/* 3. LOGO & HEADER UNIFORMITY */
+header {
+    text-align: center;
+    border-bottom: 2px dashed #5c3d2e;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.main-logo {
+    max-width: 100% !important; /* Forces uniform size on all pages */
+    height: auto !important;
+    display: block;
+    border: 3px solid #5c3d2e;
+    /* This ensures no accidental filters are applied */
+    filter: none !important; 
+    opacity: 1 !important;
+}
+
+/* 4. NAVIGATION MENU */
+.system-nav {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.system-nav a {
+    color: #ffb000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+}
+
+.system-nav a:hover {
+    background: #ffb000;
+    color: #000;
+    border: 1px solid #ffb000;
+}
+
+/* 5. TYPOGRAPHY & ELEMENTS */
+h1 { letter-spacing: 5px; margin: 10px 0; font-size: 1.8rem; text-align: center;}
+h2 {
+    color: #8e441d;
+    font-size: 1.1rem;
+    background: #2a1a12;
+    padding: 5px 10px;
+    margin: 20px 0 10px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    font-size: 0.9rem;
+}
+
+td:first-child {
+    font-weight: bold;
+    color: #d4a373;
+    width: 40%;
+}
+
+/* 6. SUB-PAGE SPECIAL ELEMENTS (Airlock) */
+.warning-banner {
+    background-color: #8e441d;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 2px solid #ffb000;
+    text-align: center;
+}
+
+.disclaimer {
+    border: 1px solid #5c3d2e;
+    padding: 15px;
+    background: #1a1a12;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+
+/* 7. CONTACT FORM STYLING */
+.vintage-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.vintage-form input, .vintage-form textarea {
+    background: #000;
+    border: 1px solid #5c3d2e;
+    color: #ffb000;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.transmit-btn {
+    background: #5c3d2e;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.transmit-btn:hover {
+    background: #8e441d;
+}
+
+/* 8. VISUAL EFFECTS */
+.blink { animation: blinker 1.5s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
+
+.terminal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.8rem;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+.system-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Keeps it from breaking on mobile */
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #5c3d2e;
+}
+<section class="hero-container">
+    <img src="telescope-clean.jpg" alt="The Observation Deck" style="width:100%;">
+    
+    <div class="text-overlay">
+        <h1>The Observation Deck</h1>
+        <span class="by-line">by</span>
+        <h1>DeWayne Bush</h1>
+    </div>
+</section>
+/* 9. PERSONAL BLOG IDENTITY (The Observation Deck) */
+
+/* Target only pages where <body id="personal-identity"> is present */
+#personal-identity .hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;    /* Removed top margin to close the gap with the frame */
+    line-height: 0;    /* Collapses any internal whitespace */
+    border: 2px solid #5c3d2e; /* Matches your site's border color */
+}
+
+#personal-identity .hero-container {
+    position: relative;
+    width: 100%;
+    /* Max-width should match your .container class (650px) */
+    max-width: 650px; 
+    margin: 0 auto;
+    overflow: hidden; /* This prevents the text box from leaking out */
+    line-height: 0;
+    border: 2px solid #5c3d2e;
+}
+
+#personal-identity .text-overlay {
+    position: absolute;
+    /* Move 'top' up slightly if 50% feels too low for this specific image */
+    top: 45%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Darkened for better contrast */
+    padding: 15px 20px; /* Reduced padding for the 650px width */
+    border: 1px solid rgba(255, 176, 0, 0.3);
+    width: 90%; /* Increased width percentage to fit better in a narrow column */
+    text-align: center;
+    line-height: 1.2; /* Tighter line height to prevent vertical bloat */
+}
+
+#personal-identity .text-overlay h1 {
+    color: #fff;
+    font-family: 'Georgia', serif;
+    font-size: 1.6rem; /* Scaled down to fit the 650px container */
+    letter-spacing: 1px;
+    margin: 0;
+}
+/* Style the Log Directory to look like a terminal menu */
+.log-directory h3 {
+    color: #ffb000; /* Match your amber gold */
+    margin-top: 20px;
+    border-top: 1px solid #5c3d2e;
+    padding-top: 10px;
+}
+
+.file-list {
+    list-style: none; /* Remove the bullet points */
+    padding: 0;
+}
+
+.file-list li {
+    margin: 10px 0;
+}
+
+.file-list a {
+    color: #00eeff; /* Cyan for 'interactable' items */
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+}
+
+.file-list a:hover {
+    background-color: #ffb000;
+    color: #1a1a1a;
+}

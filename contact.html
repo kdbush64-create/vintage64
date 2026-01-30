@@ -25,7 +25,7 @@
 
         <section class="contact-interface">
             <h2>> ENCRYPTED_MESSAGE_INPUT</h2>
-            <p>Transmission terminal active. Your return path is required for response synchronization.</p>
+            <p>Select your inquiry type to route your transmission to the correct department.</p>
             
             <form id="contactForm" class="retro-form">
                 <div class="form-group">
@@ -36,6 +36,19 @@
                     <label for="email">RETURN_PATH:</label>
                     <input type="email" id="email" name="email" required placeholder="name@domain.com">
                 </div>
+
+                <div class="form-group">
+                    <label for="service">SERVICE_INTEREST:</label>
+                    <select id="service" name="service_interest" class="retro-select" required>
+                        <option value="" disabled selected>-- SELECT_MODULE --</option>
+                        <option value="General Inquiry">GENERAL_INQUIRY</option>
+                        <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
+                        <option value="Linux Migration">LINUX_MIGRATION_V64</option>
+                        <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
+                        <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label for="message">DATA_PACKET:</label>
                     <textarea id="message" name="message" rows="5" required placeholder="Enter transmission details..."></textarea>
@@ -46,53 +59,41 @@
             <div id="responseMessage" style="display:none; margin-top: 20px; border: 1px solid #00ff00; padding: 15px; background-color: rgba(0, 255, 0, 0.1);">
                 <span style="color: #00ff00; font-family: 'Courier New', monospace;">
                     > TRANSMISSION_SUCCESSFUL...<br>
-                    > MESSAGE_ROUTED_TO_ADMINISTRATOR...<br>
-                    > CONNECTION_STABLE // STANDBY_FOR_RESPONSE
+                    > DATA_INTEREST_LOGGED...<br>
+                    > STANDBY_FOR_RESPONSE
                 </span>
             </div>
         </section>
-
-        <footer>
-            <p>Location: Fort Worth, TX // Status: Secure_Uplink</p>
-        </footer>
     </div>
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevents the page from refreshing
-            
+            e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const resp = document.getElementById('responseMessage');
-            const form = this;
-            const formData = new FormData(form);
+            const formData = new FormData(this);
 
-            // UI Feedback: Show sending state
             btn.innerText = "[ SENDING_PACKET... ]";
             btn.disabled = true;
 
-            // Send data to your Python app.py
             fetch('/send-mail', {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
                 if (response.ok) {
-                    // Success: Show the terminal response and clear the form
                     resp.style.display = 'block';
-                    form.reset(); 
+                    this.reset();
                     btn.innerText = "[ SEND_COMPLETE ]";
                 } else {
-                    // Error: Alert the user and re-enable the button
-                    alert("SYSTEM_ERROR: Transmission failed. Check server logs.");
+                    alert("SYSTEM_ERROR: Transmission failed.");
                     btn.disabled = false;
                     btn.innerText = "[ RETRY_SEND ]";
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert("CRITICAL_FAILURE: Connection to uplink lost.");
+                alert("CRITICAL_FAILURE: Connection lost.");
                 btn.disabled = false;
-                btn.innerText = "[ RETRY_SEND ]";
             });
         });
     </script>

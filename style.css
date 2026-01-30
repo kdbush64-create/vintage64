@@ -302,24 +302,36 @@ footer {
     background-color: #008800;
 }
 
-/* Table Alignment Fix */
+/* Force absolute alignment for the Price Table */
 .retro-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.retro-table th, .retro-table td {
-    text-align: left; /* Aligns both headers and data to the left */
-    padding: 10px 5px;
-    border-bottom: 1px solid #333; /* Adds that subtle divider seen in your screenshot */
+/* This is the critical fix: Force headers to align left like the data */
+.retro-table th {
+    text-align: left; 
+    color: #ffaa00; /* Keeping your orange header color */
+    border-bottom: 2px solid #333;
+    padding: 10px 0;
 }
 
-/* Optional: Give the columns specific widths to ensure they never shift */
-.retro-table th:first-child, .retro-table td:first-child {
-    width: 60%;
+.retro-table td {
+    text-align: left;
+    padding: 10px 0;
+    color: #00ff00; /* Terminal green */
+    border-bottom: 1px solid #222;
 }
 
-.retro-table th:last-child, .retro-table td:last-child {
-    width: 40%;
+/* Define fixed widths so columns don't 'wiggle' */
+.retro-table th:first-child, 
+.retro-table td:first-child {
+    width: 70%; 
+}
+
+.retro-table th:last-child, 
+.retro-table td:last-child {
+    width: 30%;
 }

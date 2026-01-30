@@ -301,3 +301,25 @@ footer {
 .submit-btn:hover {
     background-color: #008800;
 }
+
+/* Table Alignment Fix */
+.retro-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.retro-table th, .retro-table td {
+    text-align: left; /* Aligns both headers and data to the left */
+    padding: 10px 5px;
+    border-bottom: 1px solid #333; /* Adds that subtle divider seen in your screenshot */
+}
+
+/* Optional: Give the columns specific widths to ensure they never shift */
+.retro-table th:first-child, .retro-table td:first-child {
+    width: 60%;
+}
+
+.retro-table th:last-child, .retro-table td:last-child {
+    width: 40%;
+}

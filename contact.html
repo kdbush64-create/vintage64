@@ -27,7 +27,7 @@
             <h2>> ENCRYPTED_MESSAGE_INPUT</h2>
             <p>Transmission terminal active. Your return path is required for response synchronization.</p>
             
-            <form action="/send-mail" method="POST" class="retro-form">
+            <form id="contactForm" class="retro-form">
                 <div class="form-group">
                     <label for="name">IDENT_NAME:</label>
                     <input type="text" id="name" name="name" required placeholder="User_Name">
@@ -40,13 +40,61 @@
                     <label for="message">DATA_PACKET:</label>
                     <textarea id="message" name="message" rows="5" required placeholder="Enter transmission details..."></textarea>
                 </div>
-                <button type="submit" class="submit-btn">[ EXECUTE_SEND ]</button>
+                <button type="submit" class="submit-btn" id="submitBtn">[ EXECUTE_SEND ]</button>
             </form>
+
+            <div id="responseMessage" style="display:none; margin-top: 20px; border: 1px solid #00ff00; padding: 15px; background-color: rgba(0, 255, 0, 0.1);">
+                <span style="color: #00ff00; font-family: 'Courier New', monospace;">
+                    > TRANSMISSION_SUCCESSFUL...<br>
+                    > MESSAGE_ROUTED_TO_ADMINISTRATOR...<br>
+                    > CONNECTION_STABLE // STANDBY_FOR_RESPONSE
+                </span>
+            </div>
         </section>
 
         <footer>
             <p>Location: Fort Worth, TX // Status: Secure_Uplink</p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents the page from refreshing
+            
+            const btn = document.getElementById('submitBtn');
+            const resp = document.getElementById('responseMessage');
+            const form = this;
+            const formData = new FormData(form);
+
+            // UI Feedback: Show sending state
+            btn.innerText = "[ SENDING_PACKET... ]";
+            btn.disabled = true;
+
+            // Send data to your Python app.py
+            fetch('/send-mail', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success: Show the terminal response and clear the form
+                    resp.style.display = 'block';
+                    form.reset(); 
+                    btn.innerText = "[ SEND_COMPLETE ]";
+                } else {
+                    // Error: Alert the user and re-enable the button
+                    alert("SYSTEM_ERROR: Transmission failed. Check server logs.");
+                    btn.disabled = false;
+                    btn.innerText = "[ RETRY_SEND ]";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("CRITICAL_FAILURE: Connection to uplink lost.");
+                btn.disabled = false;
+                btn.innerText = "[ RETRY_SEND ]";
+            });
+        });
+    </script>
 </body>
 </html>

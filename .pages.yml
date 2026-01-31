@@ -1,0 +1,17 @@
+# .pages.yml
+content:
+  - name: Business Logs
+    label: Business Logs
+    type: collection
+    path: business-logs/ # This is where your new text files will go
+    format: md
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: date
+        label: Date
+        type: date
+      - name: body
+        label: Content
+        type: rich-text

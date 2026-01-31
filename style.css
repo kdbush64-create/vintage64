@@ -3,21 +3,21 @@
     /* DARK THEME (Default) */
     --bg: #1a1a1a;
     --container-bg: rgba(0, 0, 0, 0.95);
-    --primary: #ffb000;         /* Amber */
+    --primary: #ffb000;         /* Amber Gold */
     --primary-dim: rgba(255, 176, 0, 0.7);
-    --secondary: #00eeff;       /* Cyan Links */
+    --secondary: #00eeff;       /* Terminal Cyan */
     --accent: #00ff41;          /* Neon Green */
-    --border: #5c3d2e;          /* Brownish Border */
+    --border: #5c3d2e;          /* Chassis Brown */
     --shadow: rgba(0, 0, 0, 0.8);
 }
 
 [data-theme="light"] {
     --bg: #f4f4f4;
     --container-bg: #ffffff;
-    --primary: #7a5400;         /* Darker Amber for Contrast */
+    --primary: #7a5400;         /* High-Contrast Amber */
     --primary-dim: #5c5c5c;
-    --secondary: #005f6b;       /* Darker Blue */
-    --accent: #008522;          /* Darker Green */
+    --secondary: #005f6b;       /* High-Contrast Blue */
+    --accent: #008522;          /* Readable Forest Green */
     --border: #a3a3a3;
     --shadow: rgba(0, 0, 0, 0.1);
 }
@@ -36,17 +36,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    padding: 20px;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 3. THE CHASSIS */
+/* 3. THE CHASSIS (Page Container) */
 .container {
     width: 100%;
     max-width: 650px; 
     border: 2px solid var(--border);
-    padding: 30px;
+    padding: 20px;
     background: var(--container-bg);
     box-shadow: 0 0 20px var(--shadow);
     overflow: hidden; 
@@ -54,34 +54,36 @@ body {
     z-index: 5;
 }
 
-/* 4. THEME TOGGLE (BRIGHT GREEN) */
+/* 4. THEME TOGGLE (Fixed Alignment & Color) */
 .theme-switch-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 15px;
+    display: flex !important;
+    justify-content: flex-end !important; /* Pushes to the right */
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 #theme-toggle {
     background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 12px;
+    border: 1.5px solid var(--accent) !important;
+    color: var(--accent) !important;
+    padding: 8px 15px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 0 5px var(--accent);
+    box-shadow: 0 0 8px var(--accent); /* Neon glow */
     transition: all 0.2s ease;
+    letter-spacing: 1px;
 }
 
 #theme-toggle:hover {
-    background: var(--accent);
-    color: #000;
+    background: var(--accent) !important;
+    color: #000 !important;
     box-shadow: 0 0 15px var(--accent);
 }
 
-/* 5. HEADER & LOGO */
+/* 5. LOGO & HEADER UNIFORMITY */
 header {
     text-align: center;
     border-bottom: 2px dashed var(--border);
@@ -101,7 +103,7 @@ header {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px dashed var(--border);
@@ -120,7 +122,18 @@ header {
     color: var(--bg);
 }
 
-/* 6. HERO SECTION / OBSERVATION DECK FIX */
+/* 6. TYPOGRAPHY */
+h1 { letter-spacing: 3px; margin: 10px 0; font-size: 1.6rem; text-align: center; }
+h2 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    background: rgba(92, 61, 46, 0.2);
+    padding: 5px 10px;
+    margin: 25px 0 15px 0;
+    border-left: 4px solid var(--border);
+}
+
+/* 7. HERO SECTION / PERSONAL VAULT ELEMENTS */
 .hero-container {
     position: relative;
     width: 100%;
@@ -135,78 +148,48 @@ header {
     display: block;
     width: 100%;
     height: auto;
+    filter: brightness(0.7);
 }
 
 .text-overlay {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 15px;
     border: 1px solid var(--primary-dim);
-    width: 90%;
+    width: 85%;
     text-align: center;
     line-height: 1.2;
 }
 
-/* 7. TABLES & FORMS */
+/* 8. TABLES (Price List & Core Offerings) */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
 }
 
-td, th {
-    padding: 10px;
+th, td {
+    padding: 12px 10px;
     border-bottom: 1px solid var(--border);
     text-align: left;
+    font-size: 0.9rem;
 }
 
 .retro-table th {
     color: var(--primary);
-    border-bottom: 2px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .retro-table td {
-    color: var(--accent); /* Terminal Green data */
+    color: var(--accent); /* Data stays green */
 }
 
-input, textarea {
-    background-color: #000;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 10px;
-    width: 100%;
-    font-family: inherit;
-    margin-bottom: 15px;
-}
-
-.submit-btn, .transmit-btn {
-    background-color: var(--accent);
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-/* 8. VISUAL EFFECTS */
+/* 9. TERMINAL EFFECTS & FORMS */
 .terminal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    background-size: 100% 3px, 3px 100%;
-    pointer-events: none;
-    z-index: 100;
-}
-
-footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 0.8rem;
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-}
+    background: linear-gradient(rgba(18, 16

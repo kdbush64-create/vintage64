@@ -10,6 +10,10 @@
     <div class="terminal-overlay"></div>
     
     <div class="container">
+        <div class="theme-switch-wrapper">
+            <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
+        </div>
+
         <header>
             <div class="logo-container">
                 <img src="logo.png" alt="Vintage64 Logo" class="main-logo">
@@ -51,7 +55,7 @@
                 </tbody>
             </table>
 
-            <div class="service-tier" style="margin-top: 30px; border: 1px dashed #00ff00; padding: 15px;">
+            <div class="service-tier managed-shield-box" style="margin-top: 30px; border: 1px dashed var(--accent); padding: 15px;">
                 <h3>> V64_MANAGED_SHIELD</h3>
                 <p>Continuous protection for users who require "set-and-forget" security. This tier moves beyond one-time cleaning into active threat prevention.</p>
                 <ul class="terminal-list">
@@ -59,7 +63,7 @@
                     <li><strong>System Hardening:</strong> Monthly security audit and OS patch verification.</li>
                     <li><strong>Priority Uplink:</strong> Reduced lead time for emergency hardware/software support.</li>
                 </ul>
-                <p class="pricing-note" style="font-size: 0.85em; color: #ffaa00; margin-top: 15px;">
+                <p class="pricing-note" style="font-size: 0.85em; color: var(--primary-dim); margin-top: 15px;">
                     * NOTICE: Managed service rates are variable based on system complexity, hardware age, and required data retention volumes. A full system audit is required before service activation.
                 </p>
             </div>
@@ -69,5 +73,22 @@
             <p>Project Consultation available upon request. <a href="contact.html">[ INITIATE_CONTACT ]</a></p>
         </footer>
     </div>
+
+    <script>
+        // THEME TOGGLE LOGIC
+        const toggleBtn = document.getElementById('theme-toggle');
+        
+        // Persistent theme check
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = (currentTheme === 'light') ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 </body>
 </html>

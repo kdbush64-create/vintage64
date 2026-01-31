@@ -57,7 +57,7 @@ body {
 /* 4. THEME TOGGLE (Fixed Alignment & Color) */
 .theme-switch-wrapper {
     display: flex !important;
-    justify-content: flex-end !important; /* Pushes to the right */
+    justify-content: flex-end !important; 
     width: 100%;
     margin-bottom: 20px;
 }
@@ -72,7 +72,7 @@ body {
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 0 8px var(--accent); /* Neon glow */
+    box-shadow: 0 0 8px var(--accent);
     transition: all 0.2s ease;
     letter-spacing: 1px;
 }
@@ -185,11 +185,71 @@ th, td {
 }
 
 .retro-table td {
-    color: var(--accent); /* Data stays green */
+    color: var(--accent);
 }
 
-/* 9. TERMINAL EFFECTS & FORMS */
+/* 9. TERMINAL FORMS & INPUTS */
+.retro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Updated to follow theme background in light mode */
+input, textarea, .retro-select {
+    background-color: var(--container-bg) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--primary) !important;
+    padding: 12px;
+    font-family: inherit;
+    width: 100%;
+}
+
+/* Stand-out primary action button */
+.submit-btn {
+    background-color: var(--primary) !important;
+    color: var(--bg) !important;
+    border: 1px solid var(--primary);
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    font-family: inherit;
+}
+
+.submit-btn:hover {
+    background-color: transparent !important;
+    color: var(--primary) !important;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* 10. VISUAL EFFECTS */
 .terminal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.blink { animation: blinker 1.5s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}

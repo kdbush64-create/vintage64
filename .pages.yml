@@ -1,11 +1,10 @@
-# .pages.yml - The Master Map for vintage64.us
 content:
   - name: Business Logs
     label: Business Logs
     type: collection
     path: business-logs/
     format: md
-    # This line tells the CMS to show the Title in the list view
+    # This section below is what fixes the blank titles in your list
     view:
       label: "{{title}}"
     fields:

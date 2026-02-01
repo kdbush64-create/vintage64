@@ -3,16 +3,18 @@ content:
     label: Business Logs
     type: collection
     path: business-logs/
-    format: md
+    format: frontmatter-md
     view:
       label: title
     fields:
       - name: title
         label: Title
         type: string
+        required: true
       - name: date
         label: Date
         type: date
+        required: true
       - name: body
         label: Content
-        type: markdown
+        type: text

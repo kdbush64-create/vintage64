@@ -1,3 +1,9 @@
+# Project Wide Settings
+media:
+  input: assets/img
+  output: /assets/img
+
+# Collection Definitions
 content:
   - name: business-logs
     label: Business Logs

@@ -6,15 +6,14 @@ content:
     format: frontmatter-md
     view:
       label: title
+      description: date
     fields:
       - name: title
         label: Title
         type: string
-        required: true
       - name: date
         label: Date
         type: date
-        required: true
       - name: body
         label: Content
         type: text

@@ -3,9 +3,9 @@ content:
     label: Business Logs
     type: collection
     path: business-logs/
-    format: frontmatter-md
+    format: md
     view:
-      label: "{{title}}"
+      label: title
     fields:
       - name: title
         label: Title
@@ -15,4 +15,4 @@ content:
         type: date
       - name: body
         label: Content
-        type: rich-text
+        type: markdown

@@ -6,7 +6,6 @@ content:
     format: frontmatter-md
     view:
       label: title
-      description: date
     fields:
       - name: title
         label: Title

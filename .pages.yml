@@ -1,11 +1,13 @@
-# .pages.yml
+# .pages.yml - The Master Map for vintage64.us
 content:
   - name: Business Logs
     label: Business Logs
     type: collection
-    view: { label: "{{title}}" }
-    path: business-logs/ # This is where your new text files will go
+    path: business-logs/
     format: md
+    # This line tells the CMS to show the Title in the list view
+    view:
+      label: "{{title}}"
     fields:
       - name: title
         label: Title

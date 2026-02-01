@@ -1,10 +1,9 @@
 content:
-  - name: Business Logs
+  - name: business-logs
     label: Business Logs
     type: collection
     path: business-logs/
     format: md
-    # This section below is what fixes the blank titles in your list
     view:
       label: "{{title}}"
     fields:

@@ -1,14 +1,8 @@
-# Master Configuration for vintage64.us
-media:
-  input: assets/img
-  output: /assets/img
-
 content:
   - name: business-logs
     label: Business Logs
     type: collection
     path: business-logs/
-    # frontmatter-md ensures Title/Date are saved inside the file header
     format: frontmatter-md
     view:
       label: "{{title}}"

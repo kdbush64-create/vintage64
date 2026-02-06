@@ -38,7 +38,7 @@
     </div>
 
     <script>
-        // 1. THEME TOGGLE LOGIC (Restored)
+        // 1. THEME TOGGLE LOGIC
         const toggleBtn = document.getElementById('theme-toggle');
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
@@ -50,13 +50,58 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. LOG FETCHING LOGIC (The "Engine")
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        function highlightProfessionalLabels(targetElement) {
+            const keywords = [
+                "LOG_DATE:",
+                "STATUS:",
+                "SUMMARY:",
+                "PROJECT:",
+                "MILESTONE:",
+                "COMPLETED:",
+                "PENDING:"
+            ];
+            
+            const walk = document.createTreeWalker(targetElement, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+
+            while (node = walk.nextNode()) {
+                keywords.forEach(keyword => {
+                    if (node.nodeValue.includes(keyword)) {
+                        nodesToReplace.push({node, keyword});
+                    }
+                });
+            }
+
+            nodesToReplace.forEach(({node, keyword}) => {
+                const parent = node.parentNode;
+                if (parent.closest('.highlight-blue')) return;
+
+                const parts = node.nodeValue.split(keyword);
+                const fragment = document.createDocumentFragment();
+
+                parts.forEach((part, index) => {
+                    fragment.appendChild(document.createTextNode(part));
+                    if (index < parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight-blue';
+                        span.textContent = keyword;
+                        fragment.appendChild(span);
+                    }
+                });
+                parent.replaceChild(fragment, node);
+            });
+        }
+
+        // 3. LOG FETCHING LOGIC (With Highlighter Integration)
         async function loadLogs() {
             const container = document.getElementById('log-container');
             const user = "kdbush64-create"; 
             const repo = "vintage64"; 
             
             try {
+                // Ensure this points to your business-specific folder
                 const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/business-logs`);
                 const files = await response.json();
                 container.innerHTML = ''; 
@@ -82,21 +127,26 @@
                     }
 
                     const entry = document.createElement('section');
-                    entry.className = 'log-entry'; // Uses your existing CSS styling
+                    entry.className = 'log-entry';
                     entry.innerHTML = `
                         <h2>> ${displayTitle}</h2>
                         <p><strong>LOG_DATE:</strong> ${displayDate}</p>
                         <div class="log-text">${marked.parse(body)}</div>
-                        <br>
+                        <hr style="border: 0; border-top: 1px dashed var(--border); margin: 20px 0;">
                     `;
+                    
+                    // Trigger highlighting for THIS specific entry
+                    highlightProfessionalLabels(entry);
+                    
                     container.appendChild(entry);
                 }
             } catch (e) {
                 container.innerHTML = '<p>ERROR: UPLINK_FAILURE</p>';
+                console.error(e);
             }
         }
+        
         loadLogs();
     </script>
 </body>
 </html>
-

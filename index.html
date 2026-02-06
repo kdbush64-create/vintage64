@@ -52,7 +52,6 @@
         // THEME TOGGLE LOGIC (Syncs across all Vintage64 pages)
         const toggleBtn = document.getElementById('theme-toggle');
         
-        // Load preference from local storage
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -63,8 +62,59 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        function highlightProfessionalLabels() {
+            // Keywords that reflect your professional brand
+            const keywords = [
+                "Lead Technical Product Manager", 
+                "Scrum Master", 
+                "Agile Advocate", 
+                "Master’s in IT Management",
+                "Certifications:",
+                "Education:",
+                "Current Projects:"
+            ];
+            
+            const container = document.querySelector('.bio');
+            if (!container) return;
+
+            // Using a recursive walker to find text nodes safely
+            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+
+            while (node = walk.nextNode()) {
+                keywords.forEach(keyword => {
+                    if (node.nodeValue.includes(keyword)) {
+                        nodesToReplace.push({node, keyword});
+                    }
+                });
+            }
+
+            nodesToReplace.forEach(({node, keyword}) => {
+                const parent = node.parentNode;
+                if (parent.classList.contains('highlight-blue')) return;
+
+                const parts = node.nodeValue.split(keyword);
+                const fragment = document.createDocumentFragment();
+
+                parts.forEach((part, index) => {
+                    fragment.appendChild(document.createTextNode(part));
+                    if (index < parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight-blue';
+                        span.textContent = keyword;
+                        fragment.appendChild(span);
+                    }
+                });
+
+                parent.replaceChild(fragment, node);
+            });
+        }
+
+        // Execute highlighter after initial load
+        window.addEventListener('DOMContentLoaded', highlightProfessionalLabels);
     </script>
 </body>
 </html>
-
-

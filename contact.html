@@ -42,16 +42,16 @@
                 </div>
 
                 <div class="form-group">
-    <label for="service">SERVICE_INTEREST:</label>
-    <select id="service" name="service_interest" class="retro-select" required>
-        <option value="" disabled selected>-- SELECT_MODULE --</option>
-        <option value="General Inquiry">GENERAL_INQUIRY</option>
-        <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
-        <option value="Linux Migration">LINUX_MIGRATION_V64</option>
-        <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
-        <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
-    </select>
-</div>
+                    <label for="service">SERVICE_INTEREST:</label>
+                    <select id="service" name="service_interest" class="retro-select" required>
+                        <option value="" disabled selected>-- SELECT_MODULE --</option>
+                        <option value="General Inquiry">GENERAL_INQUIRY</option>
+                        <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
+                        <option value="Linux Migration">LINUX_MIGRATION_V64</option>
+                        <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
+                        <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="message">DATA_PACKET:</label>
@@ -85,7 +85,55 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. FORM SUBMISSION LOGIC
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        function highlightContactLabels() {
+            const keywords = [
+                "IDENT_NAME:", 
+                "RETURN_PATH:", 
+                "SERVICE_INTEREST:", 
+                "DATA_PACKET:",
+                "TRANSMISSION_SUCCESSFUL",
+                "DATA_INTEREST_LOGGED",
+                "STANDBY_FOR_RESPONSE"
+            ];
+            
+            const container = document.querySelector('.contact-interface');
+            if (!container) return;
+
+            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+
+            while (node = walk.nextNode()) {
+                keywords.forEach(keyword => {
+                    if (node.nodeValue.includes(keyword)) {
+                        nodesToReplace.push({node, keyword});
+                    }
+                });
+            }
+
+            nodesToReplace.forEach(({node, keyword}) => {
+                const parent = node.parentNode;
+                if (parent.closest('.highlight-blue')) return;
+
+                const parts = node.nodeValue.split(keyword);
+                const fragment = document.createDocumentFragment();
+
+                parts.forEach((part, index) => {
+                    fragment.appendChild(document.createTextNode(part));
+                    if (index < parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight-blue';
+                        span.textContent = keyword;
+                        fragment.appendChild(span);
+                    }
+                });
+
+                parent.replaceChild(fragment, node);
+            });
+        }
+
+        // 3. FORM SUBMISSION LOGIC
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -95,7 +143,6 @@
             btn.innerText = "[ SENDING_PACKET... ]";
             btn.disabled = true;
 
-            // Note: Update '/send-mail' with your actual endpoint when deploying
             fetch('/send-mail', {
                 method: 'POST',
                 body: formData
@@ -103,6 +150,7 @@
             .then(response => {
                 if (response.ok) {
                     resp.style.display = 'block';
+                    highlightContactLabels(); // Re-run to catch success message
                     this.reset();
                     btn.innerText = "[ SEND_COMPLETE ]";
                 } else {
@@ -117,8 +165,8 @@
                 btn.innerText = "[ RETRY_SEND ]";
             });
         });
+
+        window.addEventListener('DOMContentLoaded', highlightContactLabels);
     </script>
 </body>
 </html>
-
-

@@ -20,10 +20,11 @@
             </div>
             <h1>V64_TECH_SERVICES</h1>
             <nav class="system-nav">
-    <a href="index.html">[ HOME ]</a>
-    <a href="business.html">[ BUSINESS ]</a>
-    <a href="logs.html">[ LOGS ]</a> <a href="contact.html">[ CONTACT ]</a>
-</nav>
+                <a href="index.html">[ HOME ]</a>
+                <a href="business.html">[ BUSINESS ]</a>
+                <a href="logs.html">[ LOGS ]</a> 
+                <a href="contact.html">[ CONTACT ]</a>
+            </nav>
         </header>
 
         <section class="services">
@@ -105,8 +106,56 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        function highlightBusinessLabels() {
+            const keywords = [
+                "THE_PHOENIX_PROTOCOL",
+                "V64_MANAGED_SHIELD",
+                "Linux Mint",
+                "Malwarebytes™ Pro",
+                "System_Task",
+                "Rate_Starting",
+                "NOTICE:"
+            ];
+            
+            const container = document.querySelector('.services');
+            if (!container) return;
+
+            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+
+            while (node = walk.nextNode()) {
+                keywords.forEach(keyword => {
+                    if (node.nodeValue.includes(keyword)) {
+                        nodesToReplace.push({node, keyword});
+                    }
+                });
+            }
+
+            nodesToReplace.forEach(({node, keyword}) => {
+                const parent = node.parentNode;
+                if (parent.closest('.highlight-blue')) return;
+
+                const parts = node.nodeValue.split(keyword);
+                const fragment = document.createDocumentFragment();
+
+                parts.forEach((part, index) => {
+                    fragment.appendChild(document.createTextNode(part));
+                    if (index < parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight-blue';
+                        span.textContent = keyword;
+                        fragment.appendChild(span);
+                    }
+                });
+
+                parent.replaceChild(fragment, node);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
     </script>
 </body>
 </html>
-
-

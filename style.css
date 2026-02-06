@@ -9,6 +9,10 @@
     --accent: #00ff41;          /* Neon Green */
     --border: #5c3d2e;          /* Chassis Brown */
     --shadow: rgba(0, 0, 0, 0.8);
+
+    /* --- BUSINESS BRANDING: DATA-BLUE --- */
+    --data-blue: #00d4ff;       /* Professional Data Blue */
+    --blue-glow: rgba(0, 212, 255, 0.5);
 }
 
 [data-theme="light"] {
@@ -20,6 +24,9 @@
     --accent: #008522;          /* Readable Forest Green */
     --border: #a3a3a3;
     --shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Light Mode Blue adjustment for readability */
+    --data-blue: #00708a; 
 }
 
 /* 2. GLOBAL SYSTEM RESET */
@@ -133,6 +140,14 @@ h2 {
     border-left: 4px solid var(--border);
 }
 
+/* --- NEW BUSINESS BRANDING CLASS --- */
+.highlight-blue {
+    color: var(--data-blue) !important;
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--blue-glow);
+    letter-spacing: 0.5px;
+}
+
 /* 7. HERO SECTION / PERSONAL VAULT ELEMENTS */
 .hero-container {
     position: relative;
@@ -202,7 +217,6 @@ th, td {
     gap: 5px;
 }
 
-/* Updated to follow theme background in light mode */
 input, textarea, .retro-select {
     background-color: var(--container-bg) !important;
     border: 1px solid var(--border) !important;
@@ -212,7 +226,6 @@ input, textarea, .retro-select {
     width: 100%;
 }
 
-/* Stand-out primary action button */
 .submit-btn {
     background-color: var(--primary) !important;
     color: var(--bg) !important;
@@ -237,7 +250,7 @@ input, textarea, .retro-select {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 255, 0, 0.02));
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
     z-index: 100;
@@ -253,18 +266,18 @@ footer {
     border-top: 1px solid var(--border);
     padding-top: 20px;
 }
+
 /* --- RETRO FOCUS EFFECTS --- */
 input:focus, 
 textarea:focus, 
 .retro-select:focus {
     outline: none;
     border-color: var(--primary) !important;
-    box-shadow: 0 0 12px var(--primary-dim); /* Creates the neon aura */
-    background-color: rgba(255, 176, 0, 0.05) !important; /* Slight tint on focus */
+    box-shadow: 0 0 12px var(--primary-dim);
+    background-color: rgba(255, 176, 0, 0.05) !important;
 }
 
-/* Ensure the EXECUTE button glows on hover too */
 .submit-btn:hover {
     box-shadow: 0 0 20px var(--primary);
-    transform: translateY(-1px); /* Slight lift effect */
+    transform: translateY(-1px);
 }

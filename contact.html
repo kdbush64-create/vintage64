@@ -6,11 +6,11 @@
     <title>Vintage64TX | Initiate Contact</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Fix for Fix #3: Ensuring dropdown remains dark in Dark Mode */
+        /* Fix #3: Ensuring dropdown remains dark in Dark Mode */
         .retro-select {
             background-color: var(--container-bg) !important;
             color: var(--primary) !important;
-            appearance: none; /* Removes default OS styling */
+            appearance: none;
             -webkit-appearance: none;
             background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffb000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
             background-repeat: no-repeat;
@@ -19,7 +19,6 @@
             padding-right: 2.5rem;
         }
         
-        /* Ensures options inside are also dark */
         .retro-select option {
             background-color: #1a1a1a;
             color: var(--primary);
@@ -28,6 +27,12 @@
         .name-row {
             display: flex;
             gap: 15px;
+        }
+        
+        /* Honeypot Styling: Hidden from humans */
+        .v64-hidden-trap {
+            display: none !important;
+            visibility: hidden !important;
         }
         
         @media (max-width: 480px) {
@@ -61,6 +66,11 @@
             <p>Select your inquiry type to route your transmission to the correct department.</p>
             
             <form id="contactForm" class="retro-form">
+                <div class="v64-hidden-trap" aria-hidden="true">
+                    <label for="v64_system_check">System Check - Leave Empty</label>
+                    <input type="text" id="v64_system_check" name="v64_system_check" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div class="name-row">
                     <div class="form-group" style="flex: 1;">
                         <label for="first_name">FIRST_NAME:</label>
@@ -120,7 +130,7 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC (Updated Keywords)
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
         function highlightContactLabels() {
             const keywords = [
                 "FIRST_NAME:", 
@@ -168,10 +178,20 @@
             });
         }
 
-        // 3. FORM SUBMISSION LOGIC (With Email Check)
+        // 3. FORM SUBMISSION LOGIC
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // HONEYPOT CHECK
+            const honeyPot = document.getElementById('v64_system_check').value;
+            if (honeyPot.length > 0) {
+                console.warn("BOT_DETECTION: Transmission discarded.");
+                document.getElementById('responseMessage').style.display = 'block';
+                this.reset();
+                return;
+            }
             
+            // EMAIL VALIDATION
             const emailField = document.getElementById('email');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             

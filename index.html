@@ -49,7 +49,7 @@
     </div>
 
     <script>
-        // THEME TOGGLE LOGIC (Syncs across all Vintage64 pages)
+        // 1. THEME TOGGLE LOGIC
         const toggleBtn = document.getElementById('theme-toggle');
         
         if (localStorage.getItem('theme') === 'light') {
@@ -63,9 +63,8 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
         function highlightProfessionalLabels() {
-            // Keywords that reflect your professional brand
             const keywords = [
                 "Lead Technical Product Manager", 
                 "Scrum Master", 
@@ -73,13 +72,12 @@
                 "Master’s in IT Management",
                 "Certifications:",
                 "Education:",
-                "Current Projects:"
+                "CURRENT_PROJECTS"
             ];
             
             const container = document.querySelector('.bio');
             if (!container) return;
 
-            // Using a recursive walker to find text nodes safely
             const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
             let node;
             const nodesToReplace = [];
@@ -94,7 +92,8 @@
 
             nodesToReplace.forEach(({node, keyword}) => {
                 const parent = node.parentNode;
-                if (parent.classList.contains('highlight-blue')) return;
+                // Prevents infinite loops if already highlighted
+                if (parent.closest('.highlight-blue')) return;
 
                 const parts = node.nodeValue.split(keyword);
                 const fragment = document.createDocumentFragment();
@@ -113,7 +112,6 @@
             });
         }
 
-        // Execute highlighter after initial load
         window.addEventListener('DOMContentLoaded', highlightProfessionalLabels);
     </script>
 </body>

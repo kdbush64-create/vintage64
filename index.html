@@ -51,7 +51,6 @@
     <script>
         // 1. THEME TOGGLE LOGIC
         const toggleBtn = document.getElementById('theme-toggle');
-        
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -66,13 +65,15 @@
         // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
         function highlightProfessionalLabels() {
             const keywords = [
+                "WHO_AM_I",
+                "CURRENT_PROJECTS",
+                "THE_JOURNEY",
                 "Lead Technical Product Manager", 
                 "Scrum Master", 
-                "Agile Advocate", 
-                "Master’s in IT Management",
-                "Certifications:",
+                "Agile Advocate:", 
                 "Education:",
-                "CURRENT_PROJECTS"
+                "Certifications:",
+                "Master’s in IT Management"
             ];
             
             const container = document.querySelector('.bio');
@@ -92,7 +93,6 @@
 
             nodesToReplace.forEach(({node, keyword}) => {
                 const parent = node.parentNode;
-                // Prevents infinite loops if already highlighted
                 if (parent.closest('.highlight-blue')) return;
 
                 const parts = node.nodeValue.split(keyword);

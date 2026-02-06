@@ -62,7 +62,7 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER (Aggressive Version)
         function highlightProfessionalLabels() {
             const keywords = [
                 "WHO_AM_I",
@@ -79,36 +79,25 @@
             const container = document.querySelector('.bio');
             if (!container) return;
 
-            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
-            let node;
-            const nodesToReplace = [];
+            // Target headers, strong tags, and list items specifically
+            const targets = container.querySelectorAll('h2, h3, strong, li');
+            
+            targets.forEach(el => {
+                let html = el.innerHTML;
+                let changed = false;
 
-            while (node = walk.nextNode()) {
                 keywords.forEach(keyword => {
-                    if (node.nodeValue.includes(keyword)) {
-                        nodesToReplace.push({node, keyword});
-                    }
-                });
-            }
-
-            nodesToReplace.forEach(({node, keyword}) => {
-                const parent = node.parentNode;
-                if (parent.closest('.highlight-blue')) return;
-
-                const parts = node.nodeValue.split(keyword);
-                const fragment = document.createDocumentFragment();
-
-                parts.forEach((part, index) => {
-                    fragment.appendChild(document.createTextNode(part));
-                    if (index < parts.length - 1) {
-                        const span = document.createElement('span');
-                        span.className = 'highlight-blue';
-                        span.textContent = keyword;
-                        fragment.appendChild(span);
+                    // Only wrap if not already wrapped in highlight-blue
+                    if (html.includes(keyword) && !el.classList.contains('highlight-blue')) {
+                        const regex = new RegExp(`(${keyword})`, 'g');
+                        html = html.replace(regex, '<span class="highlight-blue">$1</span>');
+                        changed = true;
                     }
                 });
 
-                parent.replaceChild(fragment, node);
+                if (changed) {
+                    el.innerHTML = html;
+                }
             });
         }
 
@@ -116,3 +105,4 @@
     </script>
 </body>
 </html>
+

@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vintage64TX | Initiate Contact</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Fix for Fix #3: Ensuring dropdown remains dark in Dark Mode */
+        .retro-select {
+            background-color: var(--container-bg) !important;
+            color: var(--primary) !important;
+            appearance: none; /* Removes default OS styling */
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffb000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.65rem auto;
+            padding-right: 2.5rem;
+        }
+        
+        /* Ensures options inside are also dark */
+        .retro-select option {
+            background-color: #1a1a1a;
+            color: var(--primary);
+        }
+
+        .name-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        @media (max-width: 480px) {
+            .name-row { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
     <div class="terminal-overlay"></div>
@@ -32,12 +61,19 @@
             <p>Select your inquiry type to route your transmission to the correct department.</p>
             
             <form id="contactForm" class="retro-form">
-                <div class="form-group">
-                    <label for="name">IDENT_NAME:</label>
-                    <input type="text" id="name" name="name" required placeholder="User_Name">
+                <div class="name-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="first_name">FIRST_NAME:</label>
+                        <input type="text" id="first_name" name="first_name" required minlength="2" placeholder="First">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="last_name">LAST_NAME:</label>
+                        <input type="text" id="last_name" name="last_name" required minlength="2" placeholder="Last">
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label for="email">RETURN_PATH:</label>
+                    <label for="email">YOUR_EMAIL:</label>
                     <input type="email" id="email" name="email" required placeholder="name@domain.com">
                 </div>
 
@@ -54,7 +90,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="message">DATA_PACKET:</label>
+                    <label for="message">Enter request details:</label>
                     <textarea id="message" name="message" rows="5" required placeholder="Enter transmission details..."></textarea>
                 </div>
                 <button type="submit" class="submit-btn" id="submitBtn">[ EXECUTE_SEND ]</button>
@@ -73,7 +109,6 @@
     <script>
         // 1. THEME TOGGLE LOGIC
         const toggleBtn = document.getElementById('theme-toggle');
-        
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -85,13 +120,14 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
+        // 2. DATA-BLUE AUTO-HIGHLIGHTER LOGIC (Updated Keywords)
         function highlightContactLabels() {
             const keywords = [
-                "IDENT_NAME:", 
-                "RETURN_PATH:", 
+                "FIRST_NAME:", 
+                "LAST_NAME:", 
+                "YOUR_EMAIL:", 
                 "SERVICE_INTEREST:", 
-                "DATA_PACKET:",
+                "Enter request details:",
                 "TRANSMISSION_SUCCESSFUL",
                 "DATA_INTEREST_LOGGED",
                 "STANDBY_FOR_RESPONSE"
@@ -128,14 +164,22 @@
                         fragment.appendChild(span);
                     }
                 });
-
                 parent.replaceChild(fragment, node);
             });
         }
 
-        // 3. FORM SUBMISSION LOGIC
+        // 3. FORM SUBMISSION LOGIC (With Email Check)
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const emailField = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(emailField.value)) {
+                alert("INVALID_RETURN_PATH: Please enter a valid email address.");
+                return;
+            }
+
             const btn = document.getElementById('submitBtn');
             const resp = document.getElementById('responseMessage');
             const formData = new FormData(this);
@@ -150,7 +194,7 @@
             .then(response => {
                 if (response.ok) {
                     resp.style.display = 'block';
-                    highlightContactLabels(); // Re-run to catch success message
+                    highlightContactLabels();
                     this.reset();
                     btn.innerText = "[ SEND_COMPLETE ]";
                 } else {

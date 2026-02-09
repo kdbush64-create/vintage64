@@ -31,6 +31,17 @@
             <h2>> REVIVE_SECURE_OPTIMIZE</h2>
             <p>I bring enterprise-grade standards to personal hardware. As a <strong>CompTIA Project+ certified professional</strong>, I manage your technology lifecycle as a project—ensuring clear milestones, risk mitigation, and structured delivery.</p>
 
+            <div class="service-tier" style="margin: 25px 0; border-left: 3px solid #f1c40f; padding-left: 20px;">
+                <h3>> V64_SOLOPRENEUR_EDITION (WEB_BUILD)</h3>
+                <p>Most small business websites are bloated and slow. I build <strong>"Lean & Mean"</strong> static sites that score 100% on Google PageSpeed. No databases to hack. No plugins to break. Just pure performance.</p>
+                <ul class="terminal-list" style="list-style: none; font-size: 0.9em; margin-top: 10px;">
+                    <li>[+] Hand-coded HTML5/Tailwind—Zero WordPress bloat.</li>
+                    <li>[+] Secure V64 Transmission Logic for lead capture.</li>
+                    <li>[+] Hosted on global edge networks (CDN) for instant loading.</li>
+                    <li>[+] 100% Mobile Optimization for local DFW search results.</li>
+                </ul>
+            </div>
+
             <div class="service-tier" style="margin: 25px 0; border-left: 3px solid var(--accent); padding-left: 20px;">
                 <h3>> THE_PHOENIX_PROTOCOL (LINUX_MIGRATION)</h3>
                 <p>The ultimate revival for "obsolete" hardware. I replace bloated, invasive operating systems with lightweight, high-performance **Linux Mint**.</p>
@@ -50,6 +61,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr style="border-bottom: 1px dashed var(--border);">
+                        <td style="padding: 10px;">Solopreneur Launch Pack (1-Page Web)</td>
+                        <td style="padding: 10px;">$850</td>
+                    </tr>
                     <tr style="border-bottom: 1px dashed var(--border);">
                         <td style="padding: 10px;">System Diagnostic (Full Audit)</td>
                         <td style="padding: 10px;">$45</td>
@@ -82,7 +97,7 @@
                     <li><strong>Priority Uplink:</strong> Reduced lead time for emergency technical support.</li>
                 </ul>
                 <p class="pricing-note" style="font-size: 0.8rem; color: var(--primary-dim); margin-top: 15px;">
-                    * NOTICE: Hardware components are drop-shipped per-project. A parts-deposit is required. No inventory is held on-site.
+                    * NOTICE: Hardware components are drop-shipped per-project. A parts-deposit is required. No inventory is held on-site. Web projects limited to single-page performance builds.
                 </p>
             </div>
         </section>
@@ -111,6 +126,7 @@
         function highlightBusinessLabels() {
             const keywords = [
                 "REVIVE_SECURE_OPTIMIZE",
+                "V64_SOLOPRENEUR_EDITION",
                 "THE_PHOENIX_PROTOCOL",
                 "V64_MANAGED_SHIELD",
                 "SERVICE_PRICE_LIST",
@@ -128,7 +144,6 @@
             const container = document.querySelector('.services');
             if (!container) return;
 
-            // Target headers, strong tags, and list items specifically
             const targets = container.querySelectorAll('h2, h3, strong, li, th');
             
             targets.forEach(el => {
@@ -136,7 +151,6 @@
                 let changed = false;
 
                 keywords.forEach(keyword => {
-                    // Only wrap if not already wrapped in highlight-blue
                     if (html.includes(keyword) && !el.classList.contains('highlight-blue')) {
                         const regex = new RegExp(`(${keyword})`, 'g');
                         html = html.replace(regex, '<span class="highlight-blue">$1</span>');
@@ -150,7 +164,7 @@
             });
         }
 
-            window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
+        window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
     </script>
 </body>
 </html>

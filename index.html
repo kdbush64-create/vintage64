@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vintage64TX</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon-64.png">
+    
+    <link rel="icon" type="image/png" href="texas-v-favicon.png">
+    <link rel="apple-touch-icon" href="texas-v-favicon.png">
 </head>
 <body>
     <div class="terminal-overlay"></div>
@@ -16,22 +18,20 @@
         </div>
 
         <header style="text-align: center;">
-    <div class="logo-container">
-        <img src="logo.png" alt="Vintage64 Logo" class="main-logo">
-    </div>
-    <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;">
-        <span style="display: block;">VINTAGE64TX</span>
-
-        <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--text-color); opacity: 0.9;">DEWAYNE BUSH</span>
-
-        </h1>
-    <nav class="system-nav">
-        <a href="index.html">[ HOME ]</a>
-        <a href="business.html">[ BUSINESS ]</a>
-        <a href="logs.html">[ LOGS ]</a>
-        <a href="contact.html">[ CONTACT ]</a>
-    </nav>
-</header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Vintage64 Logo" class="main-logo">
+            </div>
+            <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;">
+                <span style="display: block;">VINTAGE64TX</span>
+                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--text-color); opacity: 0.9;">DEWAYNE BUSH</span>
+            </h1>
+            <nav class="system-nav">
+                <a href="index.html">[ HOME ]</a>
+                <a href="business.html">[ BUSINESS ]</a>
+                <a href="logs.html">[ LOGS ]</a>
+                <a href="contact.html">[ CONTACT ]</a>
+            </nav>
+        </header>
 
         <section class="bio">
             <h2>> WHO_AM_I</h2>
@@ -74,7 +74,6 @@
         });
 
         // 2. GITHUB LAST UPDATE AUTO-FETCH
-        // Replace 'kdbush64-create' and 'vintage64' with your actual GitHub username and repo name
         async function fetchLastUpdate() {
             try {
                 const response = await fetch('https://api.github.com/repos/kdbush64-create/vintage64/commits/main');
@@ -128,5 +127,3 @@
     </script>
 </body>
 </html>
-
-

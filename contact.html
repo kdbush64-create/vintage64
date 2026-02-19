@@ -3,11 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage64TX | Initiate Contact</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Vintage64TX | Contact &mdash; Initiate Transmission</title>
+    <meta name="description" content="Contact Vintage64TX — DeWayne Bush, Fort Worth TX tech services. Reach out for Linux migration, web builds, PC repair, or security hardening inquiries.">
+    <meta name="author" content="DeWayne Bush">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://vintage64tx.com/contact.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Vintage64TX | Fort Worth TX Tech Services">
+    <meta property="og:description" content="Reach out for Linux migration, web builds, PC repair, or security hardening inquiries. Fort Worth, TX.">
+    <meta property="og:image" content="https://vintage64tx.com/logo.png">
+    <meta property="og:url" content="https://vintage64tx.com/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vintage64TX">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Vintage64TX | Fort Worth TX">
+    <meta name="twitter:description" content="Reach out for Linux migration, web builds, PC repair, or security hardening inquiries.">
+    <meta name="twitter:image" content="https://vintage64tx.com/logo.png">
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="favicon-64.png">
+    <link rel="apple-touch-icon" href="favicon-64.png">
+
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Ensuring dropdown remains dark in Dark Mode */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 10px;
+            background: var(--accent);
+            color: #000;
+            padding: 8px 16px;
+            font-weight: bold;
+            z-index: 99999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Dropdown dark mode */
         .retro-select {
             background-color: var(--container-bg) !important;
             color: var(--primary) !important;
@@ -19,31 +59,30 @@
             background-size: 0.65rem auto;
             padding-right: 2.5rem;
         }
-        
         .retro-select option {
             background-color: #1a1a1a;
             color: var(--primary);
         }
+        .name-row { display: flex; gap: 15px; }
+        .v64-hidden-trap { display: none !important; visibility: hidden !important; }
+        @media (max-width: 480px) { .name-row { flex-direction: column; } }
 
-        .name-row {
-            display: flex;
-            gap: 15px;
+        /* Bot-protected email display */
+        .protected-email {
+            color: var(--secondary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
         }
-        
-        /* Honeypot Styling: Hidden from humans */
-        .v64-hidden-trap {
-            display: none !important;
-            visibility: hidden !important;
-        }
-        
-        @media (max-width: 480px) {
-            .name-row { flex-direction: column; }
-        }
+
+        .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
+        .footer-social a:hover { color: var(--accent); }
     </style>
 </head>
-<body>
+<body id="page-contact">
     <div class="terminal-overlay"></div>
-    
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <div class="container">
         <div class="theme-switch-wrapper">
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
@@ -51,184 +90,253 @@
 
         <header>
             <div class="logo-container">
-                <img src="logo.png" alt="Vintage64 Logo" class="main-logo">
+                <img src="media/logo.png" alt="Vintage64TX Logo" class="main-logo" loading="lazy">
             </div>
             <h1 style="line-height: 1.2; text-align: center; margin-bottom: 20px;">
                 <span style="display: block;">VINTAGE64TX</span>
-                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--text-color); opacity: 0.9;">COMMUNICATION UPLINK</span>
+                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--primary); opacity: 0.9;">COMMUNICATION UPLINK</span>
             </h1>
-            <nav class="system-nav">
+            <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
                 <a href="business.html">[ BUSINESS ]</a>
                 <a href="logs.html">[ LOGS ]</a>
-                <a href="contact.html">[ CONTACT ]</a>
+                <a href="contact.html" aria-current="page">[ CONTACT ]</a>
             </nav>
         </header>
 
-        <section class="contact-interface">
-            <h2>> ENCRYPTED_MESSAGE_INPUT</h2>
-            <p>Select your inquiry type to route your transmission to the correct department.</p>
-            
-            <form id="contactForm" class="retro-form">
-                <div class="v64-hidden-trap" aria-hidden="true">
-                    <label for="v64_system_check">System Check - Leave Empty</label>
-                    <input type="text" id="v64_system_check" name="v64_system_check" tabindex="-1" autocomplete="off">
-                </div>
+        <main id="main">
+            <section class="contact-interface">
+                <h2>&gt; ENCRYPTED_MESSAGE_INPUT</h2>
+                <p>Select your inquiry type to route your transmission to the correct department.</p>
 
-                <div class="name-row">
-                    <div class="form-group" style="flex: 1;">
-                        <label for="first_name">FIRST_NAME:</label>
-                        <input type="text" id="first_name" name="first_name" required minlength="2" placeholder="First">
+                <!-- Bot-protected email — rendered via JS, never in plain HTML source -->
+                <p style="margin: 15px 0; font-size: 0.85rem;">
+                    Direct uplink: <span id="protected-email" class="protected-email">[DECRYPTING...]</span>
+                </p>
+
+                <form id="contactForm" class="retro-form" novalidate>
+                    <!-- Honeypot — hidden from humans, bots fill this in -->
+                    <div class="v64-hidden-trap" aria-hidden="true">
+                        <label for="v64_system_check">System Check - Leave Empty</label>
+                        <input type="text" id="v64_system_check" name="v64_system_check" tabindex="-1" autocomplete="off">
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label for="last_name">LAST_NAME:</label>
-                        <input type="text" id="last_name" name="last_name" required minlength="2" placeholder="Last">
+
+                    <!-- Timestamp — used to detect instant bot submissions -->
+                    <input type="hidden" id="form_loaded_at" name="form_loaded_at">
+
+                    <div class="name-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="first_name">FIRST_NAME:</label>
+                            <input type="text" id="first_name" name="first_name" required minlength="2" maxlength="50" placeholder="First" autocomplete="given-name">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="last_name">LAST_NAME:</label>
+                            <input type="text" id="last_name" name="last_name" required minlength="2" maxlength="50" placeholder="Last" autocomplete="family-name">
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="email">YOUR_EMAIL:</label>
+                        <input type="email" id="email" name="email" required maxlength="100" placeholder="name@domain.com" autocomplete="email"
+                               pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                               title="Please enter a valid email address (e.g., name@domain.com)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">SERVICE_INTEREST:</label>
+                        <select id="service" name="service_interest" class="retro-select" required>
+                            <option value="" disabled selected>-- SELECT_MODULE --</option>
+                            <option value="General Inquiry">GENERAL_INQUIRY</option>
+                            <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
+                            <option value="Linux Migration">LINUX_MIGRATION_V64</option>
+                            <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
+                            <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
+                            <option value="Web Build">WEB_BUILD_SOLOPRENEUR</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">TRANSMISSION_DETAILS:</label>
+                        <textarea id="message" name="message" rows="5" required maxlength="1000" placeholder="Enter transmission details..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">[ EXECUTE_SEND ]</button>
+                </form>
+
+                <div id="responseMessage" style="display:none; margin-top: 20px; border: 1px solid var(--accent); padding: 15px; background-color: rgba(0, 255, 0, 0.05);" role="alert" aria-live="polite">
+                    <span style="color: var(--accent); font-family: 'Courier New', monospace;">
+                        &gt; TRANSMISSION_SUCCESSFUL...<br>
+                        &gt; DATA_INTEREST_LOGGED...<br>
+                        &gt; STANDBY_FOR_RESPONSE
+                    </span>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">YOUR_EMAIL:</label>
-                    <input type="email" id="email" name="email" required placeholder="name@domain.com">
+                <div id="errorMessage" style="display:none; margin-top: 20px; border: 1px solid #ff4444; padding: 15px; background-color: rgba(255, 0, 0, 0.05);" role="alert" aria-live="polite">
+                    <span style="color: #ff4444; font-family: 'Courier New', monospace;">
+                        &gt; TRANSMISSION_FAILED...<br>
+                        &gt; RETRY_OR_CONTACT_DIRECT
+                    </span>
                 </div>
-
-                <div class="form-group">
-                    <label for="service">SERVICE_INTEREST:</label>
-                    <select id="service" name="service_interest" class="retro-select" required>
-                        <option value="" disabled selected>-- SELECT_MODULE --</option>
-                        <option value="General Inquiry">GENERAL_INQUIRY</option>
-                        <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
-                        <option value="Linux Migration">LINUX_MIGRATION_V64</option>
-                        <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
-                        <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Enter request details:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Enter transmission details..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn" id="submitBtn">[ EXECUTE_SEND ]</button>
-            </form>
-
-            <div id="responseMessage" style="display:none; margin-top: 20px; border: 1px solid var(--accent); padding: 15px; background-color: rgba(0, 255, 0, 0.05);">
-                <span style="color: var(--accent); font-family: 'Courier New', monospace;">
-                    > TRANSMISSION_SUCCESSFUL...<br>
-                    > DATA_INTEREST_LOGGED...<br>
-                    > STANDBY_FOR_RESPONSE
-                </span>
-            </div>
-        </section>
+            </section>
+        </main>
 
         <footer>
             <div class="footer-status">
-                <p>Root Directory: <a href="https://www.facebook.com/kdbush64" class="footer-link">fb://kdbush64</a></p>
+                <!-- Social links — replace PLACEHOLDER_* with real URLs when pages are live -->
+                <div class="footer-social">
+                    <a href="PLACEHOLDER_FACEBOOK_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Facebook">[FACEBOOK]</a>
+                    <a href="PLACEHOLDER_X_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on X">[X]</a>
+                    <a href="PLACEHOLDER_INSTAGRAM_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Instagram">[INSTAGRAM]</a>
+                    <a href="PLACEHOLDER_GOOGLE_BUSINESS_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Google Business">[GOOGLE]</a>
+                </div>
                 <p style="font-size: 0.75em; opacity: 0.7; margin-top: 15px; border-top: 1px dashed rgba(0,255,0,0.2); padding-top: 10px;">
                     SYSTEM_VER: 1.0.2-BETA | STATUS: <span style="color: #00ff00;">STABLE</span> | LAST_UPDT: <span id="last-update">FETCHING...</span>
                 </p>
-                <p style="font-size: 0.7em; opacity: 0.5;">© 2026 VINTAGE64TX // ALL RIGHTS RESERVED</p>
+                <p style="font-size: 0.7em; opacity: 0.5;">&copy; 2026 VINTAGE64TX // ALL RIGHTS RESERVED</p>
             </div>
         </footer>
     </div>
 
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+
     <script>
-        // 1. THEME TOGGLE LOGIC
+        // ── Bot-protected email assembly ──
+        // Email is never in plain HTML — assembled in JS only
+        // dewayne @ vintage64tx.com
+        (function() {
+            const u = 'dewayne';
+            const d = 'vintage64tx';
+            const t = 'com';
+            const el = document.getElementById('protected-email');
+            if (el) {
+                const addr = u + '@' + d + '.' + t;
+                el.innerHTML = '<a href="mailto:' + addr + '" style="color:var(--secondary);">' + addr + '</a>';
+            }
+        })();
+
+        // ── Timestamp for bot speed detection ──
+        document.getElementById('form_loaded_at').value = Date.now();
+
+        // 1. THEME TOGGLE
         const toggleBtn = document.getElementById('theme-toggle');
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
-
         toggleBtn.addEventListener('click', () => {
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = (currentTheme === 'light') ? 'dark' : 'light';
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. GITHUB LAST UPDATE AUTO-FETCH
+        // 2. GITHUB LAST UPDATE
         async function fetchLastUpdate() {
             try {
-                const response = await fetch('https://api.github.com/repos/kdbush64-create/vintage64/commits/main');
-                const data = await response.json();
-                const date = new Date(data.commit.author.date);
-                document.getElementById('last-update').textContent = date.toISOString().split('T')[0];
-            } catch (error) {
+                const r = await fetch('https://api.github.com/repos/kdbush64-create/vintage64/commits/main');
+                const data = await r.json();
+                document.getElementById('last-update').textContent = new Date(data.commit.author.date).toISOString().split('T')[0];
+            } catch {
                 document.getElementById('last-update').textContent = "2026-02-11";
             }
         }
         fetchLastUpdate();
 
-        // 3. DATA-BLUE AUTO-HIGHLIGHTER LOGIC
-        function highlightContactLabels() {
-            const keywords = [
-                "FIRST_NAME:", "LAST_NAME:", "YOUR_EMAIL:", "SERVICE_INTEREST:", 
-                "Enter request details:", "TRANSMISSION_SUCCESSFUL", 
-                "DATA_INTEREST_LOGGED", "STANDBY_FOR_RESPONSE"
-            ];
-            
-            const container = document.querySelector('.contact-interface');
-            if (!container) return;
+        // 3. FORM SUBMISSION
+        // ── IMPORTANT: Replace PLACEHOLDER_WORKER_URL below with your Cloudflare Worker URL ──
+        // Create a Worker in Cloudflare dashboard > Workers & Pages > Create Worker
+        // The Worker receives the POST and forwards to dewayne@vintage64tx.com via Forward Email SMTP
+        const WORKER_URL = 'PLACEHOLDER_WORKER_URL';
 
-            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
-            let node;
-            const nodesToReplace = [];
-
-            while (node = walk.nextNode()) {
-                keywords.forEach(keyword => {
-                    if (node.nodeValue.includes(keyword)) {
-                        nodesToReplace.push({node, keyword});
-                    }
-                });
-            }
-
-            nodesToReplace.forEach(({node, keyword}) => {
-                const parent = node.parentNode;
-                if (parent.closest('.highlight-blue')) return;
-
-                const parts = node.nodeValue.split(keyword);
-                const fragment = document.createDocumentFragment();
-
-                parts.forEach((part, index) => {
-                    fragment.appendChild(document.createTextNode(part));
-                    if (index < parts.length - 1) {
-                        const span = document.createElement('span');
-                        span.className = 'highlight-blue';
-                        span.textContent = keyword;
-                        fragment.appendChild(span);
-                    }
-                });
-                parent.replaceChild(fragment, node);
-            });
-        }
-
-        // 4. FORM SUBMISSION LOGIC
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const honeyPot = document.getElementById('v64_system_check').value;
-            if (honeyPot.length > 0) {
+            // Honeypot check
+            if (document.getElementById('v64_system_check').value.length > 0) {
+                // Bot detected — silently show success to fool it
                 document.getElementById('responseMessage').style.display = 'block';
                 this.reset();
                 return;
             }
-            
+
+            // Timestamp speed check — reject if submitted in under 3 seconds
+            const loadedAt = parseInt(document.getElementById('form_loaded_at').value);
+            if (Date.now() - loadedAt < 3000) {
+                document.getElementById('responseMessage').style.display = 'block';
+                this.reset();
+                return;
+            }
+
+            // Basic client-side validation
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email').focus();
+                return;
+            }
+
             const btn = document.getElementById('submitBtn');
-            const resp = document.getElementById('responseMessage');
-            
             btn.innerText = "[ SENDING_PACKET... ]";
             btn.disabled = true;
 
-            // Simulating backend fetch for the demo
-            setTimeout(() => {
-                resp.style.display = 'block';
-                highlightContactLabels();
-                this.reset();
-                btn.innerText = "[ SEND_COMPLETE ]";
-            }, 1500);
+            const formData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                email: email,
+                service_interest: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                if (response.ok) {
+                    document.getElementById('responseMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    this.reset();
+                    btn.innerText = "[ SEND_COMPLETE ]";
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (err) {
+                document.getElementById('errorMessage').style.display = 'block';
+                btn.innerText = "[ EXECUTE_SEND ]";
+                btn.disabled = false;
+            }
         });
 
+        // 4. LABEL HIGHLIGHTER
+        function highlightContactLabels() {
+            const keywords = ["ENCRYPTED_MESSAGE_INPUT", "FIRST_NAME:", "LAST_NAME:", "YOUR_EMAIL:", "SERVICE_INTEREST:", "TRANSMISSION_DETAILS:"];
+            const container = document.querySelector('.contact-interface');
+            if (!container) return;
+            const walk = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodes = [];
+            while (node = walk.nextNode()) {
+                keywords.forEach(kw => { if (node.nodeValue.includes(kw)) nodes.push({node, kw}); });
+            }
+            nodes.forEach(({node, kw}) => {
+                const parent = node.parentNode;
+                if (parent.closest('.highlight-blue')) return;
+                const parts = node.nodeValue.split(kw);
+                const frag = document.createDocumentFragment();
+                parts.forEach((part, i) => {
+                    frag.appendChild(document.createTextNode(part));
+                    if (i < parts.length - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'highlight-blue';
+                        span.textContent = kw;
+                        frag.appendChild(span);
+                    }
+                });
+                parent.replaceChild(frag, node);
+            });
+        }
         window.addEventListener('DOMContentLoaded', highlightContactLabels);
     </script>
 </body>
 </html>
-
-

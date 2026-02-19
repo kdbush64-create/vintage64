@@ -60,6 +60,7 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
+    /* 1. CORE UTILITIES */
     .skip-link {
         position: absolute;
         top: -100px;
@@ -72,17 +73,35 @@
         transition: top 0.2s;
     }
     .skip-link:focus { top: 0; }
+
+    /* 2. THE BLUE PIPE (Pseudo-element) */
+    /* This creates the thick blue pipe WITHOUT adding extra HTML tags that the JS script can break */
+    .bio h2::before, .bio h3::before {
+        content: "|";
+        color: var(--blue, #00d4ff);
+        font-weight: 900;
+        margin-right: 12px;
+        display: inline-block;
+    }
+
+    /* 3. SECTION SPACING */
+    .bio p {
+        margin-bottom: 40px !important; /* Force the line break between sections */
+    }
+
+    /* 4. BULLET ALIGNMENT */
+    .terminal-list {
+        margin-left: 60px !important; /* Pushes the list further right */
+        padding-left: 0;
+    }
+    .terminal-list li {
+        margin-bottom: 15px;
+    }
+
+    /* 5. FOOTER STYLES */
     .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
     .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
     .footer-social a:hover { color: var(--accent); }
-
-    /* NEW: This adds the large Data Blue pipe without the extra artifacts */
-    .header-pipe {
-        color: var(--blue, #00d4ff); 
-        font-weight: bold;
-        margin-right: 10px;
-        display: inline-block;
-    }
 </style>
 </head>
 <body id="page-home">
@@ -117,27 +136,30 @@
 
        <main id="main">
     <section class="bio">
-        <h2 style="margin-top: 0;">
-            <span class="header-pipe">|</span> &gt; WHO_AM_I
-        </h2>
-        <p style="margin-bottom: 40px;">
-            I&rsquo;m a tech professional with over 15 years of experience navigating the space where product strategy meets agile execution. Based in <strong>Fort Worth, TX</strong>, my career has taken me from the front lines of airline operations to leading complex technical modernizations for industry leaders.
+        <h2 style="margin-top: 0;">&gt; WHO_AM_I</h2>
+        <p>
+            I am a technical product leader with over <strong>15 years of experience</strong> navigating the intersection of product strategy and Agile execution. Based in <strong>Fort Worth, TX</strong>, I specialize in leading cross-functional teams through complex technical modernizations for industry leaders in aviation and eCommerce. My foundation is built on <strong>digital sovereignty</strong> and lean architecture.
         </p>
 
-        <h3>
-            <span class="header-pipe">|</span> &gt; CURRENT_PROJECTS
-        </h3>
-        <p style="margin-bottom: 40px;">
-            Currently, I serve as a <strong>Lead Technical Product Manager and Scrum Master</strong>. My &ldquo;day job&rdquo; involves a bit of digital archaeology&mdash;leading teams to research and document legacy TPF mainframe code to prepare it for the future.
+        <h3>&gt; CURRENT_AND_PAST_PROJECTS</h3>
+        <p>
+            I currently lead teams in "digital archaeology"—researching and documenting <strong>legacy TPF mainframe code</strong> to prepare it for cloud-native futures. My track record includes guiding a <strong>100% increase in operational efficiency</strong> for global airport systems and managing <strong>multi-million dollar revenue growths</strong> through specialized retail workflows. Whether it's migrating proprietary software to <strong>Google Cloud</strong> or <strong>AWS</strong>, I focus on hardening assets and reducing technical debt.
         </p>
 
-        <h3>
-            <span class="header-pipe">|</span> &gt; THE_JOURNEY
-        </h3>
-        <ul class="terminal-list" style="margin-left: 60px; padding-left: 0;">
-            <li style="margin-bottom: 15px;"><strong>Agile Advocate:</strong> As a CSPO and CSM, I&rsquo;m passionate about building high-performing teams.</li>
-            <li style="margin-bottom: 15px;"><strong>Education:</strong> I hold a <strong>Master&rsquo;s in IT Management (MSITM)</strong> and a <strong>Bachelor of Science in IT</strong> from WGU.</li>
-            <li style="margin-bottom: 15px;"><strong>Certifications:</strong> My foundation includes AWS Cloud Practitioner, CompTIA Security+, Network+, A+, and Project+.</li>
+        <h3>&gt; THE_JOURNEY</h3>
+        <ul class="terminal-list">
+            <li>
+                <strong style="color: var(--blue);">Agile Mastery:</strong> Certified Scrum Product Owner (CSPO) and Scrum Master (CSM) with a focus on high-performing, cloud-based solution delivery.
+            </li>
+            <li>
+                <strong style="color: var(--blue);">Specialized Hardening:</strong> CompTIA <strong>Security+</strong>, <strong>Network+</strong>, and <strong>A+</strong> certified, specializing in secure infrastructure and technical debt remediation.
+            </li>
+            <li>
+                <strong style="color: var(--blue);">Linux Native:</strong> LPI <strong>Linux Essentials</strong> certified (2025), driving the <strong>Vintage64 Phoenix Conversion</strong> for lean, secure computing.
+            </li>
+            <li>
+                <strong style="color: var(--blue);">Academic Foundation:</strong> Master of Science in <strong>IT Management (MSITM)</strong> and BS in Information Technology from Western Governors University.
+            </li>
         </ul>
     </section>
 </main>
@@ -210,6 +232,7 @@
     </script>
 </body>
 </html>
+
 
 
 

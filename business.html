@@ -384,34 +384,49 @@
         });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeV64Modal(); });
 
-        // 4. DATA-BLUE HIGHLIGHTER
-        function highlightBusinessLabels() {
-            const keywords = [
-                "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
-                "THE_PHOENIX_PROTOCOL", "SERVICE_PRICE_LIST",
-                "CompTIA Project+", "Linux Desktop distribution",
-                "System_Task", "Rate_Starting",
-                "OPTIONAL_MODULE:", "HARDWARE_EXPANSION:"
-            ];
-            [document.querySelector('.services'), document.querySelector('.v64-modal-body')].forEach(root => {
-                if (!root) return;
-                root.querySelectorAll('h2, h3, h4, strong, li, th, b').forEach(el => {
-                    let html = el.innerHTML;
-                    let changed = false;
-                    keywords.forEach(kw => {
-                        if (html.includes(kw) && !el.querySelector('.highlight-blue')) {
-                            html = html.replace(new RegExp(`(${kw.replace(/[+.:]/g, '\\$&')})`, 'g'), '<span class="highlight-blue">$1</span>');
-                            changed = true;
-                        }
-                    });
-                    if (changed) el.innerHTML = html;
-                });
+       // 4. DATA-BLUE HIGHLIGHTER (Hardened for Vintage64TX)
+function highlightBusinessLabels() {
+    const keywords = [
+        "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
+        "THE_PHOENIX_PROTOCOL", "SERVICE_PRICE_LIST",
+        "CompTIA Project+", "Linux Desktop distribution",
+        "System_Task", "Rate_Starting",
+        "OPTIONAL_MODULE:", "HARDWARE_EXPANSION:"
+    ];
+
+    // Select the main service area and the modal body
+    const containers = [document.querySelector('.services'), document.querySelector('.v64-modal-body')];
+    
+    containers.forEach(root => {
+        if (!root) return;
+
+        // Target all text-bearing elements
+        root.querySelectorAll('h2, h3, h4, strong, li, th, b').forEach(el => {
+            let html = el.innerHTML;
+            let changed = false;
+
+            keywords.forEach(kw => {
+                // Escape special characters (+ . :) for the Regex
+                const escapedKw = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${escapedKw})`, 'g');
+
+                // Only replace if the word exists and isn't already highlighted
+                if (html.includes(kw) && !html.includes('class="highlight-blue"')) {
+                    html = html.replace(regex, '<span class="highlight-blue">$1</span>');
+                    changed = true;
+                }
             });
-        }
-        window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
-    </script>
+
+            if (changed) {
+                el.innerHTML = html;
+            }
+        });
+    });
+}
+window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
 </body>
 </html>
+
 
 
 

@@ -1,5 +1,5 @@
 # LOG_ENTRY_003: THE_SOLOPRENEUR_MANIFESTO
-**Filename:** `domestic_static_advantage.sh`
+**Filename:** `own_your_digital_assets.sh`
 
 ---
 

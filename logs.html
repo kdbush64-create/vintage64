@@ -66,7 +66,7 @@
 
         <header style="text-align: center;">
             <div class="logo-container">
-                <img src="media/logo.png" alt="Vintage64TX Logo" class="main-logo" loading="lazy">
+                <img src="logo.png" alt="Vintage64TX Logo" class="main-logo" loading="lazy">
             </div>
             <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;">
                 <span style="display: block;">VINTAGE64TX</span>
@@ -182,32 +182,66 @@
                     const res = await fetch(file.download_url);
                     const content = await res.text();
 
-                    const parts = content.split('---');
-                    let displayTitle = file.name.replace('.md', '').toUpperCase().replace(/[-_]/g, ' ');
-                    let displayDate = "";
+                    // Anchor ID = filename without .md extension
+                    // This makes logs.html#2026-02-19-solopreneur-manifesto work
+                    const anchorId = file.name.replace(/\.md$/, '');
+
+                    let displayTitle = '';
+                    let displayDate = '';
                     let body = content;
 
-                    if (parts.length >= 3) {
-                        const header = parts[1];
-                        body = parts.slice(2).join('---');
-                        const tMatch = header.match(/title:\s*(.*)/);
-                        const dMatch = header.match(/date:\s*(.*)/);
-                        if (tMatch) displayTitle = tMatch[1];
-                        if (dMatch) displayDate = dMatch[1];
+                    // Check for proper YAML frontmatter (--- block at very top)
+                    const fmMatch = content.match(/^\s*---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+                    if (fmMatch) {
+                        const header = fmMatch[1];
+                        body = fmMatch[2];
+                        const tMatch = header.match(/^title:\s*(.+)$/m);
+                        const dMatch = header.match(/^date:\s*(.+)$/m);
+                        if (tMatch) displayTitle = tMatch[1].trim();
+                        if (dMatch) displayDate = dMatch[1].trim();
+                    } else {
+                        // No YAML frontmatter — extract from markdown content directly
+                        // Pull title from first # heading line
+                        const h1Match = content.match(/^#\s+(.+)$/m);
+                        // Pull date from **DATE:** line
+                        const dateMatch = content.match(/\*\*DATE:\*\*\s*(.+)/);
+                        if (h1Match) displayTitle = h1Match[1].trim();
+                        if (dateMatch) displayDate = dateMatch[1].trim();
+                        // Use full content as body — marked handles --- as <hr>
+                        body = content;
+                    }
+
+                    // Fallback: derive title from filename if nothing found
+                    if (!displayTitle) {
+                        displayTitle = anchorId
+                            .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+                            .replace(/-/g, ' ')
+                            .toUpperCase();
                     }
 
                     const entry = document.createElement('section');
                     entry.className = 'log-entry';
+                    entry.id = anchorId;
                     entry.style.marginBottom = '40px';
+                    entry.style.scrollMarginTop = '20px';
                     entry.innerHTML = `
                         <h2>&gt; ${displayTitle}</h2>
-                        <p><strong>LOG_DATE:</strong> ${displayDate}</p>
+                        ${displayDate ? `<p><strong>LOG_DATE:</strong> ${displayDate}</p>` : ''}
                         <div class="log-text" style="line-height: 1.6;">${marked.parse(body)}</div>
                         <hr style="border: 0; border-top: 1px dashed var(--border); margin: 20px 0;">
                     `;
                     highlightLogLabels(entry);
                     container.appendChild(entry);
                 }
+
+                // Scroll to anchor after all logs are rendered
+                if (window.location.hash) {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) {
+                        setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 150);
+                    }
+                }
+
             } catch (e) {
                 container.innerHTML = '<p>&gt; ERROR: UPLINK_FAILURE // CHECK_REPOSITORY_PATH</p>';
                 console.error(e);

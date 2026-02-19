@@ -60,7 +60,7 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-    /* 1. CORE UTILITIES */
+    /* 1. CORE UTILITIES & SKIP-LINK */
     .skip-link {
         position: absolute;
         top: -100px;
@@ -74,8 +74,8 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* 2. THE BLUE PIPE (Pseudo-element) */
-    /* This creates the thick blue pipe WITHOUT adding extra HTML tags that the JS script can break */
+    /* 2. THE BLUE PIPE (Hardened CSS) */
+    /* This injects the pipe before H2 and H3, keeping it safe from JS rewriting */
     .bio h2::before, .bio h3::before {
         content: "|";
         color: var(--blue, #00d4ff);
@@ -84,24 +84,30 @@
         display: inline-block;
     }
 
-    /* 3. SECTION SPACING */
+    /* 3. SECTION SPACING & TYPOGRAPHY */
     .bio p {
-        margin-bottom: 40px !important; /* Force the line break between sections */
+        margin-bottom: 40px !important;
     }
 
-    /* 4. BULLET ALIGNMENT */
+    /* 4. BULLET ALIGNMENT (The 60px Right-Shift) */
     .terminal-list {
-        margin-left: 60px !important; /* Pushes the list further right */
+        margin-left: 60px !important;
         padding-left: 0;
+        list-style-type: disc;
     }
     .terminal-list li {
         margin-bottom: 15px;
     }
 
-    /* 5. FOOTER STYLES */
+    /* 5. FOOTER & SOCIAL */
     .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
     .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
     .footer-social a:hover { color: var(--accent); }
+
+    /* 6. REQUIRED FOR JAVASCRIPT HIGHLIGHTER */
+    .highlight-blue {
+        color: var(--blue, #00d4ff);
+    }
 </style>
 </head>
 <body id="page-home">
@@ -232,6 +238,7 @@
     </script>
 </body>
 </html>
+
 
 
 

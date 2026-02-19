@@ -189,6 +189,17 @@ h2, h3 {
     text-shadow: 0 0 5px var(--blue-glow); /* Adds that professional terminal glow */
 }
 
+/* Targets all headers generated from Markdown inside the logs */
+.log-entry h2, 
+.log-entry h3, 
+.log-entry h4 {
+    color: var(--data-blue) !important;
+    text-shadow: 0 0 5px var(--blue-glow);
+    border-left: 4px solid var(--data-blue);
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
 /* 7. HERO SECTION / PERSONAL VAULT ELEMENTS */
 .hero-container {
     position: relative;
@@ -322,6 +333,7 @@ textarea:focus,
     box-shadow: 0 0 20px var(--primary);
     transform: translateY(-1px);
 }
+
 
 
 

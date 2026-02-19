@@ -121,8 +121,11 @@
                         <li>[+] Hosted on global edge networks (CDN) for instant loading.</li>
                         <li>[+] 100% Mobile Optimization for local DFW search results.</li>
                     </ul>
-                </div>
-
+                    <button onclick="openV64Modal()" style="margin-top:15px; background: none; border: 1px solid var(--secondary); color: var(--secondary); padding: 5px 10px; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.8rem; display: block;">
+        [ VIEW_FULL_SPECIFICATIONS ]
+    </button>
+</div>
+            
                 <div class="service-tier" style="margin: 25px 0; border-left: 3px solid var(--accent); padding-left: 20px;">
                     <h3>&gt; THE_PHOENIX_PROTOCOL (LINUX_MIGRATION)</h3>
                     <p>The ultimate revival for &ldquo;obsolete&rdquo; hardware. I replace bloated, invasive operating systems with lightweight, high-performance <strong>Linux Mint</strong>.</p>
@@ -229,7 +232,32 @@
         }
         fetchLastUpdate();
 
-        // 3. DATA-BLUE HIGHLIGHTER
+        // 3. ADD THESE FUNCTIONS INSIDE YOUR <SCRIPT> BLOCK
+function openV64Modal() {
+    const modal = document.getElementById('webBuildModal');
+    modal.style.display = "block";
+    modal.setAttribute('aria-hidden', 'false');
+    // Cloudflare Analytics Event
+    if (typeof cf_beacon !== 'undefined') {
+        fetch('/cdn-cgi/rum?' + new URLSearchParams({ 'event': 'web_build_details_view' }));
+    }
+}
+
+function closeV64Modal() {
+    const modal = document.getElementById('webBuildModal');
+    modal.style.display = "none";
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+// 4. Global click-away listener
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('webBuildModal');
+    if (modal && event.target == modal) { 
+        closeV64Modal(); 
+    }
+});
+
+        // 5. DATA-BLUE HIGHLIGHTER
         function highlightBusinessLabels() {
             const keywords = [
                 "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
@@ -254,5 +282,47 @@
         }
         window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
     </script>
+
+    <div id="webBuildModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" 
+     style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
+    
+    <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.2); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
+        
+        <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0;">
+            <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
+            <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
+        </div>
+
+        <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
+            <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
+            <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Enterprise-grade performance for solopreneurs.</p>
+            
+            <div style="margin: 20px 0; font-size: 0.85rem;">
+                <div style="margin-bottom: 10px;"><b style="color: var(--secondary, #00ff00);">[+] CORE_HOSTING:</b> Free tier Cloudflare Pages (Worldwide Edge Network).</div>
+                <div style="margin-bottom: 10px;"><b style="color: var(--secondary, #00ff00);">[+] EMAIL_UPLINK:</b> Professional @domain setup assistance (Est. $40/year).</div>
+                <div style="margin-bottom: 10px;"><b style="color: var(--secondary, #00ff00);">[+] SEO_HARDENING:</b> Metadata optimization & Google Search Console indexing.</div>
+                <div style="margin-bottom: 10px;"><b style="color: var(--secondary, #00ff00);">[+] DOMAIN_SYNC:</b> Direct-to-registrar pricing via Cloudflare.</div>
+                <div style="margin-bottom: 10px;"><b style="color: var(--secondary, #00ff00);">[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+            </div>
+
+            <div style="background: rgba(0, 255, 0, 0.05); padding: 15px; border: 1px dashed var(--secondary, #00ff00); margin-top: 20px;">
+                <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.9rem;">📜 TERMS_OF_ENGAGEMENT</h4>
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.8rem; list-style-type: square;">
+                    <li>50% Initial Deposit required to initiate project.</li>
+                    <li>Balance due upon final synchronization/Go-Live.</li>
+                    <li>Post-launch change requests: <b>$100.00 / hour</b>.</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <button onclick="location.href='contact.html?service=webbuild'" 
+                        style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%;">
+                    [ INITIATE_PROJECT_TRANSMISSION ]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+

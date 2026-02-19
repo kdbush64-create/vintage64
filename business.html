@@ -12,28 +12,23 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://vintage64tx.com/business.html">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Vintage64TX Business Services | Fort Worth TX">
     <meta property="og:description" content="Lean web builds, Linux migration, PC security hardening &amp; hardware upgrades. Fort Worth, TX. CompTIA Project+ certified.">
-    <meta property="og:image" content="https://vintage64tx.com/logo.png">
+    <meta property="og:image" content="https://vintage64tx.com/media/logo.png">
     <meta property="og:url" content="https://vintage64tx.com/business.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vintage64TX">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Vintage64TX Business Services | Fort Worth TX">
     <meta name="twitter:description" content="Lean web builds, Linux migration, PC security hardening &amp; hardware upgrades. Fort Worth, TX.">
-    <meta name="twitter:image" content="https://vintage64tx.com/logo.png">
+    <meta name="twitter:image" content="https://vintage64tx.com/media/logo.png">
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" href="favicon-64.png">
-    <link rel="apple-touch-icon" href="favicon-64.png">
+    <link rel="icon" type="image/png" href="media/favicon-64.png">
+    <link rel="apple-touch-icon" href="media/favicon-64.png">
 
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,22 +59,108 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Page-specific: modal styles only -->
     <style>
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 10px;
+        .v64-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(4px);
+        }
+        .v64-modal-inner {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            border: 2px solid var(--accent);
+            width: 95%;
+            max-width: 650px;
+            box-shadow: 0 0 30px rgba(255, 176, 0, 0.3);
+            font-family: 'Courier New', monospace;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        .v64-modal-header {
             background: var(--accent);
             color: #000;
-            padding: 8px 16px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: bold;
-            z-index: 99999;
-            transition: top 0.2s;
+            position: sticky;
+            top: 0;
+            z-index: 11;
         }
-        .skip-link:focus { top: 0; }
-        .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
-        .footer-social a:hover { color: var(--accent); }
+        .v64-modal-close {
+            background: none;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000;
+            font-size: 1.2rem;
+            font-family: inherit;
+            line-height: 1;
+        }
+        .v64-modal-body {
+            padding: 25px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.85rem;
+        }
+        .v64-modal-body h2 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.1rem;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .v64-modal-body h4 {
+            color: var(--accent);
+            margin: 0 0 10px 0;
+            font-size: 0.85rem;
+        }
+        .v64-intel-box {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.02);
+        }
+        .v64-feature-list { margin: 15px 0; }
+        .v64-feature-list div { margin-bottom: 8px; }
+        .v64-sentinel-box {
+            background: rgba(255, 176, 0, 0.05);
+            padding: 15px;
+            border: 1px solid rgba(255, 176, 0, 0.3);
+            margin-top: 15px;
+        }
+        .v64-warranty-box {
+            background: rgba(0, 255, 65, 0.03);
+            padding: 15px;
+            border: 1px dashed rgba(0, 255, 65, 0.2);
+            margin-top: 15px;
+        }
+        .v64-modal-cta {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 14px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            transition: opacity 0.2s ease;
+        }
+        .v64-modal-cta:hover { opacity: 0.85; }
+        details summary { list-style: none; color: var(--accent); cursor: pointer; }
+        details summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body id="page-business">
@@ -112,78 +193,73 @@
                 <h2>&gt; REVIVE_SECURE_OPTIMIZE</h2>
                 <p>I bring enterprise-grade standards to personal hardware. As a <strong>CompTIA Project+ certified professional</strong>, I manage your technology lifecycle as a project&mdash;ensuring clear milestones, risk mitigation, and structured delivery.</p>
 
+                <!-- Solopreneur Web Build -->
                 <div class="service-tier" style="margin: 25px 0; border-left: 3px solid #f1c40f; padding-left: 20px;">
                     <h3>&gt; V64_SOLOPRENEUR_EDITION (WEB_BUILD)</h3>
                     <p>Most small business websites are bloated and slow. I build <strong>&ldquo;Lean &amp; Mean&rdquo;</strong> static sites that score 100% on Google PageSpeed. No databases to hack. No plugins to break. Just pure performance.</p>
-                    <ul class="terminal-list" style="list-style: none; font-size: 0.9em; margin-top: 10px;">
+                    <ul class="terminal-list" style="margin-top: 10px;">
                         <li>[+] Hand-coded HTML5&mdash;Zero WordPress bloat.</li>
                         <li>[+] Secure V64 Transmission Logic for lead capture.</li>
                         <li>[+] Hosted on global edge networks (CDN) for instant loading.</li>
                         <li>[+] 100% Mobile Optimization for local DFW search results.</li>
                     </ul>
-                    <div style="margin-top:20px; display: flex; gap: 10px; flex-wrap: wrap;">
-    <button onclick="openV64Modal()" class="v64-btn">
-        [ VIEW_FULL_SPECIFICATIONS ]
-    </button>
+                    <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="openV64Modal()" class="v64-btn">[ VIEW_FULL_SPECIFICATIONS ]</button>
+                        <a href="logs.html#2026-02-19-solopreneur-manifesto" class="v64-btn">[ OWN_YOUR_DIGITAL_ASSETS ]</a>
+                    </div>
+                </div>
 
-    <a href="logs.html#2026-02-19-solopreneur-manifesto" class="v64-btn">
-        [ OWN_YOUR_DIGITAL_ASSETS ]
-    </a>
-</div>
-            
+                <!-- Phoenix Protocol -->
                 <div class="service-tier" style="margin: 25px 0; border-left: 3px solid var(--accent); padding-left: 20px;">
-    <h3>&gt; THE_PHOENIX_PROTOCOL (LINUX_MIGRATION)</h3>
-    <p>The ultimate revival for &ldquo;obsolete&rdquo; hardware. I replace bloated, invasive Windows operating systems with a lightweight, high-performance <strong>Linux Desktop distribution</strong>.</p>
-    <ul class="terminal-list" style="list-style: none; font-size: 0.9em; margin-top: 10px;">
-        <li>[+] Immunity to 99% of Windows-based malware.</li>
-        <li>[+] Extreme privacy and data sovereignty.</li>
-        <li>[+] &ldquo;Like-New&rdquo; speed on 5&ndash;10 year old hardware.</li>
-        <li>[+] <strong>HARDWARE_EXPANSION:</strong> SSD/RAM installation available as a protocol add-on (Labor only).</li>
-    </ul>
-</div>
-
-                <h3>&gt; SERVICE_PRICE_LIST</h3>
-                <table class="retro-table" style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-    <thead>
-        <tr style="border-bottom: 2px solid var(--border); text-align: left;">
-            <th style="padding: 10px;" scope="col">System_Task</th>
-            <th style="padding: 10px;" scope="col">Rate_Starting</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border-bottom: 1px dashed var(--border);">
-            <td style="padding: 10px;">Solopreneur Launch Pack (1-Page Web)</td>
-            <td style="padding: 10px;">$850</td>
-        </tr>
-        <tr style="border-bottom: 1px dashed var(--border);">
-            <td style="padding: 10px;">System Diagnostic (Full Audit)</td>
-            <td style="padding: 10px;">$45</td>
-        </tr>
-        <tr style="border-bottom: 1px dashed var(--border);">
-            <td style="padding: 10px;">Security Hardening (Malware Extraction)</td>
-            <td style="padding: 10px;">$85</td>
-        </tr>
-        <tr style="border-bottom: 1px dashed var(--border);">
-            <td style="padding: 10px;">The Phoenix Protocol (Linux Desktop distribution)</td>
-            <td style="padding: 10px;">$120</td>
-        </tr>
-        <tr>
-            <td style="padding: 10px;"><strong>OPTIONAL_MODULE:</strong> Hardware Labor Uplink*</td>
-            <td style="padding: 10px;">+$45</td>
-        </tr>
-    </tbody>
-</table>
-                <div class="service-tier managed-shield-box" style="margin-top: 40px; border: 1px dashed var(--accent); padding: 20px; background: rgba(0, 255, 65, 0.05);">
-                    <h3>&gt; V64_MANAGED_SHIELD</h3>
-                    <p>Continuous protection for users requiring &ldquo;set-and-forget&rdquo; security. This tier shifts from reactive cleaning to active threat prevention.</p>
-                    <ul class="terminal-list">
-                        <li><strong>Active Remediation:</strong> Integrated Malwarebytes&trade; Pro deployment.</li>
-                        <li><strong>System Hardening:</strong> Monthly security audit and patch verification.</li>
-                        <li><strong>Priority Uplink:</strong> Reduced lead time for emergency technical support.</li>
+                    <h3>&gt; THE_PHOENIX_PROTOCOL (LINUX_MIGRATION)</h3>
+                    <p>The ultimate revival for &ldquo;obsolete&rdquo; hardware. I replace bloated, invasive Windows operating systems with a lightweight, high-performance <strong>Linux Desktop distribution</strong>.</p>
+                    <ul class="terminal-list" style="margin-top: 10px;">
+                        <li>[+] Immunity to 99% of Windows-based malware.</li>
+                        <li>[+] Extreme privacy and data sovereignty.</li>
+                        <li>[+] &ldquo;Like-New&rdquo; speed on 5&ndash;10 year old hardware.</li>
+                        <li>[+] <strong>HARDWARE_EXPANSION:</strong> SSD/RAM installation available as a protocol add-on (Labor only).</li>
                     </ul>
-                    <p class="pricing-note" style="font-size: 0.8rem; color: var(--primary-dim); margin-top: 15px;">
-                        * NOTICE: Hardware components must be provided by the client or pre-paid via drop-ship. Vintage64TX provides installation labor only and does not warrant third-party hardware components.
-                    </p>
+                </div>
+
+                <!-- Price List -->
+                <h3>&gt; SERVICE_PRICE_LIST</h3>
+                <table class="retro-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">System_Task</th>
+                            <th scope="col">Rate_Starting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Solopreneur Launch Pack (1-Page Web)</td>
+                            <td>$850</td>
+                        </tr>
+                        <tr>
+                            <td>System Diagnostic (Full Audit)</td>
+                            <td>$45</td>
+                        </tr>
+                        <tr>
+                            <td>Security Hardening (Malware Extraction)</td>
+                            <td>$85</td>
+                        </tr>
+                        <tr>
+                            <td>The Phoenix Protocol (Linux Desktop distribution)</td>
+                            <td>$120</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OPTIONAL_MODULE:</strong> Hardware Labor Uplink*</td>
+                            <td>+$45</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="font-size: 0.75rem; color: var(--primary-dim); margin-top: 5px;">
+                    * Hardware components must be provided by the client or pre-paid via drop-ship. Vintage64TX provides installation labor only and does not warrant third-party hardware components.
+                </p>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="contact.html" class="v64-btn" style="height: auto; padding: 14px 30px; font-size: 0.85rem;">[ INITIATE_CONTACT ]</a>
                 </div>
             </section>
         </main>
@@ -197,7 +273,7 @@
                     <a href="PLACEHOLDER_GOOGLE_BUSINESS_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Google Business">[GOOGLE]</a>
                 </div>
                 <p style="font-size: 0.75em; opacity: 0.7; margin-top: 15px; border-top: 1px dashed rgba(0,255,0,0.2); padding-top: 10px;">
-                    SYSTEM_VER: 1.0.2-BETA | STATUS: <span style="color: #00ff00;">STABLE</span> | LAST_UPDT: <span id="last-update">FETCHING...</span>
+                    SYSTEM_VER: 1.0.3 | STATUS: <span style="color: #00ff00;">STABLE</span> | LAST_UPDT: <span id="last-update">FETCHING...</span>
                 </p>
                 <p style="font-size: 0.7em; opacity: 0.5;">&copy; 2026 VINTAGE64TX // ALL RIGHTS RESERVED</p>
                 <p style="font-size: 0.8em; margin-top: 10px;">Project Consultation available upon request. <a href="contact.html" style="color: var(--accent); text-decoration: none;">[ INITIATE_CONTACT ]</a></p>
@@ -205,6 +281,59 @@
         </footer>
     </div>
 
+    <!-- Web Build Specifications Modal -->
+    <div id="webBuildModal" class="v64-modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" aria-modal="true">
+        <div class="v64-modal-inner">
+            <div class="v64-modal-header">
+                <span id="modalTitle">&gt; MODULE_SPECIFICATIONS: WEB_BUILD</span>
+                <button onclick="closeV64Modal()" class="v64-modal-close" aria-label="Close modal">[ X ]</button>
+            </div>
+            <div class="v64-modal-body">
+                <h2>THE INFINITE UPLINK PACKAGE</h2>
+                <p style="border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 12px; margin-bottom: 15px; font-size: 0.8rem; opacity: 0.7;">Phase 1: Deployment &amp; Synchronization</p>
+
+                <div class="v64-intel-box">
+                    <span style="color: var(--secondary);">[ INTEL ]</span>
+                    Wondering why this is the last site you&rsquo;ll ever buy?
+                    <a href="logs.html#2026-02-19-solopreneur-manifesto" style="color: var(--accent); text-decoration: underline;">Read: THE_SOLOPRENEUR_MANIFESTO</a>
+                </div>
+
+                <div class="v64-feature-list">
+                    <div><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
+                    <div><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
+                    <div><b>[+] SEO_HARDENING:</b> Metadata optimization &amp; Search Console indexing.</div>
+                    <div><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
+                    <div><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+                </div>
+
+                <div class="v64-sentinel-box">
+                    <h4>&#x1F6E1; OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
+                    <p style="margin-bottom: 12px; opacity: 0.85;">Sustained operations and security monitoring post-deployment.</p>
+                    <p style="margin-bottom: 12px;"><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</p>
+                    <details style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px dashed rgba(255,176,0,0.5);">
+                        <summary>[ CLICK_FOR_PLAN_INCLUSIONS ]</summary>
+                        <ul style="margin: 10px 0 0 15px; list-style-type: square; color: #ccc; line-height: 1.8;">
+                            <li><b>3 Change Requests / Mo:</b> Color adjustments, text updates, or behavioral tweaks.</li>
+                            <li><b>Lifetime Bug Support:</b> Priority fixes for code regressions or browser compatibility issues.</li>
+                            <li><b>Active Log Review:</b> Monthly Cloudflare log audit to block malicious traffic and bots.</li>
+                            <li><b>Quarterly Integrity Check:</b> Manual verification of all links and API uplinks.</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="v64-warranty-box">
+                    <h4>&#x1F4DC; SERVICE_WARRANTY</h4>
+                    <p>30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b> for non-subscribers.</p>
+                </div>
+
+                <button onclick="location.href='contact.html?service=webbuild'" class="v64-modal-cta">
+                    [ INITIATE_PROJECT_TRANSMISSION ]
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
@@ -231,46 +360,40 @@
         }
         fetchLastUpdate();
 
-        // 3. MODAL LOGIC
+        // 3. MODAL
         function openV64Modal() {
             const modal = document.getElementById('webBuildModal');
-            modal.style.display = "block";
+            modal.style.display = 'block';
             modal.setAttribute('aria-hidden', 'false');
+            modal.querySelector('.v64-modal-close').focus();
         }
-
         function closeV64Modal() {
             const modal = document.getElementById('webBuildModal');
-            modal.style.display = "none";
+            modal.style.display = 'none';
             modal.setAttribute('aria-hidden', 'true');
         }
-
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('webBuildModal');
-            if (event.target == modal) { 
-                closeV64Modal(); 
-            }
+        document.getElementById('webBuildModal').addEventListener('click', function(e) {
+            if (e.target === this) closeV64Modal();
         });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeV64Modal(); });
 
         // 4. DATA-BLUE HIGHLIGHTER
         function highlightBusinessLabels() {
             const keywords = [
                 "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
-                "THE_PHOENIX_PROTOCOL", "V64_MANAGED_SHIELD", "SERVICE_PRICE_LIST",
-                "CompTIA Project+", "Linux Desktop distribution", "Malwarebytes",
-                "System_Task", "Rate_Starting", "OPTIONAL_MODULE:", "V64_SENTINEL_PLAN",
-                "Active Remediation:", "System Hardening:", "Priority Uplink:", "NOTICE:"
+                "THE_PHOENIX_PROTOCOL", "SERVICE_PRICE_LIST",
+                "CompTIA Project+", "Linux Desktop distribution",
+                "System_Task", "Rate_Starting",
+                "OPTIONAL_MODULE:", "HARDWARE_EXPANSION:"
             ];
-            const container = document.querySelector('.services');
-            const modalContainer = document.querySelector('#webBuildModal');
-            
-            [container, modalContainer].forEach(root => {
+            [document.querySelector('.services'), document.querySelector('.v64-modal-body')].forEach(root => {
                 if (!root) return;
                 root.querySelectorAll('h2, h3, h4, strong, li, th, b').forEach(el => {
                     let html = el.innerHTML;
                     let changed = false;
                     keywords.forEach(kw => {
                         if (html.includes(kw) && !el.querySelector('.highlight-blue')) {
-                            html = html.replace(new RegExp(`(${kw.replace(/[+.]/g, '\\$&')})`, 'g'), '<span class="highlight-blue">$1</span>');
+                            html = html.replace(new RegExp(`(${kw.replace(/[+.:]/g, '\\$&')})`, 'g'), '<span class="highlight-blue">$1</span>');
                             changed = true;
                         }
                     });
@@ -280,79 +403,5 @@
         }
         window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
     </script>
-
-    <div id="webBuildModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" 
-     style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
-    
-    <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 95%; max-width: 650px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.3); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
-        
-        <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0; z-index: 11;">
-            <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
-            <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
-        </div>
-
-        <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
-            <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
-            <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Phase 1: Deployment & Synchronization</p>
-            <div style="margin: 15px 0; padding: 10px; border: 1px solid rgba(0, 255, 65, 0.3); background: rgba(0, 255, 65, 0.02);">
-    <p style="font-size: 0.8rem; margin: 0;">
-        <span style="color: var(--secondary);">[ INTEL ]</span> 
-        Wondering why this is the last site you'll ever buy? 
-        <a href="logs.html#2026-02-19-solopreneur-manifesto" style="color: var(--accent); text-decoration: underline;">
-            Read: THE_SOLOPRENEUR_MANIFESTO
-        </a>
-    </p>
-</div>
-            <div style="margin: 20px 0; font-size: 0.85rem;">
-                <div style="margin-bottom: 8px;"><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
-                <div style="margin-bottom: 8px;"><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
-                <div style="margin-bottom: 8px;"><b>[+] SEO_HARDENING:</b> Metadata optimization & Search Console indexing.</div>
-                <div style="margin-bottom: 8px;"><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
-                <div style="margin-bottom: 15px;"><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
-            </div>
-
-            <div style="background: rgba(255, 176, 0, 0.05); padding: 15px; border: 1px solid rgba(255, 176, 0, 0.3); margin-top: 10px;">
-                <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.85rem;">🛡️ OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
-                <p style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8;">Sustained operations and security monitoring post-deployment.</p>
-                
-                <div style="margin-bottom: 10px;">
-                    <b style="font-size: 0.85rem;">Rate: $49.00 / Month</b> (Stripe Auto-billing)
-                </div>
-
-                <details style="cursor: pointer; font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 10px; border: 1px dashed rgba(255, 176, 0, 0.5);">
-                    <summary style="list-style: none; color: var(--accent);">[ CLICK_FOR_PLAN_INCLUSIONS ]</summary>
-                    <div style="margin-top: 10px; color: #ccc;">
-                        <ul style="margin: 0; padding-left: 15px; list-style-type: square;">
-                            <li><b>3 Change Requests / Mo:</b> Includes color adjustments, text updates, or behavioral tweaks.</li>
-                            <li><b>Lifetime Bug Support:</b> Priority fixes for any code regressions or browser compatibility issues.</li>
-                            <li><b>Active Log Review:</b> Monthly Cloudflare log audit to block malicious traffic/bots.</li>
-                            <li><b>Quarterly Integrity Check:</b> Manual verification of all links and API uplinks.</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div style="background: rgba(0, 255, 0, 0.03); padding: 15px; border: 1px dashed rgba(0, 255, 0, 0.2); margin-top: 20px;">
-                <h4 style="margin: 0 0 10px 0; color: var(--secondary, #00ff00); font-size: 0.85rem;">📜 SERVICE_WARRANTY</h4>
-                <p style="font-size: 0.75rem; margin: 0;">30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b> for non-subscribers.</p>
-            </div>
-            
-            <div style="margin-top: 25px; text-align: center;">
-                <button onclick="location.href='contact.html?service=webbuild'" 
-                        style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%; text-transform: uppercase;">
-                    [ INITIATE_PROJECT_TRANSMISSION ]
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

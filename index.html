@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vintage64TX | System Initializing...</title>
+    <meta name="description" content="Vintage64TX: Specialized IT for solopreneurs, single-person LLCs, and small partnerships in Fort Worth, TX. Lean, high-margin tech services without enterprise bloat.">
+    <meta name="author" content="DeWayne Bush">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="media/favicon-64.png">
+    <link rel="apple-touch-icon" href="media/favicon-64.png">
+
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --container-bg: rgba(0, 0, 0, 0.95);
+            --primary: #ffb000;
+            --primary-dim: rgba(255, 176, 0, 0.7);
+            --secondary: #00eeff;
+            --accent: #00ff41;
+            --border: #5c3d2e;
+            --shadow: rgba(0, 0, 0, 0.8);
+            --data-blue: #00d4ff;
+            --blue-glow: rgba(0, 212, 255, 0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .terminal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.02), rgba(0,255,0,0.01), rgba(0,255,0,0.02));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            border: 2px solid var(--border);
+            padding: 40px 30px;
+            background: var(--container-bg);
+            box-shadow: 0 0 40px var(--shadow), 0 0 80px rgba(0,255,65,0.03);
+            position: relative;
+            z-index: 5;
+            text-align: center;
+        }
+
+        .logo-container { margin-bottom: 30px; }
+        .main-logo { max-width: 180px; height: auto; display: block; margin: 0 auto; border: 3px solid var(--border); }
+        .system-title { font-size: 1.8rem; letter-spacing: 4px; color: var(--primary); margin-bottom: 5px; }
+        .system-subtitle { font-size: 0.85rem; color: var(--primary); opacity: 0.7; letter-spacing: 2px; margin-bottom: 40px; }
+
+        .status-block {
+            border: 1px dashed var(--border);
+            padding: 25px 20px;
+            margin: 30px 0;
+            background: rgba(0,255,65,0.03);
+            text-align: left;
+        }
+
+        .status-line { font-size: 0.85rem; margin-bottom: 10px; color: var(--primary-dim); }
+        .status-line .label { color: var(--data-blue); font-weight: bold; text-shadow: 0 0 8px var(--blue-glow); }
+        .status-line .ok { color: var(--accent); font-weight: bold; }
+        .status-line .pending { color: #ffb000; font-weight: bold; }
+
+        .coming-soon-msg {
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            text-align: left;
+            background: rgba(0,255,65,0.03);
+        }
+
+        .coming-soon-msg h2 { color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 12px; }
+        .coming-soon-msg p { font-size: 0.85rem; color: var(--primary-dim); line-height: 1.7; }
+
+        .services-preview { margin: 25px 0; text-align: left; }
+        .services-preview h3 { color: var(--secondary); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .disclaimer-text { font-size: 0.7rem; color: var(--primary-dim); font-style: italic; margin-bottom: 15px; display: block; }
+        .service-item { font-size: 0.82rem; color: var(--primary-dim); padding: 6px 0; border-bottom: 1px dashed rgba(92,61,46,0.4); }
+        .service-item span { color: var(--accent); margin-right: 8px; }
+
+        .contact-block { margin: 25px 0; font-size: 0.85rem; }
+        .contact-block .label { color: var(--secondary); letter-spacing: 1px; display: block; margin-bottom: 8px; font-size: 0.75rem; }
+        #protected-email a { color: var(--primary); text-decoration: none; }
+        #protected-email a:hover { color: var(--accent); }
+
+        .social-block { margin: 25px 0; }
+        .social-block .label { color: var(--secondary); font-size: 0.75rem; letter-spacing: 2px; display: block; margin-bottom: 12px; }
+        .social-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-links a { color: var(--primary-dim); text-decoration: none; font-size: 0.8rem; border: 1px dashed var(--border); padding: 6px 14px; transition: all 0.2s ease; }
+        .social-links a:hover { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px rgba(0,255,65,0.2); }
+
+        .progress-container { margin: 25px 0; text-align: left; }
+        .progress-label { font-size: 0.75rem; color: var(--primary-dim); margin-bottom: 8px; }
+        .progress-bar { width: 100%; height: 6px; background: rgba(92,61,46,0.3); border: 1px solid var(--border); overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--secondary)); animation: fillProgress 3s ease-out forwards; box-shadow: 0 0 8px rgba(0,255,65,0.5); }
+        @keyframes fillProgress { 0% { width: 0%; } 100% { width: 75%; } }
+        .cursor { display: inline-block; width: 10px; height: 1.1em; background: var(--accent); vertical-align: text-bottom; margin-left: 3px; animation: blinker 1s step-end infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        .footer-line {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(92,61,46,0.5);
+            font-size: 0.7rem;
+            color: rgba(255,176,0,0.4);
+        }
+
+        @media (max-width: 480px) { .container { padding: 25px 15px; } .system-title { font-size: 1.3rem; letter-spacing: 2px; } }
+    </style>
+</head>
+<body>
+    <div class="terminal-overlay"></div>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="media/logo.png" alt="Vintage64TX Logo" class="main-logo" loading="lazy">
+        </div>
+
+        <h1 class="system-title">VINTAGE64TX</h1>
+        <p class="system-subtitle">DEWAYNE BUSH // FORT WORTH, TX</p>
+
+        <div class="status-block">
+            <div class="status-line"><span class="label">SYSTEM_STATUS:</span> <span class="ok">ONLINE</span></div>
+            <div class="status-line"><span class="label">TARGET_SECTOR:</span> <span class="ok">SOLOPRENEURS // MICRO-STARTUPS</span></div>
+            <div class="status-line"><span class="label">OPERATING_MODE:</span> <span class="ok">BOUTIQUE CONSULTANCY // HOME-BASED</span></div>
+            <div class="status-line"><span class="label">ETA:</span> <span class="ok">COMING_SOON</span></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-label">&gt; SYSTEM_BUILD_PROGRESS...</div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+
+        <div class="coming-soon-msg">
+            <h2>&gt; MISSION_STATEMENT</h2>
+            <p>Vintage64TX provides elite IT support without enterprise bloat. We specialize in serving individuals, single-person LLCs, and partnerships—helping you maintain high-margin operations with lean, optimized technology. Your growth is our protocol.</p>
+        </div>
+
+        <div class="services-preview">
+            <h3>&gt; SERVICE_CATALOG (BETA)</h3>
+            <span class="disclaimer-text">* Current protocols optimized for small scale; offerings subject to refinement prior to launch.</span>
+            
+            <div class="service-item"><span>[+]</span> The Phoenix Protocol &mdash; High-Security Linux Migration</div>
+            <div class="service-item"><span>[+]</span> Micro-Business Tech Stacks &mdash; Lean, Fast, Hand-Coded</div>
+            <div class="service-item"><span>[+]</span> Security Hardening &amp; Specialized Malware Remediation</div>
+            <div class="service-item"><span>[+]</span> System Diagnostics &amp; Specialized Hardware Optimization</div>
+            <div class="service-item"><span>[+]</span> V64 Guardian &mdash; Monthly Support for Solopreneurs</div>
+        </div>
+
+        <div class="contact-block">
+            <span class="label">&gt; DIRECT_UPLINK (BY APPOINTMENT ONLY)</span>
+            <span id="protected-email">[DECRYPTING...]</span>
+        </div>
+
+        <div class="social-block">
+            <span class="label">&gt; FOLLOW_THE_SIGNAL</span>
+            <div class="social-links">
+                <a href="https://www.facebook.com/vintage64tx" target="_blank" rel="noopener noreferrer">[FACEBOOK]</a>
+                <a href="https://x.com/vintage64tx" target="_blank" rel="noopener noreferrer">[X]</a>
+                <a href="https://www.instagram.com/vintage64tx" target="_blank" rel="noopener noreferrer">[INSTAGRAM]</a>
+            </div>
+        </div>
+
+        <div class="footer-line">
+            SYSTEM_VER: 1.0.4-BETA &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp; &copy; 2026 VINTAGE64TX // ALL RIGHTS RESERVED <span class="cursor"></span>
+        </div>
+    </div>
+
+    <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+
+    <script>
+        (function() {
+            const u = 'dewayne';
+            const d = 'vintage64tx';
+            const t = 'com';
+            const el = document.getElementById('protected-email');
+            if (el) {
+                const addr = u + '@' + d + '.' + t;
+                el.innerHTML = '<a href="mailto:' + addr + '">' + addr + '</a>';
+            }
+        })();
+    </script>
+</body>
+</html>

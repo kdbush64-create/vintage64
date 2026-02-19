@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: kdbush64-create/vintage64
+  branch: main
+
+media_folder: media
+
+collections:
+  - name: business-logs
+    label: Business Logs
+    folder: business-logs
+    create: true
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Content, name: body, widget: markdown }

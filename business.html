@@ -189,7 +189,6 @@
 
         <footer>
             <div class="footer-status">
-                <!-- Social links — replace PLACEHOLDER_* with real URLs when pages are live -->
                 <div class="footer-social">
                     <a href="PLACEHOLDER_FACEBOOK_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Facebook">[FACEBOOK]</a>
                     <a href="PLACEHOLDER_X_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on X">[X]</a>
@@ -205,7 +204,6 @@
         </footer>
     </div>
 
-    <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
@@ -232,119 +230,106 @@
         }
         fetchLastUpdate();
 
-        // 3. ADD THESE FUNCTIONS INSIDE YOUR <SCRIPT> BLOCK
-function openV64Modal() {
-    const modal = document.getElementById('webBuildModal');
-    modal.style.display = "block";
-    modal.setAttribute('aria-hidden', 'false');
-    // Cloudflare Analytics Event
-    if (typeof cf_beacon !== 'undefined') {
-        fetch('/cdn-cgi/rum?' + new URLSearchParams({ 'event': 'web_build_details_view' }));
-    }
-}
+        // 3. MODAL LOGIC
+        function openV64Modal() {
+            const modal = document.getElementById('webBuildModal');
+            modal.style.display = "block";
+            modal.setAttribute('aria-hidden', 'false');
+        }
 
-function closeV64Modal() {
-    const modal = document.getElementById('webBuildModal');
-    modal.style.display = "none";
-    modal.setAttribute('aria-hidden', 'true');
-}
+        function closeV64Modal() {
+            const modal = document.getElementById('webBuildModal');
+            modal.style.display = "none";
+            modal.setAttribute('aria-hidden', 'true');
+        }
 
-// 4. Global click-away listener
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('webBuildModal');
-    if (modal && event.target == modal) { 
-        closeV64Modal(); 
-    }
-});
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('webBuildModal');
+            if (event.target == modal) { 
+                closeV64Modal(); 
+            }
+        });
 
-        // 5. DATA-BLUE HIGHLIGHTER
+        // 4. DATA-BLUE HIGHLIGHTER
         function highlightBusinessLabels() {
             const keywords = [
                 "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
                 "THE_PHOENIX_PROTOCOL", "V64_MANAGED_SHIELD", "SERVICE_PRICE_LIST",
                 "CompTIA Project+", "Linux Mint", "Malwarebytes",
-                "System_Task", "Rate_Starting",
+                "System_Task", "Rate_Starting", "OPTIONAL_MODULE:", "V64_SENTINEL_PLAN",
                 "Active Remediation:", "System Hardening:", "Priority Uplink:", "NOTICE:"
             ];
             const container = document.querySelector('.services');
-            if (!container) return;
-            container.querySelectorAll('h2, h3, strong, li, th').forEach(el => {
-                let html = el.innerHTML;
-                let changed = false;
-                keywords.forEach(kw => {
-                    if (html.includes(kw) && !el.querySelector('.highlight-blue')) {
-                        html = html.replace(new RegExp(`(${kw.replace(/[+.]/g, '\\$&')})`, 'g'), '<span class="highlight-blue">$1</span>');
-                        changed = true;
-                    }
+            const modalContainer = document.querySelector('#webBuildModal');
+            
+            [container, modalContainer].forEach(root => {
+                if (!root) return;
+                root.querySelectorAll('h2, h3, h4, strong, li, th, b').forEach(el => {
+                    let html = el.innerHTML;
+                    let changed = false;
+                    keywords.forEach(kw => {
+                        if (html.includes(kw) && !el.querySelector('.highlight-blue')) {
+                            html = html.replace(new RegExp(`(${kw.replace(/[+.]/g, '\\$&')})`, 'g'), '<span class="highlight-blue">$1</span>');
+                            changed = true;
+                        }
+                    });
+                    if (changed) el.innerHTML = html;
                 });
-                if (changed) el.innerHTML = html;
             });
         }
         window.addEventListener('DOMContentLoaded', highlightBusinessLabels);
     </script>
 
     <div id="webBuildModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" 
-     style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
-    
-    <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.2); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
+         style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
         
-        <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0;">
-            <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
-            <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
-        </div>
-
-        <div id="webBuildModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" 
-     style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
-    
-    <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.3); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
-        
-        <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0; z-index: 10;">
-            <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
-            <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
-        </div>
-
-        <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
-            <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
-            <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Phase 1: Deployment & Synchronization</p>
+        <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.3); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
             
-            <div style="margin: 20px 0; font-size: 0.85rem;">
-                <div style="margin-bottom: 8px;"><b style="color: var(--secondary, #00ff00);">[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
-                <div style="margin-bottom: 8px;"><b style="color: var(--secondary, #00ff00);">[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
-                <div style="margin-bottom: 8px;"><b style="color: var(--secondary, #00ff00);">[+] SEO_HARDENING:</b> Metadata optimization & Search Console indexing.</div>
-                <div style="margin-bottom: 8px;"><b style="color: var(--secondary, #00ff00);">[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
-                <div style="margin-bottom: 15px;"><b style="color: var(--secondary, #00ff00);">[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+            <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0; z-index: 11;">
+                <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
+                <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
             </div>
 
-            <div style="background: rgba(255, 176, 0, 0.05); padding: 15px; border: 1px solid rgba(255, 176, 0, 0.3); margin-top: 10px;">
-                <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.85rem;">🛡️ OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
-                <p style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8;">Sustained operations and security monitoring post-deployment.</p>
-                <ul style="margin: 0; padding-left: 20px; font-size: 0.8rem; list-style-type: square; color: #ccc;">
-                    <li><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</li>
-                    <li><b>Quarterly Integrity Check:</b> Worker & Link verification.</li>
-                    <li><b>Threat Monitoring:</b> Active Cloudflare log review.</li>
-                    <li><b>Content Allowance:</b> 30 mins of monthly updates included.</li>
-                </ul>
-            </div>
+            <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
+                <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
+                <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Phase 1: Deployment & Synchronization</p>
+                
+                <div style="margin: 20px 0; font-size: 0.85rem;">
+                    <div style="margin-bottom: 8px;"><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
+                    <div style="margin-bottom: 8px;"><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
+                    <div style="margin-bottom: 8px;"><b>[+] SEO_HARDENING:</b> Metadata optimization & Search Console indexing.</div>
+                    <div style="margin-bottom: 8px;"><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
+                    <div style="margin-bottom: 15px;"><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+                </div>
 
-            <div style="background: rgba(0, 255, 0, 0.03); padding: 15px; border: 1px dashed rgba(0, 255, 0, 0.2); margin-top: 20px;">
-                <h4 style="margin: 0 0 10px 0; color: var(--secondary, #00ff00); font-size: 0.85rem;">📜 PAYMENT_STRUCTURE</h4>
-                <ul style="margin: 0; padding-left: 20px; font-size: 0.75rem; list-style-type: square; opacity: 0.9;">
-                    <li>50% Deposit required to initiate project.</li>
-                    <li>Remaining balance due at Go-Live.</li>
-                    <li>Ad-hoc requests (Non-Subscribers): <b>$100.00 / Hour</b>.</li>
-                </ul>
-            </div>
-            
-            <div style="margin-top: 25px; text-align: center;">
-                <button onclick="location.href='contact.html?service=webbuild'" 
-                        style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%; text-transform: uppercase;">
-                    [ INITIATE_PROJECT_TRANSMISSION ]
-                </button>
+                <div style="background: rgba(255, 176, 0, 0.05); padding: 15px; border: 1px solid rgba(255, 176, 0, 0.3); margin-top: 10px;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.85rem;">🛡️ OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
+                    <p style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8;">Sustained operations and security monitoring post-deployment.</p>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 0.8rem; list-style-type: square; color: #ccc;">
+                        <li><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</li>
+                        <li><b>Quarterly Integrity Check:</b> Worker & Link verification.</li>
+                        <li><b>Threat Monitoring:</b> Active Cloudflare log review.</li>
+                        <li><b>Content Allowance:</b> 30 mins of monthly updates included.</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(0, 255, 0, 0.03); padding: 15px; border: 1px dashed rgba(0, 255, 0, 0.2); margin-top: 20px;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--secondary, #00ff00); font-size: 0.85rem;">📜 PAYMENT_STRUCTURE</h4>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 0.75rem; list-style-type: square; opacity: 0.9;">
+                        <li>50% Deposit required to initiate project.</li>
+                        <li>Remaining balance due at Go-Live.</li>
+                        <li>Ad-hoc requests (Non-Subscribers): <b>$100.00 / Hour</b>.</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 25px; text-align: center;">
+                    <button onclick="location.href='contact.html?service=webbuild'" 
+                            style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%; text-transform: uppercase;">
+                        [ INITIATE_PROJECT_TRANSMISSION ]
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
-
-

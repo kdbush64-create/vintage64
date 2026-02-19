@@ -161,22 +161,19 @@ h1 {
     text-align: center; 
 }
 
-/* Unified styling for Who Am I, Projects, and Journey headers */
+/* This creates the LARGE THICK PIPE for all sections */
 h2, h3 {
     color: var(--primary);
     font-size: 1.1rem;
     background: rgba(92, 61, 46, 0.2);
-    padding: 5px 10px;
+    padding: 5px 15px; /* Added padding to clear the pipe */
     margin: 25px 0 15px 0;
-    border-left: none !important; /* This permanently kills the brown pipe */
-}
-
-/* The Blue Pipe Class */
-.header-pipe {
-    color: var(--data-blue); 
-    font-weight: 900;
-    margin-right: 12px;
-    display: inline-block;
+    
+    /* THE LARGE PIPE FIX */
+    border-left: 6px solid var(--data-blue) !important; 
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
 }
 
 /* Bullet Indentation for The Journey section */
@@ -318,6 +315,7 @@ textarea:focus,
     box-shadow: 0 0 20px var(--primary);
     transform: translateY(-1px);
 }
+
 
 
 

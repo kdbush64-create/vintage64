@@ -281,57 +281,62 @@
     </script>
 
     <div id="webBuildModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" 
-         style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
+     style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px);">
+    
+    <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 95%; max-width: 650px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.3); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
         
-        <div style="background-color: #1a1a1a; margin: 5% auto; border: 2px solid var(--accent, #ffb000); width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(255, 176, 0, 0.3); font-family: 'Courier New', monospace; position: relative; overflow-y: auto; max-height: 90vh;">
+        <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0; z-index: 11;">
+            <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
+            <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
+        </div>
+
+        <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
+            <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
+            <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Phase 1: Deployment & Synchronization</p>
             
-            <div style="background: var(--accent, #ffb000); color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; align-items: center; position: sticky; top: 0; z-index: 11;">
-                <span id="modalTitle">> MODULE_SPECIFICATIONS: WEB_BUILD</span>
-                <button onclick="closeV64Modal()" aria-label="Close" style="background: none; border: none; font-weight: bold; cursor: pointer; color: #000; font-size: 1.2rem;">[ X ]</button>
+            <div style="margin: 20px 0; font-size: 0.85rem;">
+                <div style="margin-bottom: 8px;"><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
+                <div style="margin-bottom: 8px;"><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
+                <div style="margin-bottom: 8px;"><b>[+] SEO_HARDENING:</b> Metadata optimization & Search Console indexing.</div>
+                <div style="margin-bottom: 8px;"><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
+                <div style="margin-bottom: 15px;"><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
             </div>
 
-            <div style="padding: 25px; color: #e0e0e0; line-height: 1.5;">
-                <h2 style="color: var(--accent, #ffb000); margin-top: 0; font-size: 1.2rem;">THE INFINITE UPLINK PACKAGE</h2>
-                <p style="font-size: 0.9rem; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;">Phase 1: Deployment & Synchronization</p>
+            <div style="background: rgba(255, 176, 0, 0.05); padding: 15px; border: 1px solid rgba(255, 176, 0, 0.3); margin-top: 10px;">
+                <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.85rem;">🛡️ OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
+                <p style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8;">Sustained operations and security monitoring post-deployment.</p>
                 
-                <div style="margin: 20px 0; font-size: 0.85rem;">
-                    <div style="margin-bottom: 8px;"><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
-                    <div style="margin-bottom: 8px;"><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
-                    <div style="margin-bottom: 8px;"><b>[+] SEO_HARDENING:</b> Metadata optimization & Search Console indexing.</div>
-                    <div style="margin-bottom: 8px;"><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
-                    <div style="margin-bottom: 15px;"><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+                <div style="margin-bottom: 10px;">
+                    <b style="font-size: 0.85rem;">Rate: $49.00 / Month</b> (Stripe Auto-billing)
                 </div>
 
-                <div style="background: rgba(255, 176, 0, 0.05); padding: 15px; border: 1px solid rgba(255, 176, 0, 0.3); margin-top: 10px;">
-                    <h4 style="margin: 0 0 10px 0; color: var(--accent, #ffb000); font-size: 0.85rem;">🛡️ OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
-                    <p style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8;">Sustained operations and security monitoring post-deployment.</p>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 0.8rem; list-style-type: square; color: #ccc;">
-                        <li><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</li>
-                        <li><b>Quarterly Integrity Check:</b> Worker & Link verification.</li>
-                        <li><b>Threat Monitoring:</b> Active Cloudflare log review.</li>
-                        <li><b>Content Allowance:</b> 30 mins of monthly updates included.</li>
-                    </ul>
-                </div>
+                <details style="cursor: pointer; font-size: 0.8rem; background: rgba(0,0,0,0.3); padding: 10px; border: 1px dashed rgba(255, 176, 0, 0.5);">
+                    <summary style="list-style: none; color: var(--accent);">[ CLICK_FOR_PLAN_INCLUSIONS ]</summary>
+                    <div style="margin-top: 10px; color: #ccc;">
+                        <ul style="margin: 0; padding-left: 15px; list-style-type: square;">
+                            <li><b>3 Change Requests / Mo:</b> Includes color adjustments, text updates, or behavioral tweaks.</li>
+                            <li><b>Lifetime Bug Support:</b> Priority fixes for any code regressions or browser compatibility issues.</li>
+                            <li><b>Active Log Review:</b> Monthly Cloudflare log audit to block malicious traffic/bots.</li>
+                            <li><b>Quarterly Integrity Check:</b> Manual verification of all links and API uplinks.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
 
-                <div style="background: rgba(0, 255, 0, 0.03); padding: 15px; border: 1px dashed rgba(0, 255, 0, 0.2); margin-top: 20px;">
-                    <h4 style="margin: 0 0 10px 0; color: var(--secondary, #00ff00); font-size: 0.85rem;">📜 PAYMENT_STRUCTURE</h4>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 0.75rem; list-style-type: square; opacity: 0.9;">
-                        <li>50% Deposit required to initiate project.</li>
-                        <li>Remaining balance due at Go-Live.</li>
-                        <li>Ad-hoc requests (Non-Subscribers): <b>$100.00 / Hour</b>.</li>
-                    </ul>
-                </div>
-                
-                <div style="margin-top: 25px; text-align: center;">
-                    <button onclick="location.href='contact.html?service=webbuild'" 
-                            style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%; text-transform: uppercase;">
-                        [ INITIATE_PROJECT_TRANSMISSION ]
-                    </button>
-                </div>
+            <div style="background: rgba(0, 255, 0, 0.03); padding: 15px; border: 1px dashed rgba(0, 255, 0, 0.2); margin-top: 20px;">
+                <h4 style="margin: 0 0 10px 0; color: var(--secondary, #00ff00); font-size: 0.85rem;">📜 SERVICE_WARRANTY</h4>
+                <p style="font-size: 0.75rem; margin: 0;">30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b> for non-subscribers.</p>
+            </div>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <button onclick="location.href='contact.html?service=webbuild'" 
+                        style="background: var(--accent, #ffb000); color: #000; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; width: 100%; text-transform: uppercase;">
+                    [ INITIATE_PROJECT_TRANSMISSION ]
+                </button>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+
 
 

@@ -154,22 +154,35 @@ header {
 }
 
 /* 6. TYPOGRAPHY */
-h1 { letter-spacing: 3px; margin: 10px 0; font-size: 1.6rem; text-align: center; }
-h2 {
+h1 { 
+    letter-spacing: 3px; 
+    margin: 10px 0; 
+    font-size: 1.6rem; 
+    text-align: center; 
+}
+
+/* Unified styling for Who Am I, Projects, and Journey headers */
+h2, h3 {
     color: var(--primary);
     font-size: 1.1rem;
     background: rgba(92, 61, 46, 0.2);
     padding: 5px 10px;
     margin: 25px 0 15px 0;
-    border-left: 4px solid var(--border);
+    border-left: none !important; /* This permanently kills the brown pipe */
 }
 
-/* --- NEW BUSINESS BRANDING CLASS --- */
-.highlight-blue {
-    color: var(--data-blue) !important;
-    font-weight: bold;
-    text-shadow: 0 0 8px var(--blue-glow);
-    letter-spacing: 0.5px;
+/* The Blue Pipe Class */
+.header-pipe {
+    color: var(--data-blue); 
+    font-weight: 900;
+    margin-right: 12px;
+    display: inline-block;
+}
+
+/* Bullet Indentation for The Journey section */
+.terminal-list {
+    margin-left: 60px !important;
+    padding-left: 0;
 }
 
 /* 7. HERO SECTION / PERSONAL VAULT ELEMENTS */
@@ -305,5 +318,6 @@ textarea:focus,
     box-shadow: 0 0 20px var(--primary);
     transform: translateY(-1px);
 }
+
 
 

@@ -334,6 +334,36 @@ textarea:focus,
     transform: translateY(-1px);
 }
 
+/* --- UNIFIED FOOTER STYLES --- */
+.footer-social { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    flex-wrap: wrap; 
+    margin-bottom: 15px;
+}
+
+.footer-social a { 
+    color: var(--secondary); 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 0.85rem; 
+    transition: color 0.2s ease;
+}
+
+.footer-social a:hover { 
+    color: var(--accent); 
+    text-shadow: 0 0 8px var(--accent);
+}
+
+.footer-line {
+    font-size: 0.75rem; 
+    opacity: 0.8; 
+    border-top: 1px dashed var(--border); 
+    padding-top: 15px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
 
 
 

@@ -138,13 +138,18 @@ header {
     cursor: pointer;
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
-    text-decoration: none; /* Kills the link underline */
-    display: inline-block; /* Essential for the <a> tag */
+    text-decoration: none;   /* Kills the link underline */
+    display: inline-flex;    /* Essential for vertical alignment */
+    align-items: center;     /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    line-height: 1;          /* Standardizes text height */
+    height: 32px;            /* Locks height to match button and link */
     transition: 0.2s;
+    box-sizing: border-box;  /* Prevents border from adding to height */
 }
 
 .v64-btn:hover {
-    background: rgba(0, 238, 255, 0.1); /* Subtle cyan glow using --secondary */
+    background: rgba(0, 238, 255, 0.1); 
     box-shadow: 0 0 10px var(--secondary);
 }
 
@@ -300,4 +305,5 @@ textarea:focus,
     box-shadow: 0 0 20px var(--primary);
     transform: translateY(-1px);
 }
+
 

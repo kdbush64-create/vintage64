@@ -225,11 +225,11 @@
                     entry.style.marginBottom = '40px';
                     entry.style.scrollMarginTop = '20px';
                     entry.innerHTML = `
-                        <h2>&gt; ${displayTitle}</h2>
-                        ${displayDate ? `<p><strong>LOG_DATE:</strong> ${displayDate}</p>` : ''}
-                        <div class="log-text" style="line-height: 1.6;">${marked.parse(body)}</div>
-                        <hr style="border: 0; border-top: 1px dashed var(--border); margin: 20px 0;">
-                    `;
+    <h2 class="highlight-blue">&gt; ${displayTitle}</h2>
+    ${displayDate ? `<p><strong class="highlight-blue">LOG_DATE:</strong> ${displayDate}</p>` : ''}
+    <div class="log-text" style="line-height: 1.6;">${marked.parse(body)}</div>
+    <hr style="border: 0; border-top: 1px dashed var(--border); margin: 20px 0;">
+`;
                     highlightLogLabels(entry);
                     container.appendChild(entry);
                 }
@@ -252,6 +252,7 @@
     </script>
 </body>
 </html>
+
 
 
 

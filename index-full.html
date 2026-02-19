@@ -60,51 +60,33 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-    /* 1. CORE UTILITIES & SKIP-LINK */
-    .skip-link {
-        position: absolute;
-        top: -100px;
-        left: 10px;
-        background: var(--accent);
-        color: #000;
-        padding: 8px 16px;
-        font-weight: bold;
-        z-index: 99999;
-        transition: top 0.2s;
-    }
-    .skip-link:focus { top: 0; }
+    /* ... keep your skip-link and footer-social styles ... */
 
-    /* 2. THE BLUE PIPE (Hardened CSS) */
-    /* This injects the pipe before H2 and H3, keeping it safe from JS rewriting */
+    /* THE TERMINAL PIPE: Injected via CSS so the JavaScript doesn't touch it */
     .bio h2::before, .bio h3::before {
         content: "|";
         color: var(--blue, #00d4ff);
         font-weight: 900;
-        margin-right: 12px;
+        margin-right: 15px;
         display: inline-block;
     }
 
-    /* 3. SECTION SPACING & TYPOGRAPHY */
+    /* SECTION BREAK: Gap between paragraphs and headers */
     .bio p {
-        margin-bottom: 40px !important;
+        margin-bottom: 50px !important;
     }
 
-    /* 4. BULLET ALIGNMENT (The 60px Right-Shift) */
+    /* LIST INDENTATION: 60px right-shift for your credentials */
     .terminal-list {
         margin-left: 60px !important;
         padding-left: 0;
-        list-style-type: disc;
     }
+    
     .terminal-list li {
         margin-bottom: 15px;
     }
 
-    /* 5. FOOTER & SOCIAL */
-    .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
-    .footer-social a:hover { color: var(--accent); }
-
-    /* 6. REQUIRED FOR JAVASCRIPT HIGHLIGHTER */
+    /* Ensure keywords stay blue */
     .highlight-blue {
         color: var(--blue, #00d4ff);
     }
@@ -144,27 +126,27 @@
     <section class="bio">
         <h2 style="margin-top: 0;">&gt; WHO_AM_I</h2>
         <p>
-            I am a technical product leader with over <strong>15 years of experience</strong> navigating the intersection of product strategy and Agile execution. Based in <strong>Fort Worth, TX</strong>, I specialize in leading cross-functional teams through complex technical modernizations for industry leaders in aviation and eCommerce. My foundation is built on <strong>digital sovereignty</strong> and lean architecture.
+            I am a technical product leader with over <strong>15 years of experience</strong> navigating the intersection of product strategy and Agile execution[cite: 6]. Based in <strong>Fort Worth, TX</strong>, I specialize in leading cross-functional teams through complex technical modernizations for industry leaders in aviation and eCommerce[cite: 7]. My foundation is built on <strong>digital sovereignty</strong> and lean architecture.
         </p>
 
-        <h3>&gt; CURRENT_AND_PAST_PROJECTS</h3>
+        <h3>&gt; CURRENT_PROJECTS</h3>
         <p>
-            I currently lead teams in "digital archaeology"—researching and documenting <strong>legacy TPF mainframe code</strong> to prepare it for cloud-native futures. My track record includes guiding a <strong>100% increase in operational efficiency</strong> for global airport systems and managing <strong>multi-million dollar revenue growths</strong> through specialized retail workflows. Whether it's migrating proprietary software to <strong>Google Cloud</strong> or <strong>AWS</strong>, I focus on hardening assets and reducing technical debt.
+            I currently lead teams in "digital archaeology"—researching and documenting <strong>legacy TPF mainframe code</strong> to prepare it for cloud-native futures[cite: 31]. My track record includes guiding a <strong>100% increase in operational efficiency</strong> for global airport systems and managing <strong>multi-million dollar revenue growths</strong> through specialized retail workflows[cite: 76, 78]. Whether it's migrating proprietary software to <strong>Google Cloud</strong> or <strong>AWS</strong>, I focus on hardening assets and reducing technical debt[cite: 31, 26].
         </p>
 
         <h3>&gt; THE_JOURNEY</h3>
         <ul class="terminal-list">
             <li>
-                <strong style="color: var(--blue);">Agile Mastery:</strong> Certified Scrum Product Owner (CSPO) and Scrum Master (CSM) with a focus on high-performing, cloud-based solution delivery.
+                <strong>Agile Mastery:</strong> Certified Scrum Product Owner (CSPO) and Scrum Master (CSM) with a focus on high-performing, cloud-based solution delivery[cite: 12, 13].
             </li>
             <li>
-                <strong style="color: var(--blue);">Specialized Hardening:</strong> CompTIA <strong>Security+</strong>, <strong>Network+</strong>, and <strong>A+</strong> certified, specializing in secure infrastructure and technical debt remediation.
+                <strong>Specialized Hardening:</strong> CompTIA <strong>Security+</strong>, <strong>Network+</strong>, and <strong>A+</strong> certified, specializing in secure infrastructure and technical debt remediation[cite: 14, 15, 16].
             </li>
             <li>
-                <strong style="color: var(--blue);">Linux Native:</strong> LPI <strong>Linux Essentials</strong> certified (2025), driving the <strong>Vintage64 Phoenix Conversion</strong> for lean, secure computing.
+                <strong>Linux Native:</strong> LPI <strong>Linux Essentials</strong> certified (2025), driving the <strong>Vintage64 Phoenix Conversion</strong> for lean, secure computing[cite: 21].
             </li>
             <li>
-                <strong style="color: var(--blue);">Academic Foundation:</strong> Master of Science in <strong>IT Management (MSITM)</strong> and BS in Information Technology from Western Governors University.
+                <strong>Academic Foundation:</strong> Master of Science in <strong>IT Management (MSITM)</strong> and BS in Information Technology from Western Governors University[cite: 103, 104].
             </li>
         </ul>
     </section>
@@ -238,6 +220,7 @@
     </script>
 </body>
 </html>
+
 
 
 

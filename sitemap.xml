@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Directory | Vintage64TX</title>
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --primary: #ffb000;
+            --secondary: #00eeff;
+            --accent: #00ff41;
+            --dim: #5c3d2e;
+            --text: #cccccc;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 40px 20px;
+            line-height: 1.4;
+        }
+
+        .directory-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--dim);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        h1 { color: var(--primary); font-size: 1.2rem; margin-bottom: 30px; border-bottom: 1px solid var(--dim); padding-bottom: 10px; }
+        
+        .tree { list-style: none; padding-left: 0; }
+        .tree li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        .tree li::before {
+            content: "├──";
+            position: absolute;
+            left: 0;
+            color: var(--dim);
+        }
+        .tree li:last-child::before { content: "└──"; }
+
+        .folder { color: var(--secondary); font-weight: bold; text-transform: uppercase; }
+        .file { color: var(--text); text-decoration: none; }
+        .file:hover { color: var(--accent); }
+        .status-tag { font-size: 0.7rem; margin-left: 10px; opacity: 0.6; }
+        .online { color: var(--accent); }
+        .pending { color: var(--primary); }
+
+        .back-link { display: block; margin-top: 40px; font-size: 0.8rem; color: var(--primary); text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="directory-container">
+    <h1>V64_SYSTEM_DIRECTORY [VER_1.0.4]</h1>
+    
+    <ul class="tree">
+        <li><span class="folder">ROOT /</span>
+            <ul class="tree">
+                <li><a href="index.html" class="file">index.html</a> <span class="status-tag online">[ONLINE]</span></li>
+                <li><a href="business.html" class="file">business.html</a> <span class="status-tag pending">[PENDING_BUILD]</span></li>
+                <li><a href="logs.html" class="file">logs.html</a> <span class="status-tag pending">[ENCRYPTED_IDLE]</span></li>
+                <li><a href="contact.html" class="file">contact.html</a> <span class="status-tag online">[UPLINK_READY]</span></li>
+            </ul>
+        </li>
+        <li><span class="folder">PROTOCOLS /</span>
+            <ul class="tree">
+                <li><span class="file">the_phoenix_protocol</span> <span class="status-tag pending">[DOC_ONLY]</span></li>
+                <li><span class="file">solopreneur_web_builds</span> <span class="status-tag pending">[DOC_ONLY]</span></li>
+                <li><span class="file">v64_guardian_sub</span> <span class="status-tag pending">[DOC_ONLY]</span></li>
+            </ul>
+        </li>
+        <li><span class="folder">LEGAL /</span>
+            <ul class="tree">
+                <li><a href="privacy-policy.html" class="file">privacy-policy.html</a> <span class="status-tag online">[VERIFIED]</span></li>
+            </ul>
+        </li>
+    </ul>
+
+    <a href="/" class="back-link">&lt; RETURN_TO_ROOT</a>
+</div>
+
+</body>
+</html>

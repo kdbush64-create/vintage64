@@ -2,6 +2,9 @@ backend:
   name: github
   repo: kdbush64-create/vintage64
   branch: main
+  # OAuth will be handled by your Cloudflare Worker (see setup instructions)
+  base_url: https://vintage64tx.com
+  auth_endpoint: /api/auth
 
 media_folder: media
 
@@ -10,7 +13,9 @@ collections:
     label: Business Logs
     folder: business-logs
     create: true
+    delete: true
     format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Date, name: date, widget: datetime }

@@ -1,13 +1,17 @@
 export default {
   async fetch(request, env, ctx) {
+    // Dynamically detect the origin so we don't have mismatch errors
+    const requestOrigin = request.headers.get("Origin");
+    const allowedOrigin = requestOrigin || "https://vintage64tx.com";
+
     // 1. Handle Preflight (OPTIONS) Requests
-    // This answers the "Are you allowed to talk to me?" ping from your browser
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          "Access-Control-Allow-Origin": "https://dashboard.vintage64tx.com",
+          "Access-Control-Allow-Origin": allowedOrigin,
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -28,11 +32,11 @@ export default {
 
     const data = await response.json();
 
-    // 3. Return data with necessary headers to allow browser access
+    // 3. Return data with unified dynamic headers
     return new Response(JSON.stringify(data), {
       headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://vintage64tx.com',
+        'Access-Control-Allow-Origin': allowedOrigin,
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization'
       }

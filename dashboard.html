@@ -2,36 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V64_TELEMETRY_NODE // SYSTEM_STATUS</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .node-container { max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid var(--border); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .node-container { max-width: 800px; margin: 40px auto; padding: 20px; border: 2px solid var(--border); background: var(--container-bg); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
         .node-card { border: 1px dashed var(--border); padding: 15px; background: rgba(0,0,0,0.2); }
+        .node-card h3 { font-size: 0.85rem; color: var(--secondary); margin-bottom: 10px; }
+        .status-loading { color: #ffb000; animation: blinker 1s step-end infinite; }
         .status-ok { color: var(--accent); }
+        .status-err { color: #ff4141; }
     </style>
 </head>
 <body>
     <div class="container node-container">
-        <h1>&gt; V64_TELEMETRY_NODE</h1>
-        <p>Real-time status for your digital assets.</p>
+        <header>
+            <h1>&gt; V64_TELEMETRY_NODE</h1>
+            <p style="font-size: 0.8rem; opacity: 0.7;">[ SYSTEM_IDENTITY: VINTAGE64TX_MASTER ]</p>
+        </header>
 
         <div class="grid">
             <div class="node-card">
                 <h3>[+] SITE_INTEGRITY</h3>
-                <p>Status: <span class="status-ok">OPERATIONAL</span></p>
-                <p>Last Audit: 2026-02-19</p>
+                <p>Status: <span id="site-status" class="status-loading">SYNCING...</span></p>
+                <p>Last Audit: <span id="last-audit">---</span></p>
             </div>
             <div class="node-card">
                 <h3>[+] SECURITY_PROTOCOL</h3>
-                <p>V64_HARDENING: <span class="status-ok">ACTIVE</span></p>
-                <p>Cloudflare WAF: <span class="status-ok">ENABLED</span></p>
+                <p>Hardening: <span id="hardening-status" class="status-loading">SYNCING...</span></p>
+                <p>WAF_Status: <span id="waf-status" class="status-loading">SYNCING...</span></p>
             </div>
         </div>
 
-        <div style="margin-top: 30px;">
+        <div style="margin-top: 30px; text-align: center;">
             <a href="contact.html" class="v64-btn">[ REQUEST_FULL_AUDIT ]</a>
         </div>
     </div>
+
+    <script>
+        async function loadDashboard() {
+            try {
+                // Fetches data.json from your root directory
+                const response = await fetch('data.json?cache_bust=' + new Date().getTime());
+                const data = await response.json();
+                
+                document.getElementById('site-status').textContent = data.site_status;
+                document.getElementById('site-status').className = 'status-ok';
+                
+                document.getElementById('last-audit').textContent = data.last_audit;
+                
+                document.getElementById('hardening-status').textContent = data.hardening;
+                document.getElementById('hardening-status').className = 'status-ok';
+                
+                document.getElementById('waf-status').textContent = data.waf_status;
+                document.getElementById('waf-status').className = 'status-ok';
+                
+            } catch (e) {
+                document.getElementById('site-status').textContent = "ERROR_OFFLINE";
+                document.getElementById('site-status').className = 'status-err';
+            }
+        }
+        window.onload = loadDashboard;
+    </script>
 </body>
 </html>

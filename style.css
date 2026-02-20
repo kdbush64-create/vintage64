@@ -365,6 +365,21 @@ textarea:focus,
     line-height: 1.8;
 }
 
+/* Unified Logo Control */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 20px;
+    width: 100%;
+}
+
+.main-logo {
+    width: 200px !important; /* Force the width */
+    height: auto !important; /* Force aspect ratio preservation */
+    display: block;
+    margin: 0 auto;
+    border: 3px solid var(--border); /* Maintain your chassis aesthetic */
+}
 
 
 

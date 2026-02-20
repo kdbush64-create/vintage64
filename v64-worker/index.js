@@ -10,7 +10,7 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        query: `query { viewer { zones(filter: { zoneTag: "YOUR_ZONE_TAG" }) { httpRequests1dGroups(filter: { date: "2026-02-20" }, limit: 1) { sum { requests } } } } }`
+        query: `query { viewer { zones(filter: { zoneTag: 69b08f8ce5cc1e1329d04c13a8981e97 }) { httpRequests1dGroups(filter: { date: "2026-02-20" }, limit: 1) { sum { requests } } } } }`
       })
     });
 

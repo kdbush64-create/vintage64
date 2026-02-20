@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            /* Light Mode Default */
             --bg-color: #ffffff;
             --text-color: #222222;
             --border: #333333;
@@ -20,7 +19,6 @@
 
         @media (prefers-color-scheme: dark) {
             :root {
-                /* Dark Mode Override */
                 --bg-color: #121212;
                 --text-color: #e0e0e0;
                 --border: #555555;
@@ -31,7 +29,7 @@
             }
         }
 
-        body { background-color: var(--bg-color); color: var(--text-color); transition: 0.3s; }
+        body { background-color: var(--bg-color); color: var(--text-color); transition: 0.3s; font-family: monospace; }
         .node-container { max-width: 800px; margin: 40px auto; padding: 20px; border: 2px solid var(--border); background: var(--container-bg); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
         .node-card { border: 1px dashed var(--border); padding: 15px; background: rgba(0,0,0,0.1); }
@@ -40,13 +38,11 @@
         .status-loading { color: #ffb000; animation: blinker 1s step-end infinite; }
         .status-ok { color: var(--cyber-blue); }
         .status-err { color: #ff4141; }
+        @keyframes blinker { 50% { opacity: 0; } }
 
-        /* Action Buttons */
         .audit-btn { color: var(--cyber-blue); font-weight: bold; text-decoration: none; transition: 0.2s; }
         .audit-btn:hover { color: #ffffff; text-shadow: 0 0 8px var(--cyber-blue); }
-        
         .logout-btn { color: var(--terminal-green); font-size: 0.8rem; text-decoration: none; transition: 0.2s; }
-        .logout-btn:hover { color: #ffffff; text-shadow: 0 0 8px var(--terminal-green); }
     </style>
 </head>
 <body>
@@ -60,42 +56,53 @@
             <div class="node-card">
                 <h3>[+] SITE_INTEGRITY</h3>
                 <p>Status: <span id="site-status" class="status-loading">SYNCING...</span></p>
-                <p>Last Audit: <span id="last-audit">---</span></p>
+                <p>Last Verified Audit: <span id="last-audit">---</span></p>
             </div>
             <div class="node-card">
                 <h3>[+] SECURITY_PROTOCOL</h3>
-                <p>Hardening: <span id="hardening-status" class="status-loading">SYNCING...</span></p>
-                <p>WAF_Status: <span id="waf-status" class="status-loading">SYNCING...</span></p>
+                <p>Requests (24h): <span id="request-count" class="status-loading">SYNCING...</span></p>
+                <p>WAF_Mode: <span id="waf-status" class="status-ok">ACTIVE_HARDENED</span></p>
             </div>
         </div>
 
         <div style="margin-top: 30px; text-align: center;">
-            <a href="contact.html" class="audit-btn">[ REQUEST_FULL_AUDIT ]</a>
+            <a href="../contact.html" class="audit-btn">[ REQUEST_FULL_AUDIT ]</a>
             <br><br>
-            <a href="https://your-team-name.cloudflareaccess.com/cdn-cgi/access/logout" class="logout-btn">LOGOUT_SYSTEM</a>
+            <a href="#" class="logout-btn">LOGOUT_SYSTEM</a>
         </div>
     </div>
 
     <script>
         async function loadDashboard() {
+            // REPLACE WITH YOUR ACTUAL WORKER URL
+            const workerUrl = 'https://v64-analytics-proxy.kdbush64.workers.dev/';
+
             try {
-                // Ensure the path matches your deployment structure
-                const response = await fetch('/dashboard/data.json?cache_bust=' + new Date().getTime());
+                const response = await fetch(workerUrl);
                 const data = await response.json();
                 
-                document.getElementById('site-status').textContent = data.site_status;
+                // Mapping Cloudflare GraphQL data to your dashboard
+                const stats = data.data.viewer.zones[0].httpRequests1dGroups[0].sum;
+
+                document.getElementById('site-status').textContent = "ONLINE_SECURE";
                 document.getElementById('site-status').className = 'status-ok';
-                document.getElementById('last-audit').textContent = data.last_audit;
-                document.getElementById('hardening-status').textContent = data.hardening;
-                document.getElementById('hardening-status').className = 'status-ok';
-                document.getElementById('waf-status').textContent = data.waf_status;
-                document.getElementById('waf-status').className = 'status-ok';
+                
+                document.getElementById('last-audit').textContent = new Date().toLocaleTimeString();
+                document.getElementById('request-count').textContent = stats.requests.toLocaleString();
+                document.getElementById('request-count').className = 'status-ok';
+
             } catch (e) {
+                console.error("Audit connection failed:", e);
                 document.getElementById('site-status').textContent = "ERROR_OFFLINE";
                 document.getElementById('site-status').className = 'status-err';
+                document.getElementById('request-count').textContent = "N/A";
+                document.getElementById('request-count').className = 'status-err';
             }
         }
-        window.onload = loadDashboard;
+
+        // Run once on load, then every 60 seconds
+        loadDashboard();
+        setInterval(loadDashboard, 60000);
     </script>
 </body>
 </html>

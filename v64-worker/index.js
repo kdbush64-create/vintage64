@@ -1,24 +1,18 @@
 export default {
   async fetch(request, env, ctx) {
-    // Dynamically detect the origin so we don't have mismatch errors
-    const requestOrigin = request.headers.get("Origin");
-    const allowedOrigin = requestOrigin || "https://vintage64tx.com";
-
     // 1. Handle Preflight (OPTIONS) Requests
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          "Access-Control-Allow-Origin": allowedOrigin,
+          "Access-Control-Allow-Origin": "https://dashboard.vintage64tx.com",
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          "Access-Control-Max-Age": "86400",
         },
       });
     }
 
-    // 2. Main Logic for Data Requests
+    // 2. Main Logic
     const token = env.API_TOKEN; 
-
     const response = await fetch("https://api.cloudflare.com/client/v4/graphql", {
       method: "POST",
       headers: {
@@ -32,11 +26,10 @@ export default {
 
     const data = await response.json();
 
-    // 3. Return data with unified dynamic headers
     return new Response(JSON.stringify(data), {
       headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': allowedOrigin,
+        'Access-Control-Allow-Origin': 'https://dashboard.vintage64tx.com',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization'
       }

@@ -34,15 +34,8 @@ export async function onRequest(context) {
 
   // 4. Return data with dynamic headers and cache-busting
   return new Response(JSON.stringify(data), {
-    headers: { 
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': origin,
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Vary': 'Origin',
-      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
-    }
-  });
-}
+  headers: {
+    "X-Debug-Version": "TEST_BUILD_V2", // Add this line
+    "Access-Control-Allow-Origin": "*"  // Change to star for a quick test
+  }
+});

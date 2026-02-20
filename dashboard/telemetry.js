@@ -2,8 +2,16 @@
 const workerUrl = 'https://v64-analytics-proxy.kdbush64.workers.dev/';
 
 async function updateTelemetry() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10-second timeout
+
     try {
-        const response = await fetch(workerUrl);
+        const response = await fetch(workerUrl, { signal: controller.signal });
+        
+        if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+        }
+
         const data = await response.json();
         const stats = data.data.viewer.zones[0].httpRequests1dGroups[0].sum;
 
@@ -15,6 +23,8 @@ async function updateTelemetry() {
         console.error("Telemetry Bridge Offline:", e);
         document.getElementById('site-status').textContent = "ERROR_OFFLINE";
         document.getElementById('site-status').className = 'status-err';
+    } finally {
+        clearTimeout(timeoutId);
     }
 }
 

@@ -7,9 +7,30 @@
     <title>V64_TELEMETRY_NODE // SYSTEM_STATUS</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --border: #333333;
+            --container-bg: #f4f4f4;
+            --accent: #007bff;
+            --secondary: #666666;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --border: #555555;
+                --container-bg: #1e1e1e;
+                --accent: #4da3ff;
+                --secondary: #aaaaaa;
+            }
+        }
+
+        body { background-color: var(--bg-color); color: var(--text-color); transition: 0.3s; }
         .node-container { max-width: 800px; margin: 40px auto; padding: 20px; border: 2px solid var(--border); background: var(--container-bg); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .node-card { border: 1px dashed var(--border); padding: 15px; background: rgba(0,0,0,0.2); }
+        .node-card { border: 1px dashed var(--border); padding: 15px; background: rgba(0,0,0,0.1); }
         .node-card h3 { font-size: 0.85rem; color: var(--secondary); margin-bottom: 10px; }
         .status-loading { color: #ffb000; animation: blinker 1s step-end infinite; }
         .status-ok { color: var(--accent); }
@@ -46,8 +67,8 @@
     <script>
         async function loadDashboard() {
             try {
-                // Fetches data.json from your root directory
-                const response = await fetch('data.json?cache_bust=' + new Date().getTime());
+                // Pointing to the specific folder to match your Redirect structure
+                const response = await fetch('/dashboard/data.json?cache_bust=' + new Date().getTime());
                 const data = await response.json();
                 
                 document.getElementById('site-status').textContent = data.site_status;

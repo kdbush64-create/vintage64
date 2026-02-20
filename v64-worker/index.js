@@ -1,16 +1,16 @@
 export default {
   async fetch(request, env, ctx) {
-    // 1. Define allowed origin explicitly to avoid mismatch
-    const allowedOrigin = "https://dashboard.vintage64tx.com";
+    // 1. Dynamically identify the origin from the request
+    const origin = request.headers.get("Origin") || "https://dashboard.vintage64tx.com";
 
     // 2. Handle Preflight (OPTIONS) Requests
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          "Access-Control-Allow-Origin": allowedOrigin,
+          "Access-Control-Allow-Origin": origin,
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          "Access-Control-Max-Age": "0", // Disable caching of preflight
+          "Access-Control-Max-Age": "0",
           "Vary": "Origin"
         },
       });
@@ -31,13 +31,14 @@ export default {
 
     const data = await response.json();
 
-    // 4. Return data with cache-busting headers
+    // 4. Return data with dynamic headers and cache-busting
     return new Response(JSON.stringify(data), {
       headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': allowedOrigin,
+        'Access-Control-Allow-Origin': origin,
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Vary': 'Origin',
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0'

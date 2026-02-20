@@ -1,17 +1,22 @@
 export default {
   async fetch(request, env, ctx) {
-    // 1. Handle Preflight (OPTIONS) Requests
+    // 1. Define allowed origin explicitly to avoid mismatch
+    const allowedOrigin = "https://dashboard.vintage64tx.com";
+
+    // 2. Handle Preflight (OPTIONS) Requests
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          "Access-Control-Allow-Origin": "https://dashboard.vintage64tx.com",
+          "Access-Control-Allow-Origin": allowedOrigin,
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
+          "Access-Control-Max-Age": "0", // Disable caching of preflight
+          "Vary": "Origin"
         },
       });
     }
 
-    // 2. Main Logic
+    // 3. Main Logic for Data Requests
     const token = env.API_TOKEN; 
     const response = await fetch("https://api.cloudflare.com/client/v4/graphql", {
       method: "POST",
@@ -26,12 +31,16 @@ export default {
 
     const data = await response.json();
 
+    // 4. Return data with cache-busting headers
     return new Response(JSON.stringify(data), {
       headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://dashboard.vintage64tx.com',
+        'Access-Control-Allow-Origin': allowedOrigin,
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
       }
     });
   }

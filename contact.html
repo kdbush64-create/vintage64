@@ -118,6 +118,15 @@
                     Direct uplink: <span id="protected-email" class="protected-email">[DECRYPTING...]</span>
                 </p>
 
+                <section class="service-scope-box" style="border: 1px dashed var(--border); padding: 20px; margin-bottom: 20px; background: rgba(0, 0, 0, 0.2);">
+    <h3 style="color: var(--primary); font-size: 1rem; margin-bottom: 10px;">&gt; SELECT_SERVICE_SCOPE</h3>
+    <ul class="scope-list" style="list-style: none; padding-left: 0;">
+        <li style="color: var(--primary); margin-bottom: 5px;"><strong>[ NATIONWIDE ]</strong> Custom Web Development</li>
+        <li style="color: var(--primary); margin-bottom: 5px;"><strong>[ FT WORTH LOCAL ]</strong> Linux Phoenix Conversion & Hardware Repairs</li>
+    </ul>
+    <p style="font-size: 0.8rem; margin-top: 10px;"><em>Hardware services require in-person equipment drop-off at our Fort Worth facility.</em></p>
+</section>
+                
                 <form id="contactForm" class="retro-form" novalidate>
                     <!-- Honeypot — hidden from humans, bots fill this in -->
                     <div class="v64-hidden-trap" aria-hidden="true">
@@ -150,12 +159,11 @@
                         <label for="service">SERVICE_INTEREST:</label>
                         <select id="service" name="service_interest" class="retro-select" required>
                             <option value="" disabled selected>-- SELECT_MODULE --</option>
+                            <option value="Web Build">WEB_BUILD (NATIONWIDE)</option>
+                            <option value="TPM Consulting">PROJECT_MGMT_CONSULT (NATIONWIDE)</option>
+                            <option value="Linux Migration">LINUX_MIGRATION_V64 (LOCAL)</option>
+                            <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR (LOCAL)</option>
                             <option value="General Inquiry">GENERAL_INQUIRY</option>
-                            <option value="Managed Security (Shield)">MANAGED_SECURITY_SHIELD</option>
-                            <option value="Linux Migration">LINUX_MIGRATION_V64</option>
-                            <option value="Hardware Upgrade/Repair">HARDWARE_UPLINK_REPAIR</option>
-                            <option value="TPM Consulting">PROJECT_MGMT_CONSULT</option>
-                            <option value="Web Build">WEB_BUILD_SOLOPRENEUR</option>
                         </select>
                     </div>
 
@@ -343,6 +351,7 @@
     </script>
 </body>
 </html>
+
 
 
 

@@ -1,0 +1,6 @@
+{
+  "site_status": "OPERATIONAL",
+  "last_audit": "2026-02-20",
+  "hardening": "ACTIVE",
+  "waf_status": "ENABLED"
+}

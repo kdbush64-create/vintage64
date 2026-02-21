@@ -48,7 +48,7 @@ async function updateTelemetry() {
                                     ? Math.round((stats.cachedRequests / stats.requests) * 100) + '%'
                                     : '—',                                    'status-ok');
         setStatus('threats',        stats.threats?.toLocaleString() ?? '0',   'status-ok');
-        setStatus('visitors',       stats.uniqIps?.toLocaleString() ?? '—',   'status-ok');
+        setStatus('visitors',       stats.uniqVisits?.toLocaleString() ?? '—',   'status-ok');
 
         const now = new Date();
         document.getElementById('last-audit').textContent   = now.toLocaleTimeString();

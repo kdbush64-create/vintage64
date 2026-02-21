@@ -16,6 +16,7 @@
             --data-blue: #00d4ff;
             --blue-glow: rgba(0, 212, 255, 0.5);
             --err: #ff4141;
+            --warn: #ff9900;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +28,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
@@ -45,7 +46,7 @@
 
         .container {
             width: 100%;
-            max-width: 650px;
+            max-width: 900px;
             border: 2px solid var(--border);
             padding: 20px;
             background: var(--container-bg);
@@ -69,6 +70,17 @@
             margin-bottom: 5px;
         }
 
+        /* Section label above each group of cards */
+        .section-label {
+            font-size: 0.7rem;
+            color: var(--border);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 28px 0 8px 2px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
         h3 {
             color: var(--primary);
             font-size: 0.85rem;
@@ -80,9 +92,17 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        /* Full-width card (for geo and 7-day summary) */
+        .grid-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 8px;
         }
 
         .node-card {
@@ -96,8 +116,15 @@
             margin-bottom: 6px;
         }
 
+        /* Wide value — wraps gracefully for country lists */
+        .node-card p.wide {
+            font-size: 0.78rem;
+            word-break: break-word;
+        }
+
         .status-loading { color: var(--primary); animation: blinker 1s step-end infinite; }
         .status-ok      { color: var(--data-blue); text-shadow: 0 0 5px var(--blue-glow); }
+        .status-warn    { color: var(--warn); text-shadow: 0 0 4px rgba(255,153,0,0.5); }
         .status-err     { color: var(--err); }
 
         @keyframes blinker { 50% { opacity: 0; } }
@@ -156,33 +183,95 @@
     <div class="terminal-overlay"></div>
 
     <div class="container">
+
         <header>
             <h1>&gt; V64_TELEMETRY_NODE</h1>
             <p style="font-size: 0.8rem; opacity: 0.7;">[ SYSTEM_IDENTITY: VINTAGE64TX_MASTER ]</p>
         </header>
 
+        <!-- ═══════════════════════════════════════════════════════
+             SECTION 1 — YESTERDAY (most recently complete 24h)
+        ════════════════════════════════════════════════════════════ -->
+        <div class="section-label">// YESTERDAY — MOST RECENT COMPLETE 24H</div>
+
         <div class="grid">
+
+            <!-- SITE INTEGRITY -->
             <div class="node-card">
                 <h3>[+] SITE_INTEGRITY</h3>
                 <p>Status: <span id="site-status" class="status-loading">SYNCING...</span></p>
                 <p>Last Verified: <span id="last-audit">---</span></p>
             </div>
+
+            <!-- TRAFFIC -->
             <div class="node-card">
-                <h3>[+] SECURITY_PROTOCOL</h3>
+                <h3>[+] TRAFFIC_METRICS</h3>
                 <p>Requests (24h): <span id="request-count" class="status-loading">SYNCING...</span></p>
-                <p>WAF_Mode: <span class="status-ok">ACTIVE_HARDENED</span></p>
+                <p>Page Views: <span id="page-views" class="status-loading">SYNCING...</span></p>
+                <p>Unique Visitors: <span id="unique-visitors" class="status-loading">SYNCING...</span></p>
             </div>
+
+            <!-- BANDWIDTH -->
             <div class="node-card">
                 <h3>[+] BANDWIDTH_NODE</h3>
-                <p>Data Served: <span id="bandwidth" class="status-loading">SYNCING...</span></p>
+                <p>Total Served: <span id="bandwidth" class="status-loading">SYNCING...</span></p>
+                <p>Cached Served: <span id="cached-bandwidth" class="status-loading">SYNCING...</span></p>
                 <p>Cache_Hit_Rate: <span id="cache-rate" class="status-loading">SYNCING...</span></p>
+                <p>Uncached (Origin): <span id="uncached-bytes" class="status-loading">SYNCING...</span></p>
             </div>
+
+            <!-- SECURITY -->
             <div class="node-card">
-                <h3>[+] THREAT_MONITOR</h3>
+                <h3>[+] SECURITY_PROTOCOL</h3>
+                <p>WAF_Mode: <span class="status-ok">ACTIVE_HARDENED</span></p>
                 <p>Threats Blocked: <span id="threats" class="status-loading">SYNCING...</span></p>
-                <p>Page Views: <span id="visitors" class="status-loading">SYNCING...</span></p>
+                <p>HTTPS Rate: <span id="https-rate" class="status-loading">SYNCING...</span></p>
+                <p>Encrypted Data: <span id="encrypted-bytes" class="status-loading">SYNCING...</span></p>
+            </div>
+
+            <!-- RESPONSE CODES -->
+            <div class="node-card">
+                <h3>[+] RESPONSE_CODES</h3>
+                <p class="wide">Breakdown: <span id="response-codes" class="status-loading">SYNCING...</span></p>
+                <p>Error Rate (4xx/5xx): <span id="error-rate" class="status-loading">SYNCING...</span></p>
+            </div>
+
+        </div><!-- /.grid -->
+
+        <!-- GEO (full width) -->
+        <div class="grid-full">
+            <div class="node-card">
+                <h3>[+] GEO_ORIGIN</h3>
+                <p class="wide">Top Countries: <span id="top-countries" class="status-loading">SYNCING...</span></p>
+                <p>Top Threat Origin: <span id="threat-origin" class="status-loading">SYNCING...</span></p>
             </div>
         </div>
+
+        <!-- ═══════════════════════════════════════════════════════
+             SECTION 2 — 7-DAY ROLLING TOTALS
+        ════════════════════════════════════════════════════════════ -->
+        <div class="section-label">// 7-DAY ROLLING TOTALS</div>
+
+        <div class="grid">
+
+            <div class="node-card">
+                <h3>[+] TRAFFIC_7D</h3>
+                <p>Total Requests: <span id="week-requests" class="status-loading">SYNCING...</span></p>
+                <p>Page Views: <span id="week-pageviews" class="status-loading">SYNCING...</span></p>
+            </div>
+
+            <div class="node-card">
+                <h3>[+] BANDWIDTH_7D</h3>
+                <p>Total Served: <span id="week-bandwidth" class="status-loading">SYNCING...</span></p>
+                <p>HTTPS Rate: <span id="week-https-rate" class="status-loading">SYNCING...</span></p>
+            </div>
+
+            <div class="node-card">
+                <h3>[+] SECURITY_7D</h3>
+                <p>Threats Blocked: <span id="week-threats" class="status-loading">SYNCING...</span></p>
+            </div>
+
+        </div><!-- /.grid -->
 
         <p class="last-refresh">LAST_SYNC: <span id="last-refresh">---</span></p>
 
@@ -191,12 +280,11 @@
             <a href="https://vintage64tx.com">[ RETURN_TO_ROOT ]</a>
             <button id="logout-btn" onclick="logout()">[ LOGOUT_SYSTEM ]</button>
         </div>
-    </div>
+
+    </div><!-- /.container -->
 
     <script src="telemetry.js" defer></script>
     <script>
-        // Logout clears the Cloudflare Access session cookie
-        // and redirects to the CF login wall
         function logout() {
             window.location.href = 'https://dashboard.vintage64tx.com/cdn-cgi/access/logout';
         }

@@ -27,6 +27,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
         }
@@ -52,6 +54,88 @@
             z-index: 5;
         }
 
+        /* ── LOGIN GATE ── */
+        #login-gate {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #login-gate h1 {
+            color: var(--data-blue);
+            text-shadow: 0 0 5px var(--blue-glow);
+            letter-spacing: 3px;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        #login-gate p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .login-form label {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-align: left;
+        }
+
+        .login-form input[type="password"] {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 12px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            width: 100%;
+            letter-spacing: 3px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-form input[type="password"]:focus {
+            outline: none;
+            border-color: var(--data-blue);
+            box-shadow: 0 0 10px var(--blue-glow);
+        }
+
+        .login-form button {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .login-form button:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        #login-error {
+            color: var(--err);
+            font-size: 0.8rem;
+            min-height: 1.2em;
+            margin-top: -5px;
+        }
+
+        /* ── DASHBOARD ── */
+        #dashboard { display: none; }
+
         header {
             text-align: center;
             border-bottom: 2px dashed var(--border);
@@ -60,11 +144,11 @@
         }
 
         h1 {
-            letter-spacing: 3px;
-            margin: 10px 0;
-            font-size: 1.4rem;
             color: var(--data-blue);
             text-shadow: 0 0 5px var(--blue-glow);
+            letter-spacing: 3px;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
         }
 
         h3 {
@@ -86,7 +170,7 @@
         .node-card {
             border: 1px dashed var(--border);
             padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0,0,0,0.2);
         }
 
         .node-card p {
@@ -100,11 +184,22 @@
 
         @keyframes blinker { 50% { opacity: 0; } }
 
+        .last-refresh {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-top: 15px;
+        }
+
+        /* ── FOOTER ACTIONS ── */
         .footer-actions {
             margin-top: 30px;
-            text-align: center;
             border-top: 1px dashed var(--border);
             padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
             font-size: 0.85rem;
         }
 
@@ -113,7 +208,6 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.2s;
-            margin: 0 10px;
         }
 
         .footer-actions a:hover {
@@ -121,10 +215,23 @@
             text-shadow: 0 0 8px var(--accent);
         }
 
-        .last-refresh {
-            font-size: 0.75rem;
-            opacity: 0.6;
-            margin-top: 15px;
+        #logout-btn {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 14px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        #logout-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 10px var(--primary);
         }
     </style>
 </head>
@@ -132,42 +239,112 @@
     <div class="terminal-overlay"></div>
 
     <div class="container">
-        <header>
+
+        <!-- ── LOGIN GATE ── -->
+        <div id="login-gate">
             <h1>&gt; V64_TELEMETRY_NODE</h1>
-            <p style="font-size: 0.8rem; opacity: 0.7;">[ SYSTEM_IDENTITY: VINTAGE64TX_MASTER ]</p>
-        </header>
+            <p>[ AUTHENTICATION REQUIRED // VINTAGE64TX_MASTER ]</p>
 
-        <div class="grid">
-            <div class="node-card">
-                <h3>[+] SITE_INTEGRITY</h3>
-                <p>Status: <span id="site-status" class="status-loading">SYNCING...</span></p>
-                <p>Last Verified: <span id="last-audit">---</span></p>
-            </div>
-            <div class="node-card">
-                <h3>[+] SECURITY_PROTOCOL</h3>
-                <p>Requests (24h): <span id="request-count" class="status-loading">SYNCING...</span></p>
-                <p>WAF_Mode: <span class="status-ok">ACTIVE_HARDENED</span></p>
-            </div>
-            <div class="node-card">
-                <h3>[+] BANDWIDTH_NODE</h3>
-                <p>Data Served: <span id="bandwidth" class="status-loading">SYNCING...</span></p>
-                <p>Cache_Hit_Rate: <span id="cache-rate" class="status-loading">SYNCING...</span></p>
-            </div>
-            <div class="node-card">
-                <h3>[+] THREAT_MONITOR</h3>
-                <p>Threats Blocked: <span id="threats" class="status-loading">SYNCING...</span></p>
-                <p>Unique Visitors: <span id="visitors" class="status-loading">SYNCING...</span></p>
+            <div class="login-form">
+                <label for="password">ACCESS_KEY:</label>
+                <input type="password" id="password" placeholder="Enter access key..." autocomplete="current-password">
+                <p id="login-error"></p>
+                <button onclick="attemptLogin()">[ AUTHENTICATE ]</button>
             </div>
         </div>
 
-        <p class="last-refresh">LAST_SYNC: <span id="last-refresh">---</span></p>
+        <!-- ── DASHBOARD (hidden until authenticated) ── -->
+        <div id="dashboard">
+            <header>
+                <h1>&gt; V64_TELEMETRY_NODE</h1>
+                <p style="font-size: 0.8rem; opacity: 0.7;">[ SYSTEM_IDENTITY: VINTAGE64TX_MASTER ]</p>
+            </header>
 
-        <div class="footer-actions">
-            <a href="https://vintage64tx.com/contact.html">[ REQUEST_FULL_AUDIT ]</a>
-            <a href="https://vintage64tx.com">[ RETURN_TO_ROOT ]</a>
+            <div class="grid">
+                <div class="node-card">
+                    <h3>[+] SITE_INTEGRITY</h3>
+                    <p>Status: <span id="site-status" class="status-loading">SYNCING...</span></p>
+                    <p>Last Verified: <span id="last-audit">---</span></p>
+                </div>
+                <div class="node-card">
+                    <h3>[+] SECURITY_PROTOCOL</h3>
+                    <p>Requests (24h): <span id="request-count" class="status-loading">SYNCING...</span></p>
+                    <p>WAF_Mode: <span class="status-ok">ACTIVE_HARDENED</span></p>
+                </div>
+                <div class="node-card">
+                    <h3>[+] BANDWIDTH_NODE</h3>
+                    <p>Data Served: <span id="bandwidth" class="status-loading">SYNCING...</span></p>
+                    <p>Cache_Hit_Rate: <span id="cache-rate" class="status-loading">SYNCING...</span></p>
+                </div>
+                <div class="node-card">
+                    <h3>[+] THREAT_MONITOR</h3>
+                    <p>Threats Blocked: <span id="threats" class="status-loading">SYNCING...</span></p>
+                    <p>Unique Visitors: <span id="visitors" class="status-loading">SYNCING...</span></p>
+                </div>
+            </div>
+
+            <p class="last-refresh">LAST_SYNC: <span id="last-refresh">---</span></p>
+
+            <div class="footer-actions">
+                <a href="https://vintage64tx.com/contact.html">[ REQUEST_FULL_AUDIT ]</a>
+                <a href="https://vintage64tx.com">[ RETURN_TO_ROOT ]</a>
+                <button id="logout-btn" onclick="logout()">[ LOGOUT_SYSTEM ]</button>
+            </div>
         </div>
+
     </div>
 
     <script src="telemetry.js" defer></script>
+    <script>
+        // ── CONFIG ──────────────────────────────────────────
+        // Change ACCESS_KEY to your preferred password.
+        // This is client-side only — suitable for a personal
+        // ops dashboard that is noindex/nofollow and obscure.
+        const ACCESS_KEY = 'V64_MASTER_2026';
+        const SESSION_KEY = 'v64_auth';
+        // ────────────────────────────────────────────────────
+
+        function attemptLogin() {
+            const input = document.getElementById('password').value;
+            const error = document.getElementById('login-error');
+
+            if (input === ACCESS_KEY) {
+                sessionStorage.setItem(SESSION_KEY, 'true');
+                showDashboard();
+            } else {
+                error.textContent = '> ACCESS_DENIED // INVALID_KEY';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('login-gate').style.display = 'none';
+            document.getElementById('dashboard').style.display  = 'block';
+            // telemetry.js exposes updateTelemetry globally
+            if (typeof updateTelemetry === 'function') {
+                updateTelemetry();
+                setInterval(updateTelemetry, 60000);
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem(SESSION_KEY);
+            document.getElementById('dashboard').style.display  = 'none';
+            document.getElementById('login-gate').style.display = 'block';
+            document.getElementById('password').value = '';
+            document.getElementById('login-error').textContent  = '';
+        }
+
+        // Enter key support on password field
+        document.getElementById('password').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') attemptLogin();
+        });
+
+        // Resume session if tab is still open
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+            showDashboard();
+        }
+    </script>
 </body>
 </html>

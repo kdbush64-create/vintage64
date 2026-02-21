@@ -232,20 +232,42 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-    .bio p {
-        margin-bottom: 50px !important;
+    /* Bio & List Layouts */
+    .bio p { margin-bottom: 50px !important; }
+    .terminal-list { margin-left: 60px !important; padding-left: 0; }
+    .terminal-list li { margin-bottom: 15px; }
+    .highlight-blue { color: var(--blue, #00d4ff); }
+
+    /* Logo & Branding */
+    [data-theme='light'] .main-logo { filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.2)); }
+    
+    .brand-name {
+        font-size: 2.5em;
+        font-weight: bold;
+        line-height: 1;
     }
-    .terminal-list {
-        margin-left: 60px !important;
-        padding-left: 0;
+
+    .brand-sub {
+        font-size: 0.8em; /* Adjusted to your preference */
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--brand-blue);
+        transition: color 0.3s ease;
     }
-    .terminal-list li {
-        margin-bottom: 15px;
+
+    /* Colors & Theme Variables */
+    :root {
+        --brand-blue: #00d4ff; /* Default Blue */
+        --brand-green: #00ff41;
     }
-    .highlight-blue {
-        color: var(--blue, #00d4ff);
+
+    [data-theme='light'] {
+        --brand-blue: #007a99; /* Muted Deep Cyan */
+        --brand-green: #008f25;
     }
-    </style>
+
+    .neon-green { color: var(--brand-green); }
+</style>
 </head>
 <body id="page-home" itemscope itemtype="https://schema.org/WebPage">
     <div class="terminal-overlay"></div>
@@ -256,7 +278,17 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <header style="text-align: center;" itemscope itemtype="https://schema.org/WPHeader">
+		<div style="text-align: center; width: 100%; margin-bottom: 20px;">
+    <h1 style="display: inline-block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
+        <div class="brand-name" style="font-weight: bold; font-size: 2.5em;">
+            VINTAGE<span class="neon-green">64</span>TX
+        </div>
+		<div style="font-size: 0.8em; letter-spacing: 0.4em; color: #00d4ff; margin-top: 5px; text-transform: uppercase;">
+            // DIGITAL INFRASTRUCTURE
+        </div>
+    </h1>
+</div>
+<header style="text-align: center;" itemscope itemtype="https://schema.org/WPHeader">
             <div class="logo-container">
                 <img src="media/logo.webp"
                      alt="Vintage64TX – Linux Migration and IT Services, Fort Worth TX"
@@ -267,10 +299,7 @@
                      height="300"
                      itemprop="image">
             </div>
-            <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;" itemprop="name">
-                <span style="display: block;">VINTAGE64TX</span>
-                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--primary); opacity: 0.9;">DEWAYNE BUSH</span>
-            </h1>
+			
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html" aria-current="page">[ HOME ]</a>
                 <a href="business.html">[ BUSINESS ]</a>

@@ -3,30 +3,30 @@
     /* DARK THEME (Default) */
     --bg: #1a1a1a;
     --container-bg: rgba(0, 0, 0, 0.95);
-    --primary: #ffb000;         /* Amber Gold */
+    --primary: #ffb000;
     --primary-dim: rgba(255, 176, 0, 0.7);
-    --secondary: #00eeff;       /* Terminal Cyan */
-    --accent: #00ff41;          /* Neon Green */
-    --border: #5c3d2e;          /* Chassis Brown */
+    --secondary: #00eeff;
+    --accent: #00ff41;
+    --border: #5c3d2e;
     --shadow: rgba(0, 0, 0, 0.8);
-
-    /* --- BUSINESS BRANDING: DATA-BLUE --- */
-    --data-blue: #00d4ff;       /* Professional Data Blue */
+    --brand-blue: #00d4ff;
+    --brand-green: #00ff41;
+    --data-blue: #00d4ff;
     --blue-glow: rgba(0, 212, 255, 0.5);
 }
 
 [data-theme="light"] {
     --bg: #f4f4f4;
     --container-bg: #ffffff;
-    --primary: #7a5400;         /* High-Contrast Amber */
+    --primary: #7a5400;
     --primary-dim: #5c5c5c;
-    --secondary: #005f6b;       /* High-Contrast Blue */
-    --accent: #008522;          /* Readable Forest Green */
+    --secondary: #005f6b;
+    --accent: #008522;
     --border: #a3a3a3;
     --shadow: rgba(0, 0, 0, 0.1);
-    
-    /* Light Mode Blue adjustment for readability */
-    --data-blue: #00708a; 
+    --brand-blue: #007a99;
+    --brand-green: #008f25;
+    --data-blue: #00708a;
 }
 
 /* 2. GLOBAL SYSTEM RESET */
@@ -59,25 +59,29 @@ body {
     padding: 20px;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Prevent horizontal overflow on body */
+    overflow-x: hidden;
 }
 
 /* 3. THE CHASSIS (Page Container) */
 .container {
     width: 100%;
-    max-width: 650px; 
+    max-width: 650px;
     border: 2px solid var(--border);
     padding: 20px;
     background: var(--container-bg);
     box-shadow: 0 0 20px var(--shadow);
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
     z-index: 5;
+    /* Ensure container never overflows viewport */
+    max-width: min(650px, 100vw - 40px);
 }
 
-/* 4. THEME TOGGLE (Fixed Alignment & Color) */
+/* 4. THEME TOGGLE */
 .theme-switch-wrapper {
     display: flex !important;
-    justify-content: flex-end !important; 
+    justify-content: flex-end !important;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -112,11 +116,15 @@ header {
 }
 
 .main-logo {
-    max-width: 100%;
-    height: auto;
+    width: 200px !important;
+    height: auto !important;
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     border: 3px solid var(--border);
+}
+
+[data-theme='light'] .main-logo {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.2));
 }
 
 .system-nav {
@@ -135,6 +143,8 @@ header {
     font-weight: bold;
     padding: 5px 10px;
     font-size: 0.9rem;
+    /* Prevent nav items from breaking weirdly */
+    white-space: nowrap;
 }
 
 .system-nav a:hover {
@@ -142,7 +152,33 @@ header {
     color: var(--bg);
 }
 
-/* 5b. SYSTEM ACTION BUTTONS */
+/* 5b. BRAND HEADER (shared across all pages) */
+.brand-header {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.brand-name {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    font-weight: bold;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.brand-sub {
+    font-size: clamp(0.5rem, 3vw, 0.8rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand-blue);
+    transition: color 0.3s ease;
+    margin-top: 5px;
+    white-space: nowrap;
+}
+
+.neon-green { color: var(--brand-green); }
+
+/* 5c. SYSTEM ACTION BUTTONS */
 .v64-btn {
     background: none;
     border: 1px solid var(--secondary);
@@ -151,73 +187,113 @@ header {
     cursor: pointer;
     font-family: 'Courier New', monospace;
     font-size: 0.8rem;
-    text-decoration: none;   /* Kills the link underline */
-    display: inline-flex;    /* Essential for vertical alignment */
-    align-items: center;     /* Centers text vertically */
-    justify-content: center; /* Centers text horizontally */
-    line-height: 1;          /* Standardizes text height */
-    height: 32px;            /* Locks height to match button and link */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    height: 32px;
     transition: 0.2s;
-    box-sizing: border-box;  /* Prevents border from adding to height */
+    box-sizing: border-box;
+    /* Allow wrapping on very small screens */
+    white-space: nowrap;
 }
 
 .v64-btn:hover {
-    background: rgba(0, 238, 255, 0.1); 
+    background: rgba(0, 238, 255, 0.1);
     box-shadow: 0 0 10px var(--secondary);
 }
 
 /* 6. TYPOGRAPHY */
-h1 { 
-    letter-spacing: 3px; 
-    margin: 10px 0; 
-    font-size: 1.6rem; 
-    text-align: center; 
+h1 {
+    letter-spacing: 3px;
+    margin: 10px 0;
+    font-size: 1.6rem;
+    text-align: center;
 }
 
-/* This creates the LARGE THICK PIPE for all sections */
 h2, h3 {
     color: var(--primary);
     font-size: 1.1rem;
     background: rgba(92, 61, 46, 0.2);
-    padding: 5px 15px; /* Added padding to clear the pipe */
+    padding: 5px 15px;
     margin: 25px 0 15px 0;
-    
-    /* THE LARGE PIPE FIX */
-    border-left: 6px solid var(--data-blue) !important; 
+    border-left: 6px solid var(--data-blue) !important;
     border-right: none;
     border-top: none;
     border-bottom: none;
+    /* Critical: allow long underscore-connected words to break */
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
-/* Bullet Indentation for The Journey section */
+/* 6b. WORD BREAK FOR UNDERSCORE-CONNECTED TERMS */
+/* Anywhere terminal-style ALL_CAPS_WORDS appear */
+.service-tier h2,
+.service-tier p,
+.service-tier li,
+.protocol-box,
+.tech-specs p,
+.v64-standard p,
+.bio p,
+.services p,
+.services li,
+td, th {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Special handling: underscore words should wrap at underscore on small screens */
+@media (max-width: 480px) {
+    h2, h3 {
+        font-size: 0.95rem;
+        /* Use break-word to wrap at underscore boundaries */
+        word-break: break-word;
+    }
+}
+
+/* Bullet Indentation */
 .terminal-list {
-    margin-left: 60px !important;
+    margin-left: 30px !important;
     padding-left: 0;
 }
 
-/* THE HIGHLIGHTER CLASS: Required for the JavaScript to work */
+@media (min-width: 480px) {
+    .terminal-list {
+        margin-left: 60px !important;
+    }
+}
+
+.terminal-list li {
+    margin-bottom: 15px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* THE HIGHLIGHTER CLASS */
 .highlight-blue {
     color: var(--data-blue) !important;
     font-weight: bold;
-    text-shadow: 0 0 5px var(--blue-glow); /* Adds that professional terminal glow */
+    text-shadow: 0 0 5px var(--blue-glow);
 }
 
-/* Targets all headers generated from Markdown inside the logs */
-.log-entry h2, 
-.log-entry h3, 
+/* Log entry headers */
+.log-entry h2,
+.log-entry h3,
 .log-entry h4 {
     color: var(--data-blue) !important;
     text-shadow: 0 0 5px var(--blue-glow);
     border-left: 4px solid var(--data-blue);
     padding-left: 10px;
     margin-top: 20px;
+    word-break: break-word;
 }
 
-/* 7. HERO SECTION / PERSONAL VAULT ELEMENTS */
+/* 7. HERO SECTION */
 .hero-container {
     position: relative;
     width: 100%;
-    max-width: 100%; 
+    max-width: 100%;
     margin-bottom: 25px;
     border: 2px solid var(--border);
     overflow: hidden;
@@ -244,28 +320,53 @@ h2, h3 {
     line-height: 1.2;
 }
 
-/* 8. TABLES (Price List & Core Offerings) */
+/* 8. TABLES (Price List) — MOBILE FIX */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    /* Critical for mobile: allow table to scroll if needed */
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Restore table layout for wider screens */
+@media (min-width: 500px) {
+    table {
+        display: table;
+        overflow-x: visible;
+    }
 }
 
 th, td {
-    padding: 12px 10px;
+    padding: 10px 8px;
     border-bottom: 1px solid var(--border);
     text-align: left;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    /* Min width to prevent extreme squishing */
+    min-width: 80px;
 }
 
 .retro-table th {
     color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-size: 0.8rem;
 }
 
 .retro-table td {
     color: var(--accent);
+}
+
+/* Price column stays compact */
+.retro-table td:last-child,
+.retro-table th:last-child {
+    white-space: nowrap;
+    width: 90px;
+    min-width: 70px;
 }
 
 /* 9. TERMINAL FORMS & INPUTS */
@@ -289,6 +390,8 @@ input, textarea, .retro-select {
     padding: 12px;
     font-family: inherit;
     width: 100%;
+    /* Prevent inputs from overflowing */
+    max-width: 100%;
 }
 
 .submit-btn {
@@ -302,19 +405,33 @@ input, textarea, .retro-select {
     letter-spacing: 2px;
     margin-top: 10px;
     font-family: inherit;
+    width: 100%;
 }
 
 .submit-btn:hover {
     background-color: transparent !important;
     color: var(--primary) !important;
-    box-shadow: 0 0 10px var(--primary);
+    box-shadow: 0 0 20px var(--primary);
+    transform: translateY(-1px);
+}
+
+/* Name row: side by side on desktop, stacked on mobile */
+.name-row {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 480px) {
+    .name-row {
+        flex-direction: column;
+    }
 }
 
 /* 10. VISUAL EFFECTS */
 .terminal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
                 linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 255, 0, 0.02));
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
@@ -333,8 +450,8 @@ footer {
 }
 
 /* --- RETRO FOCUS EFFECTS --- */
-input:focus, 
-textarea:focus, 
+input:focus,
+textarea:focus,
 .retro-select:focus {
     outline: none;
     border-color: var(--primary) !important;
@@ -342,40 +459,37 @@ textarea:focus,
     background-color: rgba(255, 176, 0, 0.05) !important;
 }
 
-.submit-btn:hover {
-    box-shadow: 0 0 20px var(--primary);
-    transform: translateY(-1px);
-}
-
 /* --- UNIFIED FOOTER STYLES --- */
-.footer-social { 
-    display: flex; 
-    justify-content: center; 
-    gap: 15px; 
-    flex-wrap: wrap; 
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
     margin-bottom: 15px;
 }
 
-.footer-social a { 
-    color: var(--secondary); 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 0.85rem; 
+.footer-social a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
     transition: color 0.2s ease;
 }
 
-.footer-social a:hover { 
-    color: var(--accent); 
+.footer-social a:hover {
+    color: var(--accent);
     text-shadow: 0 0 8px var(--accent);
 }
 
 .footer-line {
-    font-size: 0.75rem; 
-    opacity: 0.8; 
-    border-top: 1px dashed var(--border); 
+    font-size: 0.75rem;
+    opacity: 0.8;
+    border-top: 1px dashed var(--border);
     padding-top: 15px;
     letter-spacing: 1px;
     line-height: 1.8;
+    /* Allow footer text to wrap cleanly */
+    word-break: break-word;
 }
 
 /* Unified Logo Control */
@@ -386,15 +500,110 @@ textarea:focus,
     width: 100%;
 }
 
-.main-logo {
-    width: 200px !important; /* Force the width */
-    height: auto !important; /* Force aspect ratio preservation */
-    display: block;
-    margin: 0 auto;
-    border: 3px solid var(--border); /* Maintain your chassis aesthetic */
+/* Service tier boxes */
+.service-tier {
+    margin: 25px 0;
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+    /* Prevent overflow */
+    overflow: hidden;
 }
 
+@media (min-width: 480px) {
+    .service-tier {
+        padding-left: 20px;
+    }
+}
 
+/* Bio section */
+.bio p {
+    margin-bottom: 50px !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 
+/* Contact scope list */
+.scope-list li {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 
+/* Tech specs box */
+.tech-specs {
+    margin: 20px 0;
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+    background: rgba(0, 255, 65, 0.03);
+    overflow: hidden;
+}
 
+.tech-specs p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* FAQ sections */
+.faq h3,
+.faq p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Protocol box */
+.protocol-box {
+    margin: 40px 0;
+    padding: 20px;
+    border: 1px dashed var(--border);
+    overflow: hidden;
+}
+
+.protocol-box ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.85rem;
+}
+
+.protocol-box ul li {
+    margin-bottom: 8px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Button row: wrap gracefully on small screens */
+.btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Select dropdown */
+.retro-select {
+    background-color: var(--container-bg) !important;
+    color: var(--primary) !important;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffb000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.65rem auto;
+    padding-right: 2.5rem;
+}
+
+.retro-select option {
+    background-color: #1a1a1a;
+    color: var(--primary);
+}
+
+/* v64-hidden-trap for honeypot */
+.v64-hidden-trap {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Protected email */
+.protected-email {
+    color: var(--secondary);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}

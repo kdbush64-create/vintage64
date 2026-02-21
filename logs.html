@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ═══════════════════════════════════════════════════
-         PRIMARY SEO META
-    ═══════════════════════════════════════════════════ -->
     <title>Vintage64TX System Logs | Tech Field Reports & IT Insights – Fort Worth, TX</title>
     <meta name="description" content="Vintage64TX System Logs — field reports, project notes, and IT insights from DeWayne Bush. Linux, cybersecurity, Agile product management, and small business tech advice from Fort Worth, TX.">
     <meta name="keywords" content="Vintage64TX blog, IT field reports Fort Worth, Linux tech notes, cybersecurity insights DFW, DeWayne Bush tech blog, small business IT blog, Agile product management notes, system logs">
@@ -16,23 +13,14 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="theme-color" content="#00ff41">
 
-    <!-- ═══════════════════════════════════════════════════
-         GEO / LOCAL SEO
-    ═══════════════════════════════════════════════════ -->
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Fort Worth, Texas">
     <meta name="geo.position" content="32.7555;-97.3308">
     <meta name="ICBM" content="32.7555, -97.3308">
 
-    <!-- ═══════════════════════════════════════════════════
-         CANONICAL & SITEMAP
-    ═══════════════════════════════════════════════════ -->
     <link rel="canonical" href="https://vintage64tx.com/logs.html">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-    <!-- ═══════════════════════════════════════════════════
-         OPEN GRAPH
-    ═══════════════════════════════════════════════════ -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Vintage64TX">
@@ -44,9 +32,6 @@
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://vintage64tx.com/logs.html">
 
-    <!-- ═══════════════════════════════════════════════════
-         TWITTER / X CARD
-    ═══════════════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Vintage64TX">
     <meta name="twitter:creator" content="@Vintage64TX">
@@ -55,15 +40,9 @@
     <meta name="twitter:image" content="https://vintage64tx.com/media/logo.webp">
     <meta name="twitter:image:alt" content="Vintage64TX System Logs – Fort Worth TX Tech Blog">
 
-    <!-- ═══════════════════════════════════════════════════
-         FAVICONS
-    ═══════════════════════════════════════════════════ -->
     <link rel="icon" type="image/png" href="favicon-64.png">
     <link rel="apple-touch-icon" href="favicon-64.png">
 
-    <!-- ═══════════════════════════════════════════════════
-         JSON-LD: Blog + BreadcrumbList
-    ═══════════════════════════════════════════════════ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -104,25 +83,32 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 10px;
-            background: var(--accent);
-            color: #000;
-            padding: 8px 16px;
-            font-weight: bold;
-            z-index: 99999;
-            transition: top 0.2s;
-        }
-        .skip-link:focus { top: 0; }
-        .footer-social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .footer-social a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
-        .footer-social a:hover { color: var(--accent); }
         .log-entry h2 { color: var(--accent); }
+        /* Ensure markdown-generated content wraps properly */
+        .log-text {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .log-text pre {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .log-text code {
+            word-break: break-all;
+        }
+        .log-text img {
+            max-width: 100%;
+            height: auto;
+        }
+        .log-text table {
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
     </style>
 
-    <!-- marked.js for Markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body id="page-logs" itemscope itemtype="https://schema.org/Blog">
@@ -132,6 +118,18 @@
     <div class="container">
         <div class="theme-switch-wrapper">
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
+        </div>
+
+        <!-- BRAND HEADER — matches index.html -->
+        <div class="brand-header">
+            <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
+                <div class="brand-name">
+                    VINTAGE<span class="neon-green">64</span>TX
+                </div>
+                <div class="brand-sub">
+                    // SYSTEM LOGS
+                </div>
+            </h1>
         </div>
 
         <header style="text-align: center;">
@@ -144,10 +142,6 @@
                      width="300"
                      height="300">
             </div>
-            <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;">
-                <span style="display: block;">VINTAGE64TX</span>
-                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--primary); opacity: 0.9;">SYSTEM LOGS</span>
-            </h1>
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
                 <a href="business.html">[ BUSINESS ]</a>
@@ -180,7 +174,6 @@
         </footer>
     </div>
 
-    <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
@@ -226,9 +219,6 @@
         }
 
         // 3. LOG FETCHING
-        // ── If a #hash is in the URL, load only that one entry (fast, no wasted fetches).
-        // ── If no hash, load all logs in parallel as the full archive.
-
         const BASE_RAW = "https://raw.githubusercontent.com/kdbush64-create/vintage64/main/business-logs/";
         const BASE_API = "https://api.github.com/repos/kdbush64-create/vintage64/contents/business-logs";
 
@@ -277,10 +267,9 @@
 
         async function loadLogs() {
             const container = document.getElementById('log-container');
-            const hash = window.location.hash.substring(1); // e.g. "2026-02-19-solopreneur-manifesto"
+            const hash = window.location.hash.substring(1);
 
             try {
-                // ── SINGLE ENTRY MODE: hash present → fetch only that file ──
                 if (hash) {
                     container.innerHTML = '<p class="blink">LOADING_ENTRY...</p>';
 
@@ -290,7 +279,6 @@
 
                     container.innerHTML = '';
 
-                    // Back-to-all link
                     const backLink = document.createElement('p');
                     backLink.style.cssText = 'margin-bottom: 25px; font-size: 0.85rem;';
                     backLink.innerHTML = `<a href="logs.html" style="color: var(--accent); text-decoration: none;">&lt; VIEW_ALL_LOGS</a>`;
@@ -301,7 +289,6 @@
                     return;
                 }
 
-                // ── FULL ARCHIVE MODE: no hash → fetch all logs in parallel ──
                 const response = await fetch(BASE_API);
                 const files = await response.json();
 
@@ -320,7 +307,6 @@
                     return buildEntry(anchorId, content);
                 }));
 
-                // Inject all at once to prevent multiple reflows
                 logEntries.forEach(entry => container.appendChild(entry));
 
             } catch (e) {

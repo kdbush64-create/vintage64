@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ═══════════════════════════════════════════════════
-         PRIMARY SEO META
-    ═══════════════════════════════════════════════════ -->
     <title>Vintage64TX Business Services | Linux Migration, PC Repair & Web Builds – Fort Worth, TX</title>
     <meta name="description" content="Vintage64TX offers the Phoenix Protocol Linux migration ($120), PC security hardening ($85), system diagnostics ($45), and Solopreneur web builds ($850) in Fort Worth, TX. CompTIA Project+ certified. Serving the DFW Metroplex.">
     <meta name="keywords" content="Linux migration Fort Worth TX, Phoenix Protocol Linux, PC repair Fort Worth, security hardening DFW, solopreneur web design Fort Worth, CompTIA Project+ certified, static website Fort Worth, PC malware removal Fort Worth, hardware upgrade Fort Worth, Vintage64TX services">
@@ -16,23 +13,14 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="theme-color" content="#00ff41">
 
-    <!-- ═══════════════════════════════════════════════════
-         GEO / LOCAL SEO
-    ═══════════════════════════════════════════════════ -->
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Fort Worth, Texas">
     <meta name="geo.position" content="32.7555;-97.3308">
     <meta name="ICBM" content="32.7555, -97.3308">
 
-    <!-- ═══════════════════════════════════════════════════
-         CANONICAL & SITEMAP
-    ═══════════════════════════════════════════════════ -->
     <link rel="canonical" href="https://vintage64tx.com/business.html">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-    <!-- ═══════════════════════════════════════════════════
-         OPEN GRAPH
-    ═══════════════════════════════════════════════════ -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Vintage64TX">
@@ -44,9 +32,6 @@
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://vintage64tx.com/business.html">
 
-    <!-- ═══════════════════════════════════════════════════
-         TWITTER / X CARD
-    ═══════════════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Vintage64TX">
     <meta name="twitter:creator" content="@Vintage64TX">
@@ -55,18 +40,8 @@
     <meta name="twitter:image" content="https://vintage64tx.com/media/logo.webp">
     <meta name="twitter:image:alt" content="Vintage64TX – Fort Worth TX IT Services">
 
-    <!-- ═══════════════════════════════════════════════════
-         FAVICONS
-    ═══════════════════════════════════════════════════ -->
     <link rel="icon" type="image/png" href="media/favicon-64.png">
     <link rel="apple-touch-icon" href="media/favicon-64.png">
-
-    <!-- ═══════════════════════════════════════════════════
-         JSON-LD STRUCTURED DATA — STACK:
-         1. OfferCatalog with itemized Services + prices
-         2. BreadcrumbList
-         3. FAQPage
-    ═══════════════════════════════════════════════════ -->
 
     <!-- 1. Service Catalog with Pricing -->
     <script type="application/ld+json">
@@ -174,7 +149,7 @@
     }
     </script>
 
-    <!-- 3. FAQPage — rich snippet triggers -->
+    <!-- 3. FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -218,7 +193,6 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Page-specific: modal styles only -->
     <style>
         .v64-modal {
             display: none;
@@ -251,6 +225,7 @@
             position: sticky;
             top: 0;
             z-index: 11;
+            word-break: break-word;
         }
         .v64-modal-close {
             background: none;
@@ -261,12 +236,16 @@
             font-size: 1.2rem;
             font-family: inherit;
             line-height: 1;
+            white-space: nowrap;
+            margin-left: 10px;
         }
         .v64-modal-body {
             padding: 25px;
             color: #e0e0e0;
             line-height: 1.6;
             font-size: 0.85rem;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         .v64-modal-body h2 {
             color: var(--primary);
@@ -319,6 +298,18 @@
         .v64-modal-cta:hover { opacity: 0.85; }
         details summary { list-style: none; color: var(--accent); cursor: pointer; }
         details summary::-webkit-details-marker { display: none; }
+
+        /* Table wrapper for mobile scroll */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+        }
+        .table-wrapper table {
+            margin: 0;
+            min-width: 320px;
+        }
     </style>
 </head>
 <body id="page-business" itemscope itemtype="https://schema.org/WebPage">
@@ -328,6 +319,18 @@
     <div class="container">
         <div class="theme-switch-wrapper">
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
+        </div>
+
+        <!-- BRAND HEADER — matches index.html -->
+        <div class="brand-header">
+            <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
+                <div class="brand-name">
+                    VINTAGE<span class="neon-green">64</span>TX
+                </div>
+                <div class="brand-sub">
+                    // BUSINESS SERVICES
+                </div>
+            </h1>
         </div>
 
         <header style="text-align: center;">
@@ -340,10 +343,6 @@
                      width="300"
                      height="300">
             </div>
-            <h1 style="line-height: 1.2; text-align: center; margin: 0 auto 20px auto; display: inline-block;">
-                <span style="display: block;">VINTAGE64TX</span>
-                <span style="display: block; font-weight: normal; font-size: 0.8em; color: var(--primary); opacity: 0.9;">BUSINESS SERVICES</span>
-            </h1>
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
                 <a href="business.html" aria-current="page">[ BUSINESS ]</a>
@@ -358,7 +357,7 @@
                 <p>I bring enterprise-grade standards to personal hardware. As a <strong>CompTIA Project+ certified professional</strong> based in <strong>Fort Worth, TX</strong>, I manage your technology lifecycle as a project — ensuring clear milestones, risk mitigation, and structured delivery for <strong>solopreneurs and small businesses</strong> across the <strong>DFW Metroplex</strong>.</p>
 
                 <!-- Solopreneur Web Build -->
-                <div class="service-tier" style="margin: 25px 0; border-left: 3px solid var(--accent); padding-left: 20px;">
+                <div class="service-tier">
                     <h2>&gt; V64_SOLOPRENEUR_EDITION (WEB_BUILD)</h2>
                     <p>Most small business websites are bloated and slow. I build <strong>"Lean &amp; Mean"</strong> static sites that score <strong>100%<sup>#</sup></strong> on Google PageSpeed. No databases to hack. No plugins to break. Just pure performance for <strong>Fort Worth small business owners</strong>.</p>
                     <ul class="terminal-list" style="margin-top: 10px;">
@@ -367,89 +366,91 @@
                         <li>[+] Hosted on global edge networks (CDN) for instant loading.</li>
                         <li>[+] 100% Mobile Optimization for local DFW search results.</li>
                     </ul>
-                    <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div class="btn-row">
                         <button onclick="openV64Modal()" class="v64-btn">[ VIEW_FULL_SPECIFICATIONS ]</button>
                         <a href="logs.html#2026-02-19-solopreneur-manifesto" class="v64-btn">[ OWN_YOUR_DIGITAL_ASSETS ]</a>
                     </div>
                 </div>
 
                 <!-- Phoenix Protocol -->
-                <div class="service-tier" style="margin: 25px 0; border-left: 3px solid var(--accent); padding-left: 20px;">
+                <div class="service-tier">
                     <h2>&gt; THE_PHOENIX_PROTOCOL (LINUX_MIGRATION)</h2>
                     <p>The ultimate revival for "obsolete" hardware. I replace bloated, invasive Windows operating systems with a lightweight, high-performance <strong>Linux Desktop distribution</strong> — serving <strong>Fort Worth</strong> and surrounding <strong>Tarrant County</strong> residents.</p>
                     <ul class="terminal-list" style="margin-top: 10px;">
                         <li>[+] Immunity to 99% of Windows-based malware.</li>
                         <li>[+] Extreme privacy and data sovereignty.</li>
                         <li>[+] "Like-New" speed on 5–10 year old hardware.</li>
-                        <li>[+] <strong>HARDWARE_EXPANSION:</strong> SSD/RAM installation available as a protocol add-on (Labor only).</li>
+                        <li>[+] <strong>HARDWARE EXPANSION:</strong> SSD/RAM installation available as a protocol add-on (Labor only).</li>
                     </ul>
                 </div>
 
                 <!-- Price List -->
                 <h2>&gt; SERVICE_PRICE_LIST</h2>
-                <table class="retro-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">System_Task</th>
-                            <th scope="col">Rate_Starting</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Solopreneur Launch Pack (1-Page Web)</td>
-                            <td>$850</td>
-                        </tr>
-                        <tr>
-                            <td>System Diagnostic (Full Audit)</td>
-                            <td>$45</td>
-                        </tr>
-                        <tr>
-                            <td>Security Hardening (Malware Extraction)</td>
-                            <td>$85</td>
-                        </tr>
-                        <tr>
-                            <td>The Phoenix Protocol (Linux Desktop Migration)</td>
-                            <td>$120</td>
-                        </tr>
-                        <tr>
-                            <td><strong>OPTIONAL_MODULE:</strong> Hardware Labor Uplink*</td>
-                            <td>+$45</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="background: rgba(255, 176, 0, 0.05); color: var(--primary); font-weight: bold; text-align: center;">&gt; VINTAGE64TX_SYSTEM_HARDENING_ADD_ONS</td>
-                        </tr>
-                        <tr>
-                            <td>UPLINK_CALENDAR (Scheduling Integration)</td>
-                            <td>$85.00</td>
-                        </tr>
-                        <tr>
-                            <td>TELEMETRY_NODE (Custom Dashboard)</td>
-                            <td>$65.00</td>
-                        </tr>
-                        <tr>
-                            <td>COMMS_GATEWAY (Secure Messaging Uplink)</td>
-                            <td>$45.00</td>
-                        </tr>
-                        <tr>
-                            <td>V64_HARDENING (Full System Lockdown)</td>
-                            <td>$125.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table class="retro-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Service</th>
+                                <th scope="col">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Solopreneur Launch Pack (1-Page Web)</td>
+                                <td>$850</td>
+                            </tr>
+                            <tr>
+                                <td>System Diagnostic (Full Audit)</td>
+                                <td>$45</td>
+                            </tr>
+                            <tr>
+                                <td>Security Hardening (Malware Extraction)</td>
+                                <td>$85</td>
+                            </tr>
+                            <tr>
+                                <td>The Phoenix Protocol (Linux Desktop Migration)</td>
+                                <td>$120</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OPTIONAL:</strong> Hardware Labor Uplink*</td>
+                                <td>+$45</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background: rgba(255, 176, 0, 0.05); color: var(--primary); font-weight: bold; text-align: center;">&gt; SYSTEM HARDENING ADD-ONS</td>
+                            </tr>
+                            <tr>
+                                <td>Scheduling Integration (Uplink Calendar)</td>
+                                <td>$85</td>
+                            </tr>
+                            <tr>
+                                <td>Custom Dashboard (Telemetry Node)</td>
+                                <td>$65</td>
+                            </tr>
+                            <tr>
+                                <td>Secure Messaging Uplink (Comms Gateway)</td>
+                                <td>$45</td>
+                            </tr>
+                            <tr>
+                                <td>Full System Lockdown (V64 Hardening)</td>
+                                <td>$125</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <!-- Operating Protocol -->
-                <section class="protocol-box" aria-label="Service Delivery Protocol" style="margin: 40px 0; padding: 20px; border: 1px dashed var(--border);">
+                <section class="protocol-box" aria-label="Service Delivery Protocol">
                     <h2 style="color: var(--primary); font-size: 1rem; margin-bottom: 15px;">&gt; OPERATING_PROTOCOL</h2>
                     <p style="font-size: 0.85rem; color: var(--primary-dim); margin-bottom: 10px;">
                         Vintage64TX operates as a <strong>Hybrid Consultancy</strong>:
                     </p>
-                    <ul style="list-style: none; padding-left: 0; font-size: 0.85rem;">
-                        <li style="margin-bottom: 8px;"><strong>[ LOCAL_REPAIR ]</strong> Hardware remediation, system hardening, and <strong>Linux conversions in Fort Worth, TX</strong> are performed <em>exclusively</em> at our Fort Worth facility via physical equipment drop-off.</li>
-                        <li style="margin-bottom: 8px;"><strong>[ REMOTE_CONSULT ]</strong> Web development and technical project management are available to all clients <strong>nationwide</strong> via encrypted digital channels.</li>
+                    <ul>
+                        <li style="margin-bottom: 8px;"><strong>[ LOCAL REPAIR ]</strong> Hardware remediation, system hardening, and <strong>Linux conversions in Fort Worth, TX</strong> are performed <em>exclusively</em> at our Fort Worth facility via physical equipment drop-off.</li>
+                        <li style="margin-bottom: 8px;"><strong>[ REMOTE CONSULT ]</strong> Web development and technical project management are available to all clients <strong>nationwide</strong> via encrypted digital channels.</li>
                     </ul>
                 </section>
 
-                <!-- FAQ — visible on page AND in JSON-LD above -->
+                <!-- FAQ -->
                 <section aria-label="Frequently Asked Questions" style="margin: 40px 0; border-top: 1px dashed var(--border); padding-top: 30px;">
                     <h2>&gt; FAQ</h2>
 
@@ -502,7 +503,7 @@
     <div id="webBuildModal" class="v64-modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true" aria-modal="true">
         <div class="v64-modal-inner">
             <div class="v64-modal-header">
-                <span id="modalTitle">&gt; MODULE_SPECIFICATIONS: WEB_BUILD</span>
+                <span id="modalTitle">&gt; MODULE SPECS: WEB BUILD</span>
                 <button onclick="closeV64Modal()" class="v64-modal-close" aria-label="Close modal">[ X ]</button>
             </div>
             <div class="v64-modal-body">
@@ -512,23 +513,23 @@
                 <div class="v64-intel-box">
                     <span style="color: var(--secondary);">[ INTEL ]</span>
                     Wondering why this is the last site you&rsquo;ll ever buy?
-                    <a href="logs.html#2026-02-19-solopreneur-manifesto" style="color: var(--accent); text-decoration: underline;">Read: THE_SOLOPRENEUR_MANIFESTO</a>
+                    <a href="logs.html#2026-02-19-solopreneur-manifesto" style="color: var(--accent); text-decoration: underline;">Read: THE SOLOPRENEUR MANIFESTO</a>
                 </div>
 
                 <div class="v64-feature-list">
-                    <div><b>[+] CORE_HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
-                    <div><b>[+] EMAIL_UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
-                    <div><b>[+] SEO_HARDENING:</b> Metadata optimization &amp; Search Console indexing.</div>
-                    <div><b>[+] DOMAIN_SYNC:</b> Direct registrar pricing via Cloudflare.</div>
-                    <div><b>[+] INTEL_ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
+                    <div><b>[+] CORE HOSTING:</b> Enterprise-grade Cloudflare Pages (Zero-cost tier).</div>
+                    <div><b>[+] EMAIL UPLINK:</b> Setup for professional email hosting (Est. $40/year).</div>
+                    <div><b>[+] SEO HARDENING:</b> Metadata optimization &amp; Search Console indexing.</div>
+                    <div><b>[+] DOMAIN SYNC:</b> Direct registrar pricing via Cloudflare.</div>
+                    <div><b>[+] INTEL ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
                 </div>
 
                 <div class="v64-sentinel-box">
-                    <h4>&#x1F6E1; OPTIONAL_MODULE: V64_SENTINEL_PLAN</h4>
+                    <h4>&#x1F6E1; OPTIONAL MODULE: V64 SENTINEL PLAN</h4>
                     <p style="margin-bottom: 12px; opacity: 0.85;">Sustained operations and security monitoring post-deployment.</p>
                     <p style="margin-bottom: 12px;"><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</p>
                     <details style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px dashed rgba(255,176,0,0.5);">
-                        <summary>[ CLICK_FOR_PLAN_INCLUSIONS ]</summary>
+                        <summary>[ CLICK FOR PLAN INCLUSIONS ]</summary>
                         <ul style="margin: 10px 0 0 15px; list-style-type: square; color: #ccc; line-height: 1.8;">
                             <li><b>3 Change Requests / Mo:</b> Color adjustments, text updates, or behavioral tweaks.</li>
                             <li><b>Lifetime Bug Support:</b> Priority fixes for code regressions or browser compatibility issues.</li>
@@ -539,18 +540,17 @@
                 </div>
 
                 <div class="v64-warranty-box">
-                    <h4>&#x1F4DC; SERVICE_WARRANTY</h4>
+                    <h4>&#x1F4DC; SERVICE WARRANTY</h4>
                     <p>30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b> for non-subscribers.</p>
                 </div>
 
                 <button onclick="location.href='contact.html?service=webbuild'" class="v64-modal-cta">
-                    [ INITIATE_PROJECT_TRANSMISSION ]
+                    [ INITIATE PROJECT TRANSMISSION ]
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
@@ -588,8 +588,7 @@
                 "REVIVE_SECURE_OPTIMIZE", "V64_SOLOPRENEUR_EDITION",
                 "THE_PHOENIX_PROTOCOL", "SERVICE_PRICE_LIST",
                 "CompTIA Project+", "Linux Desktop distribution",
-                "System_Task", "Rate_Starting",
-                "OPTIONAL_MODULE:", "HARDWARE_EXPANSION:", "OPERATING_PROTOCOL"
+                "OPERATING_PROTOCOL"
             ];
             const containers = [document.querySelector('.services'), document.querySelector('.v64-modal-body')];
             containers.forEach(root => {

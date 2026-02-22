@@ -124,12 +124,42 @@
           },
           {
             "@type": "Offer",
-            "name": "V64 Sentinel Plan – Monthly Website Maintenance",
-            "description": "Monthly maintenance plan including 3 change requests, lifetime bug support, active log review, and quarterly integrity checks.",
-            "price": "49.00",
+            "name": "Scheduling Integration – Uplink Calendar",
+            "description": "Integration of a scheduling system into your website or workflow for automated appointment booking.",
+            "price": "85.00",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "billingIncrement": "P1M",
+            "areaServed": "Nationwide",
+            "url": "https://vintage64tx.com/business.html"
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom Dashboard – Telemetry Node",
+            "description": "A custom-built dashboard for monitoring site analytics, uptime, or business metrics.",
+            "price": "65.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "areaServed": "Nationwide",
+            "url": "https://vintage64tx.com/business.html"
+          },
+          {
+            "@type": "Offer",
+            "name": "Secure Messaging Uplink – Comms Gateway",
+            "description": "Integration of an encrypted contact or messaging form into your website.",
+            "price": "45.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "areaServed": "Nationwide",
+            "url": "https://vintage64tx.com/business.html"
+          },
+          {
+            "@type": "Offer",
+            "name": "Full System Lockdown – V64 Hardening",
+            "description": "Comprehensive security configuration across all site layers including headers, DNS, and access controls.",
+            "price": "125.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "areaServed": "Nationwide",
             "url": "https://vintage64tx.com/business.html"
           }
         ]
@@ -176,15 +206,15 @@
           "name": "What is included in the Solopreneur Launch Pack web build?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The $850 Solopreneur Launch Pack includes a hand-coded HTML5 static website, CDN hosting setup, SEO metadata hardening and Google Search Console indexing, privacy-first Cloudflare analytics, professional email routing, and mobile optimization. Optional monthly maintenance is available via the V64 Sentinel Plan at $49/month."
+            "text": "The $850 Solopreneur Launch Pack includes a hand-coded HTML5 static website, CDN hosting setup, SEO metadata hardening and Google Search Console indexing, privacy-first Cloudflare analytics, professional email routing, and mobile optimization. Post-launch technical support is available at $100/hour after the 30-day complimentary warranty period."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the V64 Sentinel Plan?",
+          "name": "What happens after the 30-day warranty period on a web build?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The V64 Sentinel Plan is a $49/month website maintenance subscription that includes 3 change requests per month, lifetime bug support, monthly Cloudflare log audits to block malicious traffic, and quarterly link and API integrity checks."
+            "text": "All web builds include 30 days of complimentary bug fixes from the deployment date. After 30 days, technical support and change requests are billed at $100.00 per hour."
           }
         }
       ]
@@ -268,12 +298,6 @@
         }
         .v64-feature-list { margin: 15px 0; }
         .v64-feature-list div { margin-bottom: 8px; }
-        .v64-sentinel-box {
-            background: rgba(255, 176, 0, 0.05);
-            padding: 15px;
-            border: 1px solid rgba(255, 176, 0, 0.3);
-            margin-top: 15px;
-        }
         .v64-warranty-box {
             background: rgba(0, 255, 65, 0.03);
             padding: 15px;
@@ -310,6 +334,15 @@
             margin: 0;
             min-width: 320px;
         }
+
+        /* Price table description sub-text */
+        .svc-desc {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.65;
+            font-weight: normal;
+            margin-top: 3px;
+        }
     </style>
 </head>
 <body id="page-business" itemscope itemtype="https://schema.org/WebPage">
@@ -321,7 +354,7 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <!-- BRAND HEADER — matches index.html -->
+        <!-- BRAND HEADER -->
         <div class="brand-header">
             <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
                 <div class="brand-name">
@@ -367,9 +400,9 @@
                         <li>[+] 100% Mobile Optimization for local DFW search results.</li>
                     </ul>
                     <div class="btn-row" style="display: flex; flex-direction: column; gap: 10px;">
-    <button onclick="openV64Modal()" class="v64-btn" style="width: 100%; white-space: normal; word-break: break-word; text-align: center; height: auto; padding: 12px 16px;">> VIEW SPECIFICATIONS</button>
-    <a href="logs.html#2026-02-19-solopreneur-manifesto" class="v64-btn" style="width: 100%; white-space: normal; word-break: break-word; text-align: center; height: auto; padding: 12px 16px;">> OWN YOUR DIGITAL ASSETS</a>
-</div>
+                        <button onclick="openV64Modal()" class="v64-btn" style="width: 100%; white-space: normal; word-break: break-word; text-align: center; height: auto; padding: 12px 16px;">&gt; VIEW SPECIFICATIONS</button>
+                        <a href="logs.html#2026-02-19-solopreneur-manifesto" class="v64-btn" style="width: 100%; white-space: normal; word-break: break-word; text-align: center; height: auto; padding: 12px 16px;">&gt; OWN YOUR DIGITAL ASSETS</a>
+                    </div>
                 </div>
 
                 <!-- Phoenix Protocol -->
@@ -396,42 +429,76 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Solopreneur Launch Pack (1-Page Web)</td>
+                                <td>
+                                    Solopreneur Launch Pack (1-Page Web)
+                                    <span class="svc-desc">Hand-coded static site with CDN hosting, SEO hardening, email setup &amp; mobile optimization.</span>
+                                </td>
                                 <td>$850</td>
                             </tr>
                             <tr>
-                                <td>System Diagnostic (Full Audit)</td>
+                                <td>
+                                    System Diagnostic (Full Audit)
+                                    <span class="svc-desc">Hardware &amp; software audit identifying bottlenecks, vulnerabilities, and failure risks.</span>
+                                </td>
                                 <td>$45</td>
                             </tr>
                             <tr>
-                                <td>Security Hardening (Malware Extraction)</td>
+                                <td>
+                                    Security Hardening (Malware Extraction)
+                                    <span class="svc-desc">Full security audit, malware removal, and system hardening for Windows and Linux machines.</span>
+                                </td>
                                 <td>$85</td>
                             </tr>
                             <tr>
-                                <td>The Phoenix Protocol (Linux Desktop Migration)</td>
+                                <td>
+                                    The Phoenix Protocol (Linux Desktop Migration)
+                                    <span class="svc-desc">Windows-to-Linux migration with data preservation and hands-on orientation.</span>
+                                </td>
                                 <td>$120</td>
                             </tr>
                             <tr>
-                                <td><strong>OPTIONAL:</strong> Hardware Labor Uplink*</td>
+                                <td>
+                                    <strong>OPTIONAL:</strong> Hardware Labor Uplink*
+                                    <span class="svc-desc">SSD/RAM installation labor. Client provides hardware components.</span>
+                                </td>
                                 <td>+$45</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Post-Warranty Technical Support
+                                    <span class="svc-desc">Hourly support for web builds after the included 30-day complimentary warranty period.</span>
+                                </td>
+                                <td>$100/hr</td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="background: rgba(255, 176, 0, 0.05); color: var(--primary); font-weight: bold; text-align: center;">&gt; SYSTEM HARDENING ADD-ONS</td>
                             </tr>
                             <tr>
-                                <td>Scheduling Integration (Uplink Calendar)</td>
+                                <td>
+                                    Scheduling Integration (Uplink Calendar)
+                                    <span class="svc-desc">Automated appointment booking system integrated into your site or workflow.</span>
+                                </td>
                                 <td>$85</td>
                             </tr>
                             <tr>
-                                <td>Custom Dashboard (Telemetry Node)</td>
+                                <td>
+                                    Custom Dashboard (Telemetry Node)
+                                    <span class="svc-desc">Purpose-built dashboard for monitoring analytics, uptime, or business metrics.</span>
+                                </td>
                                 <td>$65</td>
                             </tr>
                             <tr>
-                                <td>Secure Messaging Uplink (Comms Gateway)</td>
+                                <td>
+                                    Secure Messaging Uplink (Comms Gateway)
+                                    <span class="svc-desc">Encrypted contact or messaging form integration for your website.</span>
+                                </td>
                                 <td>$45</td>
                             </tr>
                             <tr>
-                                <td>Full System Lockdown (V64 Hardening)</td>
+                                <td>
+                                    Full System Lockdown (V64 Hardening)
+                                    <span class="svc-desc">Comprehensive security configuration across site headers, DNS, and access controls.</span>
+                                </td>
                                 <td>$125</td>
                             </tr>
                         </tbody>
@@ -467,6 +534,13 @@
                             <p itemprop="text">Hardware services require in-person equipment drop-off at the <strong>Fort Worth</strong> facility. Remote support is available nationwide for web development and technical consulting.</p>
                         </div>
                     </div>
+
+                    <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 itemprop="name">What happens after the 30-day warranty on a web build?</h3>
+                        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">All web builds include <strong>30 days of complimentary bug fixes</strong> from the deployment date. After 30 days, technical support and change requests are billed at <strong>$100.00 per hour</strong>.</p>
+                        </div>
+                    </div>
                 </section>
 
                 <p style="font-size: 0.75rem; color: var(--primary-dim); margin-top: 15px; line-height: 1.5;">
@@ -476,7 +550,7 @@
                 </p>
 
                 <div style="margin-top: 30px; text-align: center;">
-                    <a href="contact.html" class="v64-btn" style="height: auto; padding: 14px 30px; font-size: 0.85rem;">> INITIATE_CONTACT</a>
+                    <a href="contact.html" class="v64-btn" style="height: auto; padding: 14px 30px; font-size: 0.85rem;">&gt; INITIATE_CONTACT</a>
                 </div>
             </section>
         </main>
@@ -490,9 +564,9 @@
                     <a href="PLACEHOLDER_GOOGLE_BUSINESS_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Google Business">[GOOGLE]</a>
                 </div>
                 <div class="footer-line">
-                    SYSTEM_VER: 1.0.4-BETA &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp;
+                    SYSTEM_VER: 1.3.1-BETA &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp;
                     <a href="privacy-policy.html" style="color:inherit; text-decoration:none; border-bottom: 1px dotted rgba(0,255,65,0.4);">PRIVACY_POLICY</a> &nbsp;|&nbsp;
-                    LAST_UPDATED: <time datetime="2026-02-19">2026-02-19</time> &nbsp;|&nbsp;
+                    LAST_UPDATED: <time datetime="2026-02-22">2026-02-22</time> &nbsp;|&nbsp;
                     &copy; 2026 VINTAGE64TX // ALL RIGHTS RESERVED <span class="cursor"></span>
                 </div>
             </div>
@@ -524,24 +598,9 @@
                     <div><b>[+] INTEL ANALYTICS:</b> Privacy-first Cloudflare Web Analytics.</div>
                 </div>
 
-                <div class="v64-sentinel-box">
-                    <h4>&#x1F6E1; OPTIONAL MODULE: V64 SENTINEL PLAN</h4>
-                    <p style="margin-bottom: 12px; opacity: 0.85;">Sustained operations and security monitoring post-deployment.</p>
-                    <p style="margin-bottom: 12px;"><b>Rate: $49.00 / Month</b> (Stripe Auto-billing)</p>
-                    <details style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px dashed rgba(255,176,0,0.5);">
-                        <summary>> CLICK FOR PLAN INCLUSIONS </summary>
-                        <ul style="margin: 10px 0 0 15px; list-style-type: square; color: #ccc; line-height: 1.8;">
-                            <li><b>3 Change Requests / Month:</b> Color adjustments, text updates, or behavioral tweaks.</li>
-                            <li><b>Lifetime Bug Support:</b> Priority fixes for code regressions or browser compatibility issues.</li>
-                            <li><b>Active Log Review:</b> Monthly Cloudflare log audit to block malicious traffic and bots.</li>
-                            <li><b>Quarterly Integrity Check:</b> Manual verification of all links and API uplinks.</li>
-                        </ul>
-                    </details>
-                </div>
-
                 <div class="v64-warranty-box">
                     <h4>&#x1F4DC; SERVICE WARRANTY</h4>
-                    <p>30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b> for non-subscribers.</p>
+                    <p>30 days of complimentary bug fixes included with all deployments. Post-30 days, technical support is billed at <b>$100.00 / Hour</b>.</p>
                 </div>
 
                 <button onclick="location.href='contact.html?service=webbuild'" class="v64-modal-cta">

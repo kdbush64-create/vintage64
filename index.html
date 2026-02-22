@@ -173,97 +173,100 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .bio p { margin-bottom: 20px; }
-        .highlight-blue { color: var(--data-blue, #00d4ff); }
+        /* ── NEW COMPONENT STYLES — use existing CSS variables throughout ── */
 
-        /* ── ENTREPRENEUR CALLOUT ── */
-        .entrepreneur-callout {
-            border-left: 3px solid var(--accent, #ffb000);
-            background: rgba(255, 176, 0, 0.04);
-            padding: 16px 20px;
-            margin: 25px 0;
-            font-size: 0.85rem;
-            line-height: 1.7;
-            color: var(--primary-dim, rgba(0,255,65,0.8));
-        }
-        .entrepreneur-callout strong {
-            color: var(--primary, #00ff41);
-        }
-
-        /* ── STAT BLOCKS ── */
+        /* STAT BLOCKS */
         .stat-row {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin: 20px 0 30px 0;
+            margin: 20px 0 10px 0;
         }
         .stat-block {
-            flex: 1 1 140px;
-            border: 1px solid rgba(255, 176, 0, 0.3);
-            background: rgba(255, 176, 0, 0.04);
-            padding: 14px;
+            flex: 1 1 130px;
+            border: 1px solid var(--border);
+            background: rgba(92, 61, 46, 0.15);
+            padding: 14px 10px;
             text-align: center;
         }
         .stat-number {
             display: block;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: var(--accent, #ffb000);
+            color: var(--accent);
             line-height: 1;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
         .stat-label {
             display: block;
-            font-size: 0.7rem;
-            color: var(--primary-dim, rgba(0,255,65,0.6));
+            font-size: 0.68rem;
+            color: var(--primary-dim);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             line-height: 1.4;
         }
 
-        /* ── CREDENTIAL GRID ── */
+        /* ENTREPRENEUR CALLOUT — uses service-tier border convention */
+        .entrepreneur-callout {
+            border-left: 3px solid var(--primary);
+            background: rgba(255, 176, 0, 0.05);
+            padding: 14px 18px;
+            margin: 20px 0;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--primary-dim);
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .entrepreneur-callout strong {
+            color: var(--primary);
+        }
+
+        /* CREDENTIAL GRID */
         .cred-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 14px;
-            margin: 20px 0 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin: 15px 0 10px 0;
         }
         .cred-card {
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            background: rgba(0, 255, 65, 0.03);
-            padding: 14px 16px;
+            border: 1px solid var(--border);
+            background: rgba(92, 61, 46, 0.1);
+            padding: 12px 14px;
             font-size: 0.82rem;
             line-height: 1.6;
+            word-break: break-word;
+            overflow-wrap: break-word;
             transition: border-color 0.2s ease, background 0.2s ease;
         }
         .cred-card:hover {
-            border-color: rgba(0, 255, 65, 0.5);
-            background: rgba(0, 255, 65, 0.06);
+            border-color: var(--accent);
+            background: rgba(0, 255, 65, 0.04);
         }
         .cred-card-label {
-            color: var(--accent, #ffb000);
-            font-size: 0.7rem;
+            color: var(--accent);
+            font-size: 0.68rem;
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
         .cred-card-title {
-            color: var(--primary, #00ff41);
+            color: var(--primary);
             font-weight: bold;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             display: block;
             margin-bottom: 4px;
         }
         .cred-card-detail {
-            color: var(--primary-dim, rgba(0,255,65,0.6));
+            color: var(--primary-dim);
             font-size: 0.78rem;
         }
 
-        /* ── CAREER TIMELINE ── */
+        /* CAREER TIMELINE */
         .career-timeline {
-            margin: 20px 0 30px 0;
+            margin: 15px 0 20px 0;
             position: relative;
         }
         .career-timeline::before {
@@ -273,73 +276,51 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, rgba(0,255,65,0.6), rgba(0,255,65,0.05));
+            background: linear-gradient(to bottom, var(--accent), rgba(0,255,65,0.05));
         }
         .career-entry {
-            padding: 0 0 24px 22px;
+            padding: 0 0 22px 20px;
             position: relative;
         }
         .career-entry::before {
             content: '>';
             position: absolute;
-            left: -1px;
-            top: 2px;
-            color: var(--accent, #ffb000);
+            left: -2px;
+            top: 1px;
+            color: var(--primary);
             font-weight: bold;
             font-size: 0.85rem;
-            background: var(--bg, #0a0a0a);
+            background: var(--container-bg);
             padding: 0 3px;
         }
-        .career-entry-header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 4px;
-        }
         .career-role {
-            color: var(--primary, #00ff41);
+            color: var(--primary);
             font-weight: bold;
             font-size: 0.88rem;
+            display: block;
+            margin-bottom: 3px;
+            word-break: break-word;
         }
         .career-company {
-            color: var(--accent, #ffb000);
-            font-size: 0.8rem;
-        }
-        .career-impact {
-            font-size: 0.8rem;
-            color: var(--primary-dim, rgba(0,255,65,0.7));
-            line-height: 1.6;
-            margin-top: 4px;
-        }
-        .career-impact strong {
-            color: var(--primary, #00ff41);
-        }
-
-        /* ── ARCHITECTURE SPECS ── */
-        .arch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin: 20px 0;
-        }
-        .arch-block {
-            border: 1px dashed rgba(0, 255, 65, 0.2);
-            padding: 14px;
-            font-size: 0.82rem;
-            line-height: 1.6;
-        }
-        .arch-block-title {
-            color: var(--accent, #ffb000);
-            font-weight: bold;
+            color: var(--accent);
             font-size: 0.78rem;
-            letter-spacing: 0.5px;
             display: block;
             margin-bottom: 6px;
         }
+        .career-impact {
+            font-size: 0.82rem;
+            color: var(--primary-dim);
+            line-height: 1.6;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .career-impact strong {
+            color: var(--primary);
+        }
 
         @media (max-width: 480px) {
-            .stat-number { font-size: 1.3rem; }
+            .stat-number { font-size: 1.2rem; }
+            .cred-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -352,7 +333,7 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <!-- BRAND HEADER — matches site convention -->
+        <!-- BRAND HEADER -->
         <div class="brand-header">
             <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
                 <div class="brand-name">
@@ -389,17 +370,16 @@
             <section class="bio" itemscope itemtype="https://schema.org/Person" itemid="https://vintage64tx.com/#dewayne-bush">
                 <h2 style="margin-top: 0;">&gt; WHO_AM_I</h2>
                 <p itemprop="description">
-                    I am <span itemprop="name"><strong>DeWayne Bush</strong></span> — a <span itemprop="jobTitle">technical product leader, IT consultant, and lifelong entrepreneur</span> with over <strong>15 years of enterprise experience</strong> at the intersection of product strategy and Agile execution. Based in <strong>Fort Worth, TX</strong>, I have spent my career leading cross-functional teams through complex technical modernizations for global leaders in aviation and eCommerce — while simultaneously building and running businesses of my own.
+                    I am <span itemprop="name"><strong>DeWayne Bush</strong></span> — a <span itemprop="jobTitle">technical product leader, IT consultant, and lifelong entrepreneur</span> with over <strong>15 years of enterprise experience</strong> at the intersection of product strategy and Agile execution. Based in <strong>Fort Worth, TX</strong>, I have spent my career working every angle of the software development lifecycle — from <strong>managing customer relationships and capturing business requirements</strong> on the client-facing side, to translating those requirements into actionable specifications, to leading the teams that built and shipped the final product.
                 </p>
                 <p>
-                    Through <strong>Vintage64TX</strong>, I bring that same enterprise discipline — the structured delivery, the risk mitigation, the measurable outcomes — directly to <strong>solopreneurs and small businesses</strong> across the <strong>DFW Metroplex</strong> and beyond. I know what it takes to run a business because I have done it. I know what technology should cost you because I have watched organizations waste millions on complexity that serves vendors, not owners.
+                    That full-cycle perspective is rare. Most people in tech have lived on one side of the fence. I have worked both — understanding what customers actually need, writing the requirements that define it precisely, and then driving the implementation through to delivery. Through <strong>Vintage64TX</strong>, I bring that same discipline directly to <strong>solopreneurs and small businesses</strong> across the <strong>DFW Metroplex</strong> and beyond. I know what it takes to run a business because I have done it. I know what technology should cost you because I have watched organizations waste millions on complexity that serves vendors, not owners.
                 </p>
 
                 <div class="entrepreneur-callout">
-                    <strong>The Vintage64TX difference:</strong> You're not hiring a kid with a toolkit. You're hiring a certified product manager, Scrum Master, and cloud architect who has also been a retailer, a realtor, and a consultant — someone who understands both the technology <em>and</em> the business it's supposed to serve.
+                    <strong>The Vintage64TX difference:</strong> You're not hiring a kid with a toolkit. You're hiring a certified product manager who has captured customer requirements, written the specs, led the development teams, and shipped the product — and who has also been a retailer, a realtor, and a consultant. Someone who understands the technology, the business, <em>and</em> the customer it all has to serve.
                 </div>
 
-                <!-- IMPACT STATS -->
                 <div class="stat-row" aria-label="Career impact metrics">
                     <div class="stat-block">
                         <span class="stat-number">15+</span>
@@ -423,7 +403,7 @@
             <!-- CREDENTIALS -->
             <section aria-label="Certifications and Credentials" style="margin-top: 40px; border-top: 1px dashed var(--border); padding-top: 30px;">
                 <h2>&gt; <span class="highlight-blue">CREDENTIALS &amp; CERTIFICATIONS</span></h2>
-                <p style="font-size: 0.82rem; color: var(--primary-dim); margin-bottom: 18px;">Every certification below is active. This is not a list of things studied — it is a list of things tested, verified, and earned.</p>
+                <p style="font-size: 0.82rem; color: var(--primary-dim); margin-bottom: 15px;">Every certification below is active. This is not a list of things studied — it is a list of things tested, verified, and earned.</p>
 
                 <div class="cred-grid">
                     <div class="cred-card">
@@ -462,51 +442,41 @@
             <!-- CAREER HIGHLIGHTS -->
             <section aria-label="Career highlights" style="margin-top: 40px; border-top: 1px dashed var(--border); padding-top: 30px;">
                 <h2>&gt; CAREER_HIGHLIGHTS</h2>
-                <p style="font-size: 0.82rem; color: var(--primary-dim); margin-bottom: 20px;">Selected engagements where enterprise-scale decisions produced measurable outcomes.</p>
+                <p style="font-size: 0.82rem; color: var(--primary-dim); margin-bottom: 18px;">Selected engagements where enterprise-scale decisions produced measurable outcomes.</p>
 
                 <div class="career-timeline">
                     <div class="career-entry">
-                        <div class="career-entry-header">
-                            <span class="career-role">Lead Technical Product Manager / Scrum Master</span>
-                            <span class="career-company">Global GDS &amp; Airline Technology Sector</span>
-                        </div>
-                        <p class="career-impact">
-                            Leading cross-functional research and documentation of <strong>legacy TPF mainframe code</strong> in preparation for cloud-native modernization. Bridging the gap between obscure assembly logic and future AWS/GCP architecture — translating tribal knowledge into structured technical specifications that will survive the people who originally built the system.
-                        </p>
+                        <span class="career-role">Lead Technical Product Manager / Scrum Master</span>
+                        <span class="career-company">Global GDS &amp; Airline Technology Sector</span>
+                        <p class="career-impact">Leading cross-functional research and documentation of <strong>legacy TPF mainframe code</strong> in preparation for cloud-native modernization. Bridging the gap between obscure assembly logic and future AWS/GCP architecture — translating tribal knowledge into structured technical specifications that will survive the people who originally built the system.</p>
                     </div>
 
                     <div class="career-entry">
-                        <div class="career-entry-header">
-                            <span class="career-role">Principal Product Owner / Business Analyst</span>
-                            <span class="career-company">Global Airline &amp; eCommerce Technology</span>
-                        </div>
-                        <p class="career-impact">
-                            Led product strategy for a global self-service airport check-in suite (Web, Kiosk, Mobile). Rebuilt the Web Check-in product from the ground up — resulting in a <strong>100% increase in operational efficiency</strong> as measured by customer feedback. Designed and launched premium seat sales during check-in, growing one airline's monthly ancillary revenue <strong>from $11K to $48K in two months</strong>. Introduced ancillary sales into self-service check-in — <strong>an industry first for the platform</strong>.
-                        </p>
+                        <span class="career-role">Principal Product Owner / Business Analyst</span>
+                        <span class="career-company">Global Airline &amp; eCommerce Technology</span>
+                        <p class="career-impact">Led product strategy for a global self-service airport check-in suite (Web, Kiosk, Mobile). Rebuilt the Web Check-in product from the ground up — resulting in a <strong>100% increase in operational efficiency</strong> as measured by customer feedback. Designed and launched premium seat sales during check-in, growing one airline's monthly ancillary revenue <strong>from $11K to $48K in two months</strong>. Introduced ancillary sales into self-service check-in — <strong>an industry first for the platform</strong>.</p>
                     </div>
 
                     <div class="career-entry">
-                        <div class="career-entry-header">
-                            <span class="career-role">Senior Product Owner</span>
-                            <span class="career-company">Private Aviation Technology</span>
-                        </div>
-                        <p class="career-impact">
-                            Managed two Scrum teams building complex <strong>flight scheduling software</strong> for the private aviation sector. Owned roadmap alignment across product owners to ensure seamless integrations across the full software suite.
-                        </p>
+                        <span class="career-role">Senior Product Owner</span>
+                        <span class="career-company">Private Aviation Technology</span>
+                        <p class="career-impact">Managed two Scrum teams building complex <strong>flight scheduling software</strong> for the private aviation sector. Owned roadmap alignment across product owners to ensure seamless integrations across the full software suite.</p>
                     </div>
 
                     <div class="career-entry">
-                        <div class="career-entry-header">
-                            <span class="career-role">Sr. Business Analyst</span>
-                            <span class="career-company">Major U.S. Commercial Airline</span>
-                        </div>
-                        <p class="career-impact">
-                            Supported a critical <strong>mainframe backend migration to AWS Cloud</strong> for an Air Cargo UI modernization initiative. Operated within SAFe Agile, collaborating directly with business leadership to shape the product roadmap.
-                        </p>
+                        <span class="career-role">Sr. Business Analyst</span>
+                        <span class="career-company">Major U.S. Commercial Airline</span>
+                        <p class="career-impact">Supported a critical <strong>mainframe backend migration to AWS Cloud</strong> for an Air Cargo UI modernization initiative. Operated within SAFe Agile, collaborating directly with business leadership to shape the product roadmap.</p>
+                    </div>
+
+                    <div class="career-entry">
+                        <span class="career-role">Customer-Facing Product Manager / Business Requirements Lead</span>
+                        <span class="career-company">Enterprise Airline Technology — Customer Success &amp; Implementation</span>
+                        <p class="career-impact">Managed direct relationships with airline customers as the product and requirements liaison — bridging the gap between what clients needed operationally and what the development teams could build. Authored comprehensive <strong>business requirements, functional specifications, and user documentation</strong> that served as the blueprint for implementation teams. Onboarded multiple enterprise customers onto complex product suites, translating real-world operational workflows into structured technical deliverables. This customer-first vantage point — before moving to the development and product ownership side — forms the foundation of how Vintage64TX approaches every engagement: understand the business first, then build the solution.</p>
                     </div>
                 </div>
 
-                <p style="font-size: 0.75rem; color: var(--primary-dim); margin-top: -10px;">
+                <p style="font-size: 0.75rem; color: var(--primary-dim); line-height: 1.6;">
                     Additional experience spans Technical Product Management, Senior Business Analysis, and consulting roles across airline, health insurance, and eCommerce sectors. Prior career includes Product Marketing, Business Consulting, Retail Business Ownership, Real Estate, Insurance, and Airline Operations.
                 </p>
             </section>
@@ -518,22 +488,13 @@
                     This site is not a template. It is a <strong>hand-built, zero-dependency static application</strong> — and a working demonstration of the engineering philosophy behind every Vintage64TX engagement. No WordPress. No React. No build pipeline. Just precisely written <strong>HTML5 and CSS</strong>, deployed to a global CDN edge network and hardened at every layer.
                 </p>
 
-                <div class="arch-grid">
-                    <div class="arch-block">
-                        <span class="arch-block-title">[+] ZERO BLOAT ARCHITECTURE</span>
-                        No frameworks to patch, no plugins to break, no databases to exploit. Pure HTML and CSS — loads in under a second on any connection, scores at the top of Google PageSpeed, and has an attack surface of essentially zero.
-                    </div>
-                    <div class="arch-block">
-                        <span class="arch-block-title">[+] HARDENED DELIVERY</span>
-                        Served via <strong>Cloudflare's global edge network</strong> with full HTTPS, HTTP/2, and automatic DDoS mitigation baked in — the same infrastructure Fortune 500 companies pay enterprise rates for, running here at near-zero cost.
-                    </div>
-                    <div class="arch-block">
-                        <span class="arch-block-title">[+] OPERATIONAL EFFICIENCY</span>
-                        Domain registration, CDN hosting, professional email routing, privacy-first analytics, and full SSL — the total annual operating cost for this entire presence runs <strong>under $50/year</strong>. That's the standard I deliver for clients.
-                    </div>
+                <div class="tech-specs">
+                    <p><strong>ZERO BLOAT ARCHITECTURE:</strong> No frameworks to patch, no plugins to break, no databases to exploit. The entire site is pure HTML and CSS — it loads in under a second on any connection, scores at the top of Google PageSpeed, and has an attack surface of essentially zero.</p>
+                    <p><strong>HARDENED DELIVERY:</strong> Served via <strong>Cloudflare's global edge network</strong> with full HTTPS, HTTP/2, and automatic DDoS mitigation baked in — the same infrastructure Fortune 500 companies pay enterprise rates for, running here at near-zero cost.</p>
+                    <p><strong>OPERATIONAL EFFICIENCY:</strong> Domain registration, CDN hosting, professional email routing, privacy-first analytics, and full SSL — the total annual operating cost for this entire presence runs <strong>under $50/year</strong>. That's the standard I deliver for clients.</p>
                 </div>
 
-                <p style="font-size: 0.85rem; margin-top: 10px;">
+                <p>
                     The aesthetic is retro. The architecture is not. Every decision here — from the semantic HTML structure to the structured data in the page head — is made with performance, security, and search visibility in mind. This is what <strong>digital sovereignty</strong> looks like for a small business in <strong>Fort Worth, TX</strong>.
                     <a href="business.html" style="color: var(--accent);">See what I can build for you &rarr;</a>
                 </p>
@@ -604,6 +565,7 @@
         function highlightLabels() {
             const keywords = [
                 "WHO_AM_I", "CREDENTIALS", "CAREER_HIGHLIGHTS",
+                "Agile Leadership", "Cloud", "Security",
                 "VINTAGE64TX_STANDARD", "FAQ"
             ];
             const container = document.querySelector('main');

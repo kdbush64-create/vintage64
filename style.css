@@ -35,6 +35,21 @@
     padding: 0;
 }
 
+/* GLOBAL LINK RESET
+   Without this, browsers apply their own default link colors (purple/blue)
+   which override CSS variable-based rules unpredictably. This establishes
+   a baseline so all themed color rules resolve correctly. */
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+a:visited {
+    color: var(--primary);
+}
+a:hover {
+    text-decoration: underline;
+}
+
 .skip-link {
     position: absolute;
     top: -100px;

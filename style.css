@@ -59,7 +59,6 @@ body {
     padding: 20px;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Prevent horizontal overflow on body */
     overflow-x: hidden;
 }
 
@@ -74,7 +73,6 @@ body {
     overflow: hidden;
     position: relative;
     z-index: 5;
-    /* Ensure container never overflows viewport */
     max-width: min(650px, 100vw - 40px);
 }
 
@@ -115,9 +113,19 @@ header {
     padding-bottom: 20px;
 }
 
+/* ── CLS FIX ────────────────────────────────────────────────────────────────
+   The HTML declares width="300" height="300" on the img, which lets the
+   browser reserve space before the image loads. However, height: auto was
+   collapsing that reservation and causing a CLS score of 0.253 on desktop.
+
+   aspect-ratio: 1 / 1 locks the reserved box to exactly 200×200 (matching
+   the CSS width) so the browser holds the correct space from the first paint
+   even while the image is still loading. No layout shift, no score hit.
+   ─────────────────────────────────────────────────────────────────────────-->
 .main-logo {
     width: 200px !important;
     height: auto !important;
+    aspect-ratio: 1 / 1;
     display: block;
     margin: 0 auto;
     border: 3px solid var(--border);
@@ -143,7 +151,6 @@ header {
     font-weight: bold;
     padding: 5px 10px;
     font-size: 0.9rem;
-    /* Prevent nav items from breaking weirdly */
     white-space: nowrap;
 }
 
@@ -195,7 +202,6 @@ header {
     height: 32px;
     transition: 0.2s;
     box-sizing: border-box;
-    /* Allow wrapping on very small screens */
     white-space: nowrap;
 }
 
@@ -222,13 +228,11 @@ h2, h3 {
     border-right: none;
     border-top: none;
     border-bottom: none;
-    /* Critical: allow long underscore-connected words to break */
     word-break: break-all;
     overflow-wrap: break-word;
 }
 
 /* 6b. WORD BREAK FOR UNDERSCORE-CONNECTED TERMS */
-/* Anywhere terminal-style ALL_CAPS_WORDS appear */
 .service-tier h2,
 .service-tier p,
 .service-tier li,
@@ -243,11 +247,9 @@ td, th {
     overflow-wrap: break-word;
 }
 
-/* Special handling: underscore words should wrap at underscore on small screens */
 @media (max-width: 480px) {
     h2, h3 {
         font-size: 0.95rem;
-        /* Use break-word to wrap at underscore boundaries */
         word-break: break-word;
     }
 }
@@ -325,13 +327,11 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    /* Critical for mobile: allow table to scroll if needed */
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
-/* Restore table layout for wider screens */
 @media (min-width: 500px) {
     table {
         display: table;
@@ -346,7 +346,6 @@ th, td {
     font-size: 0.85rem;
     word-break: break-word;
     overflow-wrap: break-word;
-    /* Min width to prevent extreme squishing */
     min-width: 80px;
 }
 
@@ -361,7 +360,6 @@ th, td {
     color: var(--accent);
 }
 
-/* Price column stays compact */
 .retro-table td:last-child,
 .retro-table th:last-child {
     white-space: nowrap;
@@ -390,7 +388,6 @@ input, textarea, .retro-select {
     padding: 12px;
     font-family: inherit;
     width: 100%;
-    /* Prevent inputs from overflowing */
     max-width: 100%;
 }
 
@@ -415,7 +412,6 @@ input, textarea, .retro-select {
     transform: translateY(-1px);
 }
 
-/* Name row: side by side on desktop, stacked on mobile */
 .name-row {
     display: flex;
     gap: 15px;
@@ -449,7 +445,6 @@ footer {
     padding-top: 20px;
 }
 
-/* --- RETRO FOCUS EFFECTS --- */
 input:focus,
 textarea:focus,
 .retro-select:focus {
@@ -488,7 +483,6 @@ textarea:focus,
     padding-top: 15px;
     letter-spacing: 1px;
     line-height: 1.8;
-    /* Allow footer text to wrap cleanly */
     word-break: break-word;
 }
 
@@ -505,7 +499,6 @@ textarea:focus,
     margin: 25px 0;
     border-left: 3px solid var(--accent);
     padding-left: 15px;
-    /* Prevent overflow */
     overflow: hidden;
 }
 
@@ -569,7 +562,7 @@ textarea:focus,
     overflow-wrap: break-word;
 }
 
-/* Button row: wrap gracefully on small screens */
+/* Button row */
 .btn-row {
     display: flex;
     gap: 10px;

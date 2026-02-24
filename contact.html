@@ -90,6 +90,17 @@
     }
     </script>
 
+    <!-- THEME DETECTION — must run before first paint to prevent flash/shift -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="page-contact" itemscope itemtype="https://schema.org/ContactPage">
@@ -101,7 +112,6 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <!-- BRAND HEADER — matches index.html -->
         <div class="brand-header">
             <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
                 <div class="brand-name">
@@ -121,7 +131,8 @@
                      loading="eager"
                      fetchpriority="high"
                      width="300"
-                     height="300">
+                     height="300"
+                     style="width:100%;max-width:300px;aspect-ratio:1/1;display:block;margin:0 auto;contain:layout;">
             </div>
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
@@ -150,13 +161,11 @@
                 </section>
 
                 <form id="contactForm" class="retro-form" novalidate aria-label="Contact form">
-                    <!-- Honeypot -->
                     <div class="v64-hidden-trap" aria-hidden="true">
                         <label for="v64_system_check">System Check - Leave Empty</label>
                         <input type="text" id="v64_system_check" name="v64_system_check" tabindex="-1" autocomplete="off">
                     </div>
 
-                    <!-- Timestamp -->
                     <input type="hidden" id="form_loaded_at" name="form_loaded_at">
 
                     <div class="name-row">
@@ -232,10 +241,11 @@
         </footer>
     </div>
 
-    <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+    <!-- FIXED: corrected domain from static.cloudflare.com to static.cloudflareinsights.com -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
-        // ── Bot-protected email assembly ──
+        // Bot-protected email assembly
         (function() {
             const u = 'dewayne';
             const d = 'vintage64tx';
@@ -247,21 +257,17 @@
             }
         })();
 
-        // ── Timestamp for bot speed detection ──
         document.getElementById('form_loaded_at').value = Date.now();
 
-        // 1. THEME TOGGLE
+        // Theme toggle — initial theme set in <head> before first paint
         const toggleBtn = document.getElementById('theme-toggle');
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
         toggleBtn.addEventListener('click', () => {
             const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. FORM SUBMISSION
+        // FORM SUBMISSION
         const WORKER_URL = 'PLACEHOLDER_WORKER_URL';
 
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
@@ -321,7 +327,7 @@
             }
         });
 
-        // 3. LABEL HIGHLIGHTER
+        // LABEL HIGHLIGHTER
         function highlightContactLabels() {
             const keywords = ["ENCRYPTED_MESSAGE_INPUT", "FIRST_NAME:", "LAST_NAME:", "YOUR_EMAIL:", "SERVICE_INTEREST:", "TRANSMISSION_DETAILS:", "SELECT_SERVICE_SCOPE"];
             const container = document.querySelector('.contact-interface');

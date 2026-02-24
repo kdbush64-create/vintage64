@@ -1,0 +1,43 @@
+# ── Cloudflare Pages _headers file ───────────────────────────────────────────
+# Controls HTTP response headers for all routes on vintage64tx.com.
+# Cloudflare Pages reads this file automatically from the repo root.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# ── Global security headers (applied to every page) ──────────────────────────
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer-when-downgrade
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# ── HTML pages: short cache so updates deploy immediately ────────────────────
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# ── CSS: versioned by filename in practice; 1-week cache ─────────────────────
+/*.css
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# ── Images: long cache — change filename if you update an image ──────────────
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── JavaScript: 1-week cache ─────────────────────────────────────────────────
+/*.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# ── Sitemap & robots: short cache so search engines see updates quickly ───────
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=3600, must-revalidate

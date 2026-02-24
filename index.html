@@ -171,18 +171,43 @@
     </script>
 
     <!-- ── PERFORMANCE: Preconnect + Preload ──────────────────────────────────
-         Eliminates the critical path latency flagged by PageSpeed.
          preconnect: opens TCP/TLS to each origin before the browser needs it.
-         preload:    fetches style.css at top priority, in parallel with HTML
-                     parsing, so it is never render-blocking.
+         preload:    fetches style.css at top priority in parallel with HTML parsing.
     ─────────────────────────────────────────────────────────────────────────-->
     <link rel="preconnect" href="https://vintage64tx.com">
     <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
 
+    <!-- ── CLS CRITICAL INLINE STYLES ────────────────────────────────────────
+         Because style.css loads non-blocking (preload/onload swap), there is
+         a window between first paint and CSS application where the browser
+         has NO stylesheet. During this window, the logo image has no CSS
+         sizing context — only the HTML width/height attributes.
+
+         These inline styles are applied IMMEDIATELY at parse time (no file
+         fetch required) and ensure the logo box is correctly reserved before
+         any external CSS arrives. This eliminates the 0.251 layout shift.
+
+         These styles are intentionally duplicated in style.css so that once
+         the stylesheet loads, it takes over cleanly with no visual change.
+    ─────────────────────────────────────────────────────────────────────────-->
     <style>
-        /* ── NEW COMPONENT STYLES — use existing CSS variables throughout ── */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 300px;
+            margin: 0 auto 20px;
+        }
+        .main-logo {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+            display: block;
+            margin: 0 auto;
+            contain: layout;
+        }
 
         /* STAT BLOCKS */
         .stat-row {
@@ -215,7 +240,7 @@
             line-height: 1.4;
         }
 
-        /* ENTREPRENEUR CALLOUT — uses service-tier border convention */
+        /* ENTREPRENEUR CALLOUT */
         .entrepreneur-callout {
             border-left: 3px solid var(--primary);
             background: rgba(255, 176, 0, 0.05);
@@ -356,6 +381,13 @@
 
         <header style="text-align: center;" itemscope itemtype="https://schema.org/WPHeader">
             <div class="logo-container">
+                <!--
+                    CLS NOTE: width="300" height="300" must match CSS max-width: 300px.
+                    The inline style duplicates the critical CSS so the box is reserved
+                    even during the window before style.css loads (non-blocking preload).
+                    Do NOT change these dimensions without updating both style.css and
+                    the .logo-container min-height in the inline <style> block above.
+                -->
                 <img src="media/logo.webp"
                      alt="Vintage64TX – Linux Migration and IT Services, Fort Worth TX"
                      class="main-logo"
@@ -363,6 +395,7 @@
                      fetchpriority="high"
                      width="300"
                      height="300"
+                     style="width:100%;max-width:300px;aspect-ratio:1/1;display:block;margin:0 auto;contain:layout;"
                      itemprop="image">
             </div>
             <nav class="system-nav" aria-label="Main navigation">
@@ -556,11 +589,6 @@
         </footer>
     </div>
 
-    <!-- ── Cloudflare Web Analytics ───────────────────────────────────────────
-         FIXED: corrected domain from static.cloudflare.com to
-         static.cloudflareinsights.com — the previous domain caused
-         ERR_CONNECTION_FAILED in the browser console (Best Practices -4pts).
-    ──────────────────────────────────────────────────────────────────────────-->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /dashboard
+
+Host: vintage64tx.com
+
+Sitemap: https://vintage64tx.com/sitemap.xml

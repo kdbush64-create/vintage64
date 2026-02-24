@@ -1,6 +1,5 @@
 /* 1. THEME VARIABLES & ADA DEFAULTS */
 :root {
-    /* DARK THEME (Default) */
     --bg: #1a1a1a;
     --container-bg: rgba(0, 0, 0, 0.95);
     --primary: #ffb000;
@@ -62,7 +61,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 3. THE CHASSIS (Page Container) */
+/* 3. THE CHASSIS */
 .container {
     width: 100%;
     max-width: 650px;
@@ -105,7 +104,7 @@ body {
     box-shadow: 0 0 15px var(--accent);
 }
 
-/* 5. LOGO & HEADER UNIFORMITY */
+/* 5. LOGO & HEADER */
 header {
     text-align: center;
     border-bottom: 2px dashed var(--border);
@@ -113,21 +112,27 @@ header {
     padding-bottom: 20px;
 }
 
-/* ── CLS FIX ────────────────────────────────────────────────────────────────
-   Root cause of CLS score 0.253:
-   The previous rule used `height: auto !important` which overrode both the
-   HTML height="300" attribute AND the aspect-ratio declaration, preventing
-   the browser from reserving any vertical space before the image loaded.
+/* ── CLS FIX: LOGO ───────────────────────────────────────────────────────────
+   The stylesheet loads via a non-blocking preload/onload swap, meaning CSS
+   arrives AFTER the browser's first paint. During that window, the browser
+   relies solely on the HTML width/height attributes to reserve space.
 
-   Fix: Set explicit width AND height in CSS so the browser can calculate
-   and hold the layout box from the very first paint. aspect-ratio provides
-   a fallback for any viewport scaling. Remove !important from height so the
-   intrinsic dimensions aren't suppressed. Also add `contain: layout` to
-   prevent any image load event from triggering ancestor reflows.
+   THE RULE: CSS dimensions must not contradict HTML attributes.
+   HTML says width="300" height="300". So CSS must also resolve to 300px.
+
+   We use max-width: 300px (not width: 300px) so the image can scale down
+   on narrow mobile viewports naturally. aspect-ratio: 1/1 keeps the height
+   locked proportionally without needing an explicit px value that could
+   conflict. contain: layout prevents the image load event from triggering
+   ancestor reflows.
+
+   The inline style on the <img> tag in index.html provides the same
+   critical sizing BEFORE this stylesheet loads, eliminating the shift
+   window entirely.
    ─────────────────────────────────────────────────────────────────────────-->
 .main-logo {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 300px;
     aspect-ratio: 1 / 1;
     display: block;
     margin: 0 auto;
@@ -139,17 +144,17 @@ header {
     filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.2));
 }
 
-/* ── LOGO CONTAINER CLS FIX ──────────────────────────────────────────────────
-   Give the logo container a fixed min-height matching the image so the
-   surrounding layout doesn't collapse while the image is fetched. This
-   prevents the header from reflowing when the image arrives.
+/* ── CLS FIX: LOGO CONTAINER ─────────────────────────────────────────────────
+   min-height matches the HTML height="300" so the container never collapses
+   to zero between HTML parse and CSS application. Without this, even a
+   correctly-sized image can shift content below it during load.
    ─────────────────────────────────────────────────────────────────────────-->
 .logo-container {
     display: flex;
     justify-content: center;
     margin: 0 auto 20px;
     width: 100%;
-    min-height: 200px; /* matches .main-logo height — prevents collapse */
+    min-height: 300px;
 }
 
 .system-nav {
@@ -176,7 +181,7 @@ header {
     color: var(--bg);
 }
 
-/* 5b. BRAND HEADER (shared across all pages) */
+/* 5b. BRAND HEADER */
 .brand-header {
     text-align: center;
     width: 100%;
@@ -249,7 +254,7 @@ h2, h3 {
     overflow-wrap: break-word;
 }
 
-/* 6b. WORD BREAK FOR UNDERSCORE-CONNECTED TERMS */
+/* 6b. WORD BREAK */
 .service-tier h2,
 .service-tier p,
 .service-tier li,
@@ -289,14 +294,12 @@ td, th {
     overflow-wrap: break-word;
 }
 
-/* THE HIGHLIGHTER CLASS */
 .highlight-blue {
     color: var(--data-blue) !important;
     font-weight: bold;
     text-shadow: 0 0 5px var(--blue-glow);
 }
 
-/* Log entry headers */
 .log-entry h2,
 .log-entry h3,
 .log-entry h4 {
@@ -339,7 +342,7 @@ td, th {
     line-height: 1.2;
 }
 
-/* 8. TABLES (Price List) — MOBILE FIX */
+/* 8. TABLES */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -384,7 +387,7 @@ th, td {
     min-width: 70px;
 }
 
-/* 9. TERMINAL FORMS & INPUTS */
+/* 9. FORMS */
 .retro-form {
     display: flex;
     flex-direction: column;
@@ -471,7 +474,7 @@ textarea:focus,
     background-color: rgba(255, 176, 0, 0.05) !important;
 }
 
-/* --- UNIFIED FOOTER STYLES --- */
+/* FOOTER */
 .footer-social {
     display: flex;
     justify-content: center;
@@ -518,23 +521,17 @@ textarea:focus,
 }
 
 /* Bio section */
-/* ── CLS FIX: bio paragraph margin ─────────────────────────────────────────
-   The original `margin-bottom: 50px !important` was unusually large and
-   caused reflow as the DOM built out. Reduced to a standard value.
-   ─────────────────────────────────────────────────────────────────────────-->
 .bio p {
     margin-bottom: 20px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
-/* Contact scope list */
 .scope-list li {
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
-/* Tech specs box */
 .tech-specs {
     margin: 20px 0;
     border-left: 4px solid var(--accent);
@@ -548,14 +545,12 @@ textarea:focus,
     overflow-wrap: break-word;
 }
 
-/* FAQ sections */
 .faq h3,
 .faq p {
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
-/* Protocol box */
 .protocol-box {
     margin: 40px 0;
     padding: 20px;
@@ -575,7 +570,6 @@ textarea:focus,
     overflow-wrap: break-word;
 }
 
-/* Button row */
 .btn-row {
     display: flex;
     gap: 10px;
@@ -583,7 +577,6 @@ textarea:focus,
     margin-top: 20px;
 }
 
-/* Select dropdown */
 .retro-select {
     background-color: var(--container-bg) !important;
     color: var(--primary) !important;
@@ -601,13 +594,11 @@ textarea:focus,
     color: var(--primary);
 }
 
-/* v64-hidden-trap for honeypot */
 .v64-hidden-trap {
     display: none !important;
     visibility: hidden !important;
 }
 
-/* Protected email */
 .protected-email {
     color: var(--secondary);
     font-family: 'Courier New', monospace;

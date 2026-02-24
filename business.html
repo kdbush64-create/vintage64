@@ -232,6 +232,28 @@
         })();
     </script>
 
+
+    <!-- CRITICAL INLINE STYLES: applied before style.css to prevent nav color flash -->
+    <style>
+        a { color: #ffb000; text-decoration: none; }
+        a:visited { color: #ffb000; }
+        .system-nav a { color: #00d4ff; }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 300px;
+            margin: 0 auto 20px;
+        }
+        .main-logo {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+            display: block;
+            margin: 0 auto;
+            contain: layout;
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
 
     <style>

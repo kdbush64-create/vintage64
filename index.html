@@ -44,6 +44,20 @@
     <link rel="icon" type="image/png" href="favicon-64.png">
     <link rel="apple-touch-icon" href="favicon-64.png">
 
+    <!-- ── PERFORMANCE: Preconnect + Preload ────────────────────────────────
+         Eliminates the 358ms critical path latency flagged by PageSpeed.
+         1. preconnect to self  — browser opens the TCP/TLS connection to your
+            own origin before it needs style.css, shaving a full round-trip.
+         2. preconnect to Cloudflare beacon — avoids a late connection for the
+            analytics script (crossorigin required for CORS-capable origins).
+         3. preload style.css  — tells the browser to fetch the stylesheet at
+            the highest priority, in parallel with HTML parsing, so it is ready
+            the moment the <link rel="stylesheet"> below is reached.
+    ──────────────────────────────────────────────────────────────────────── -->
+    <link rel="preconnect" href="https://vintage64tx.com">
+    <link rel="preconnect" href="https://static.cloudflare.com" crossorigin>
+    <link rel="preload" href="style.css" as="style">
+
     <!-- 1. LocalBusiness -->
     <script type="application/ld+json">
     {

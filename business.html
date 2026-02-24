@@ -221,6 +221,17 @@
     }
     </script>
 
+    <!-- THEME DETECTION — must run before first paint to prevent flash/shift -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -323,7 +334,6 @@
         details summary { list-style: none; color: var(--accent); cursor: pointer; }
         details summary::-webkit-details-marker { display: none; }
 
-        /* Table wrapper for mobile scroll */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -335,7 +345,6 @@
             min-width: 320px;
         }
 
-        /* Price table description sub-text */
         .svc-desc {
             display: block;
             font-size: 0.75rem;
@@ -354,7 +363,6 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <!-- BRAND HEADER -->
         <div class="brand-header">
             <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
                 <div class="brand-name">
@@ -374,7 +382,8 @@
                      loading="eager"
                      fetchpriority="high"
                      width="300"
-                     height="300">
+                     height="300"
+                     style="width:100%;max-width:300px;aspect-ratio:1/1;display:block;margin:0 auto;contain:layout;">
             </div>
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
@@ -389,7 +398,6 @@
                 <h2>&gt; REVIVE_SECURE_OPTIMIZE</h2>
                 <p>I bring enterprise-grade standards to personal hardware. As a <strong>CompTIA Project+ certified professional</strong> based in <strong>Fort Worth, TX</strong>, I manage your technology lifecycle as a project — ensuring clear milestones, risk mitigation, and structured delivery for <strong>solopreneurs and small businesses</strong> across the <strong>DFW Metroplex</strong>.</p>
 
-                <!-- Solopreneur Web Build -->
                 <div class="service-tier">
                     <h2>&gt; V64 SOLOPRENEUR_EDITION (WEB_BUILD)</h2>
                     <p>Most small business websites are bloated and slow. I build <strong>"Lean &amp; Mean"</strong> static sites that score <strong>100%<sup>#</sup></strong> on Google PageSpeed. No databases to hack. No plugins to break. Just pure performance for <strong>Fort Worth small business owners</strong>.</p>
@@ -405,7 +413,6 @@
                     </div>
                 </div>
 
-                <!-- Phoenix Protocol -->
                 <div class="service-tier">
                     <h2>&gt; THE PHOENIX PROTOCOL (LINUX_MIGRATION)</h2>
                     <p>The ultimate revival for "obsolete" hardware. I replace bloated, invasive Windows operating systems with a lightweight, high-performance <strong>Linux Desktop distribution</strong> — serving <strong>Fort Worth</strong> and surrounding <strong>Tarrant County</strong> residents.</p>
@@ -417,7 +424,6 @@
                     </ul>
                 </div>
 
-                <!-- Price List -->
                 <h2>&gt; SERVICE PRICE LIST</h2>
                 <div class="table-wrapper">
                     <table class="retro-table">
@@ -505,7 +511,6 @@
                     </table>
                 </div>
 
-                <!-- Operating Protocol -->
                 <section class="protocol-box" aria-label="Service Delivery Protocol">
                     <h2 style="color: var(--primary); font-size: 1rem; margin-bottom: 15px;">&gt; OPERATING PROTOCOL</h2>
                     <p style="font-size: 0.85rem; color: var(--primary-dim); margin-bottom: 10px;">
@@ -517,7 +522,6 @@
                     </ul>
                 </section>
 
-                <!-- FAQ -->
                 <section aria-label="Frequently Asked Questions" style="margin: 40px 0; border-top: 1px dashed var(--border); padding-top: 30px;">
                     <h2>&gt; FAQ</h2>
 
@@ -610,21 +614,19 @@
         </div>
     </div>
 
-    <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+    <!-- FIXED: corrected domain from static.cloudflare.com to static.cloudflareinsights.com -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
-        // 1. THEME TOGGLE
+        // Theme toggle — initial theme set in <head> before first paint
         const toggleBtn = document.getElementById('theme-toggle');
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
         toggleBtn.addEventListener('click', () => {
             const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. MODAL
+        // MODAL
         function openV64Modal() {
             const modal = document.getElementById('webBuildModal');
             modal.style.display = 'block';
@@ -641,7 +643,7 @@
         });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeV64Modal(); });
 
-        // 3. DATA-BLUE HIGHLIGHTER
+        // DATA-BLUE HIGHLIGHTER
         function highlightBusinessLabels() {
             const keywords = [
                 "REVIVE_SECURE_OPTIMIZE", "V64 SOLOPRENEUR_EDITION",

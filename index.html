@@ -85,7 +85,7 @@
         "jobTitle": "IT Consultant & Technical Product Manager",
         "knowsAbout": ["Linux","Cybersecurity","Agile","Cloud Computing","PC Repair","Mainframe Modernization","ITIL 4"]
       },
-      "sameAs": ["PLACEHOLDER_FACEBOOK_URL","PLACEHOLDER_X_URL","PLACEHOLDER_INSTAGRAM_URL","PLACEHOLDER_GOOGLE_BUSINESS_URL"]
+      "sameAs": ["https://www.facebook.com/profile.php?id=61588403712210","https://x.com/grumpy_texan","https://www.instagram.com/vintage64tx/","https://share.google/Qo8gSW6aXlM2lR7Bm"]
     }
     </script>
 
@@ -170,14 +170,12 @@
     }
     </script>
 
-    <!-- ── PERFORMANCE: Preconnect + Preload ──────────────────────────────────
+    <!-- ── PERFORMANCE: Preconnect ────────────────────────────────────────────
          preconnect: opens TCP/TLS to each origin before the browser needs it.
-         preload:    fetches style.css at top priority in parallel with HTML parsing.
     ─────────────────────────────────────────────────────────────────────────-->
     <link rel="preconnect" href="https://vintage64tx.com">
     <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
-    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <link rel="stylesheet" href="style.css">
 
     <!-- ── CLS FIX: THEME DETECTION — MUST RUN BEFORE FIRST PAINT ────────────
          Previously, theme detection lived in a <script> at the bottom of
@@ -203,25 +201,21 @@
         })();
     </script>
 
-    <!-- ── CLS CRITICAL INLINE STYLES ────────────────────────────────────────
-         Because style.css loads non-blocking (preload/onload swap), there is
-         a window between first paint and CSS application where the browser
-         has NO stylesheet. During this window, the logo image has no CSS
-         sizing context — only the HTML width/height attributes.
-
-         These inline styles are applied IMMEDIATELY at parse time (no file
-         fetch required) and ensure the logo box is correctly reserved before
-         any external CSS arrives. This eliminates the 0.251 layout shift.
-
-         These styles are intentionally duplicated in style.css so that once
-         the stylesheet loads, it takes over cleanly with no visual change.
+    <!-- ── CRITICAL INLINE STYLES ─────────────────────────────────────────────
+         These inline styles are applied immediately at parse time to:
+         1. Prevent browser-default link colors before style.css loads.
+         2. Reserve logo space to prevent layout shift (CLS).
+         3. Override :visited color on nav and footer social links.
+         4. Correct nav color in light mode (inline beats external stylesheet
+            for :visited rules, so light mode override must also be inline).
     ─────────────────────────────────────────────────────────────────────────-->
     <style>
-        /* CRITICAL: applied immediately before non-blocking style.css loads.
-           Prevents browser-default purple link color showing during load gap. */
+        /* CRITICAL: prevents browser-default link colors before style.css loads. */
         a { color: #ffb000; text-decoration: none; }
         a:visited { color: #ffb000; }
         .system-nav a { color: #00d4ff; }
+        .footer-social a, .footer-social a:visited { color: #00eeff; }
+        [data-theme="light"] .system-nav a { color: #7a5400; }
 
         .logo-container {
             display: flex;
@@ -413,10 +407,10 @@
             <div class="logo-container">
                 <!--
                     CLS NOTE: width="300" height="300" must match CSS max-width: 300px.
-                    The inline style duplicates the critical CSS so the box is reserved
-                    even during the window before style.css loads (non-blocking preload).
-                    Do NOT change these dimensions without updating both style.css and
-                    the .logo-container min-height in the inline <style> block above.
+                    The inline style duplicates the critical CSS to reserve the box
+                    before style.css fully applies. Do NOT change these dimensions
+                    without updating both style.css and the .logo-container min-height
+                    in the inline <style> block above.
                 -->
                 <img src="media/logo.webp"
                      alt="Vintage64TX – Linux Migration and IT Services, Fort Worth TX"
@@ -604,14 +598,14 @@
             <div class="footer-status">
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=61588403712210" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Facebook">[FACEBOOK]</a>
-                    <a href="PLACEHOLDER_X_URL" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on X (Twitter)">[X]</a>
+                    <a href="https://x.com/grumpy_texan" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on X (Twitter)">[X]</a>
                     <a href="https://www.instagram.com/vintage64tx/" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Instagram">[INSTAGRAM]</a>
                     <a href="https://share.google/Qo8gSW6aXlM2lR7Bm" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Google Business">[GOOGLE]</a>
                 </div>
                 <div class="footer-line">
-                    SYSTEM_VER: 2.0.1 &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp;
+                    SYSTEM_VER: 2.1.0 &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp;
                     <a href="privacy-policy.html" style="color:inherit; text-decoration:none; border-bottom: 1px dotted rgba(0,255,65,0.4);">PRIVACY_POLICY</a> &nbsp;|&nbsp;
-                    LAST_UPDATED: <time datetime="2026-02-22">2026-02-22</time> &nbsp;|&nbsp;
+                    LAST_UPDATED: <time datetime="2026-02-24">2026-02-24</time> &nbsp;|&nbsp;
                     &copy; 2026 VINTAGE64TX // ALL RIGHTS RESERVED
                     <span class="cursor"></span>
                 </div>

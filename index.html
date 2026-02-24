@@ -217,6 +217,12 @@
          the stylesheet loads, it takes over cleanly with no visual change.
     ─────────────────────────────────────────────────────────────────────────-->
     <style>
+        /* CRITICAL: applied immediately before non-blocking style.css loads.
+           Prevents browser-default purple link color showing during load gap. */
+        a { color: #ffb000; text-decoration: none; }
+        a:visited { color: #ffb000; }
+        .system-nav a { color: #00d4ff; }
+
         .logo-container {
             display: flex;
             justify-content: center;

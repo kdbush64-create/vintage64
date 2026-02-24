@@ -168,7 +168,7 @@ header {
 }
 
 .system-nav a {
-    color: var(--primary);
+    color: var(--data-blue);
     text-decoration: none;
     font-weight: bold;
     padding: 5px 10px;
@@ -177,6 +177,16 @@ header {
 }
 
 .system-nav a:hover {
+    background: var(--data-blue);
+    color: var(--bg);
+}
+
+/* Keep nav links amber in light mode to match the light theme palette */
+[data-theme="light"] .system-nav a {
+    color: var(--primary);
+}
+
+[data-theme="light"] .system-nav a:hover {
     background: var(--primary);
     color: var(--bg);
 }

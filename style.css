@@ -182,7 +182,8 @@ header {
     border-top: 1px dashed var(--border);
 }
 
-.system-nav a {
+.system-nav a,
+.system-nav a:visited {
     color: var(--data-blue);
     text-decoration: none;
     font-weight: bold;
@@ -197,7 +198,8 @@ header {
 }
 
 /* Keep nav links amber in light mode to match the light theme palette */
-[data-theme="light"] .system-nav a {
+[data-theme="light"] .system-nav a,
+[data-theme="light"] .system-nav a:visited {
     color: var(--primary);
 }
 

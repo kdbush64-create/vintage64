@@ -81,10 +81,20 @@
     }
     </script>
 
+    <!-- THEME DETECTION — must run before first paint to prevent flash/shift -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <style>
         .log-entry h2 { color: var(--accent); }
-        /* Ensure markdown-generated content wraps properly */
         .log-text {
             word-break: break-word;
             overflow-wrap: break-word;
@@ -120,7 +130,6 @@
             <button id="theme-toggle" aria-label="Toggle between light and dark mode">TOGGLE_VISUAL_MODE</button>
         </div>
 
-        <!-- BRAND HEADER — matches index.html -->
         <div class="brand-header">
             <h1 style="display: block; text-align: center; line-height: 1.2; margin: 0;" itemprop="name">
                 <div class="brand-name">
@@ -140,7 +149,8 @@
                      loading="eager"
                      fetchpriority="high"
                      width="300"
-                     height="300">
+                     height="300"
+                     style="width:100%;max-width:300px;aspect-ratio:1/1;display:block;margin:0 auto;contain:layout;">
             </div>
             <nav class="system-nav" aria-label="Main navigation">
                 <a href="index.html">[ HOME ]</a>
@@ -174,21 +184,19 @@
         </footer>
     </div>
 
-    <script defer src="https://static.cloudflare.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+    <!-- FIXED: corrected domain from static.cloudflare.com to static.cloudflareinsights.com -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
 
     <script>
-        // 1. THEME TOGGLE
+        // Theme toggle — initial theme set in <head> before first paint
         const toggleBtn = document.getElementById('theme-toggle');
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
         toggleBtn.addEventListener('click', () => {
             const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
 
-        // 2. DATA-BLUE HIGHLIGHTER
+        // DATA-BLUE HIGHLIGHTER
         function highlightLogLabels(targetElement) {
             const keywords = [
                 "LOG_DATE:", "STATUS:", "SUMMARY:", "PROJECT:",
@@ -218,7 +226,7 @@
             });
         }
 
-        // 3. LOG FETCHING
+        // LOG FETCHING
         const BASE_RAW = "https://raw.githubusercontent.com/kdbush64-create/vintage64/main/business-logs/";
         const BASE_API = "https://api.github.com/repos/kdbush64-create/vintage64/contents/business-logs";
 

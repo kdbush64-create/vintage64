@@ -114,25 +114,42 @@ header {
 }
 
 /* ── CLS FIX ────────────────────────────────────────────────────────────────
-   The HTML declares width="300" height="300" on the img, which lets the
-   browser reserve space before the image loads. However, height: auto was
-   collapsing that reservation and causing a CLS score of 0.253 on desktop.
+   Root cause of CLS score 0.253:
+   The previous rule used `height: auto !important` which overrode both the
+   HTML height="300" attribute AND the aspect-ratio declaration, preventing
+   the browser from reserving any vertical space before the image loaded.
 
-   aspect-ratio: 1 / 1 locks the reserved box to exactly 200×200 (matching
-   the CSS width) so the browser holds the correct space from the first paint
-   even while the image is still loading. No layout shift, no score hit.
+   Fix: Set explicit width AND height in CSS so the browser can calculate
+   and hold the layout box from the very first paint. aspect-ratio provides
+   a fallback for any viewport scaling. Remove !important from height so the
+   intrinsic dimensions aren't suppressed. Also add `contain: layout` to
+   prevent any image load event from triggering ancestor reflows.
    ─────────────────────────────────────────────────────────────────────────-->
 .main-logo {
-    width: 200px !important;
-    height: auto !important;
+    width: 200px;
+    height: 200px;
     aspect-ratio: 1 / 1;
     display: block;
     margin: 0 auto;
     border: 3px solid var(--border);
+    contain: layout;
 }
 
 [data-theme='light'] .main-logo {
     filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.2));
+}
+
+/* ── LOGO CONTAINER CLS FIX ──────────────────────────────────────────────────
+   Give the logo container a fixed min-height matching the image so the
+   surrounding layout doesn't collapse while the image is fetched. This
+   prevents the header from reflowing when the image arrives.
+   ─────────────────────────────────────────────────────────────────────────-->
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 20px;
+    width: 100%;
+    min-height: 200px; /* matches .main-logo height — prevents collapse */
 }
 
 .system-nav {
@@ -486,14 +503,6 @@ textarea:focus,
     word-break: break-word;
 }
 
-/* Unified Logo Control */
-.logo-container {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto 20px;
-    width: 100%;
-}
-
 /* Service tier boxes */
 .service-tier {
     margin: 25px 0;
@@ -509,8 +518,12 @@ textarea:focus,
 }
 
 /* Bio section */
+/* ── CLS FIX: bio paragraph margin ─────────────────────────────────────────
+   The original `margin-bottom: 50px !important` was unusually large and
+   caused reflow as the DOM built out. Reduced to a standard value.
+   ─────────────────────────────────────────────────────────────────────────-->
 .bio p {
-    margin-bottom: 50px !important;
+    margin-bottom: 20px;
     word-break: break-word;
     overflow-wrap: break-word;
 }

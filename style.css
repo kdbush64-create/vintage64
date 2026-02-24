@@ -128,22 +128,15 @@ header {
 }
 
 /* ── CLS FIX: LOGO ───────────────────────────────────────────────────────────
-   The stylesheet loads via a non-blocking preload/onload swap, meaning CSS
-   arrives AFTER the browser's first paint. During that window, the browser
-   relies solely on the HTML width/height attributes to reserve space.
+   THE RULE: reserved space must exactly match rendered size.
 
-   THE RULE: CSS dimensions must not contradict HTML attributes.
-   HTML says width="300" height="300". So CSS must also resolve to 300px.
-
-   We use max-width: 300px (not width: 300px) so the image can scale down
-   on narrow mobile viewports naturally. aspect-ratio: 1/1 keeps the height
-   locked proportionally without needing an explicit px value that could
-   conflict. contain: layout prevents the image load event from triggering
-   ancestor reflows.
-
-   The inline style on the <img> tag in index.html provides the same
-   critical sizing BEFORE this stylesheet loads, eliminating the shift
-   window entirely.
+   - width/height HTML attributes (300x300) tell the browser the intrinsic size.
+   - aspect-ratio: 1/1 locks height proportionally as the image scales down.
+   - box-sizing: border-box ensures the 3px border is included WITHIN the
+     300px, not added on top of it (which made the image 306px and caused
+     a layout shift on load).
+   - contain: layout is intentionally OMITTED — it conflicts with aspect-ratio
+     and prevents the browser from using intrinsic dimensions to reserve space.
    ─────────────────────────────────────────────────────────────────────────-->
 .main-logo {
     width: 100%;
@@ -152,7 +145,7 @@ header {
     display: block;
     margin: 0 auto;
     border: 3px solid var(--border);
-    contain: layout;
+    box-sizing: border-box;
 }
 
 [data-theme='light'] .main-logo {
@@ -160,16 +153,17 @@ header {
 }
 
 /* ── CLS FIX: LOGO CONTAINER ─────────────────────────────────────────────────
-   min-height matches the HTML height="300" so the container never collapses
-   to zero between HTML parse and CSS application. Without this, even a
-   correctly-sized image can shift content below it during load.
+   min-height: 306px = image max-width (300px) + border top (3px) + border
+   bottom (3px). box-sizing: border-box on .main-logo keeps the image within
+   300px, but the container still needs to be sized to the full rendered height
+   including the border so content below never shifts when the image arrives.
    ─────────────────────────────────────────────────────────────────────────-->
 .logo-container {
     display: flex;
     justify-content: center;
     margin: 0 auto 20px;
     width: 100%;
-    min-height: 300px;
+    min-height: 306px;
 }
 
 .system-nav {
@@ -182,9 +176,8 @@ header {
     border-top: 1px dashed var(--border);
 }
 
-.system-nav a,
-.system-nav a:visited {
-    color: var(--data-blue) !important;
+.system-nav a {
+    color: var(--data-blue);
     text-decoration: none;
     font-weight: bold;
     padding: 5px 10px;
@@ -198,9 +191,8 @@ header {
 }
 
 /* Keep nav links amber in light mode to match the light theme palette */
-[data-theme="light"] .system-nav a,
-[data-theme="light"] .system-nav a:visited {
-    color: var(--primary) !important;
+[data-theme="light"] .system-nav a {
+    color: var(--primary);
 }
 
 [data-theme="light"] .system-nav a:hover {

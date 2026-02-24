@@ -179,6 +179,30 @@
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
 
+    <!-- ── CLS FIX: THEME DETECTION — MUST RUN BEFORE FIRST PAINT ────────────
+         Previously, theme detection lived in a <script> at the bottom of
+         <body>. On return visits with light mode saved, the browser would:
+           1. Paint the page in dark mode (default CSS)
+           2. Run the bottom script, switch to light mode
+           3. Repaint — causing a measurable layout shift on the button and
+              any element whose dimensions change between themes.
+
+         Moving this inline script to <head>, BEFORE any stylesheet or body
+         content, ensures the correct data-theme attribute is set on <html>
+         before the browser renders a single pixel. No repaint, no shift.
+         This script is intentionally NOT deferred — it must block briefly
+         to read localStorage and apply the theme synchronously.
+    ─────────────────────────────────────────────────────────────────────────-->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
     <!-- ── CLS CRITICAL INLINE STYLES ────────────────────────────────────────
          Because style.css loads non-blocking (preload/onload swap), there is
          a window between first paint and CSS application where the browser
@@ -593,10 +617,9 @@
 
     <script>
         // 1. THEME TOGGLE
+        // NOTE: Initial theme is applied synchronously in <head> before first paint.
+        // This handler only manages user-initiated changes after page load.
         const toggleBtn = document.getElementById('theme-toggle');
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
         toggleBtn.addEventListener('click', () => {
             const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);

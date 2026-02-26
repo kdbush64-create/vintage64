@@ -14,7 +14,7 @@
 
   <!--  BUSINESS SERVICES  -->
   <url>
-    <loc>https://vintage64tx.com/business.html</loc>
+    <loc>https://vintage64tx.com/business</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!--  CONTACT  -->
   <url>
-    <loc>https://vintage64tx.com/contact.html</loc>
+    <loc>https://vintage64tx.com/contact</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!--  SYSTEM LOGS  -->
   <url>
-    <loc>https://vintage64tx.com/logs.html</loc>
+    <loc>https://vintage64tx.com/logs</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -38,7 +38,7 @@
 
   <!--  PRIVACY POLICY  -->
   <url>
-    <loc>https://vintage64tx.com/privacy-policy.html</loc>
+    <loc>https://vintage64tx.com/privacy-policy</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

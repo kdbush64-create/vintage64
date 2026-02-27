@@ -85,7 +85,13 @@
         "jobTitle": "IT Consultant & Technical Product Manager",
         "knowsAbout": ["Linux","Cybersecurity","Agile","Cloud Computing","PC Repair","Mainframe Modernization","ITIL 4"]
       },
-      "sameAs": ["https://www.facebook.com/profile.php?id=61588403712210","https://x.com/grumpy_texan","https://www.instagram.com/vintage64tx/","https://share.google/Qo8gSW6aXlM2lR7Bm","https://v64otd.com"]
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61588403712210",
+        "https://x.com/grumpy_texan",
+        "https://www.instagram.com/vintage64tx/",
+        "https://share.google/Qo8gSW6aXlM2lR7Bm",
+        "https://v64otd.com"
+      ]
     }
     </script>
 
@@ -185,7 +191,6 @@
     </script>
 
     <style>
-        /* CRITICAL: prevents browser-default link colors before style.css loads. */
         a { color: #ffb000; text-decoration: none; }
         a:visited { color: #ffb000; }
         .system-nav a { color: #00d4ff; }
@@ -350,38 +355,158 @@
             color: var(--primary);
         }
 
-        /* WATCH TOWER CHANNEL BUTTONS */
-        .watchtower-channels {
+        /* ── WATCH TOWER TRANSMISSION SECTION ───── */
+        .watchtower-section {
+            margin-top: 40px;
+            border-top: 1px dashed var(--border);
+            padding-top: 30px;
+        }
+
+        .watchtower-frame {
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            background: rgba(0, 255, 65, 0.018);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Scanline texture */
+        .watchtower-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(0, 255, 65, 0.01) 3px,
+                rgba(0, 255, 65, 0.01) 4px
+            );
+            pointer-events: none;
+        }
+
+        .wt-header {
+            background: rgba(0, 255, 65, 0.07);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 9px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wt-signal {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            flex-shrink: 0;
+            animation: wt-blink 1.4s ease-in-out infinite;
+        }
+        @keyframes wt-blink { 0%,100%{opacity:1;} 50%{opacity:0.15;} }
+
+        .wt-header-text {
+            font-size: 0.68rem;
+            letter-spacing: 2.5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            flex: 1;
+        }
+
+        .wt-badge {
+            font-size: 0.58rem;
+            letter-spacing: 1.5px;
+            color: rgba(0,255,65,0.5);
+            border: 1px solid rgba(0,255,65,0.2);
+            padding: 2px 7px;
+            text-transform: uppercase;
+        }
+
+        .wt-body {
+            padding: 18px 20px 16px 20px;
+            position: relative;
+        }
+
+        .wt-origin {
+            font-size: 0.62rem;
+            color: rgba(0,255,65,0.4);
+            letter-spacing: 1.5px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 14px;
+        }
+
+        .wt-description {
+            font-size: 0.85rem;
+            color: var(--primary-dim);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .wt-description strong {
+            color: var(--primary);
+        }
+
+        .wt-channels {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 14px;
+            gap: 7px;
+            margin-bottom: 18px;
         }
-        .channel-btn {
+        .wt-channel {
+            font-size: 0.62rem;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            border: 1px solid rgba(255, 176, 0, 0.2);
+            color: var(--primary-dim);
+            text-transform: uppercase;
+            background: rgba(255, 176, 0, 0.03);
+        }
+
+        .wt-cta {
             display: inline-block;
-            border: 1px solid #00d4ff;
-            padding: 6px 14px;
+            color: var(--accent);
+            text-decoration: none;
             font-size: 0.78rem;
-            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid rgba(0, 255, 65, 0.4);
+            padding: 8px 18px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            background: rgba(0, 255, 65, 0.04);
+            position: relative;
+        }
+        .wt-cta:hover {
+            background: rgba(0, 255, 65, 0.09);
+            border-color: var(--accent);
+            box-shadow: 0 0 14px rgba(0, 255, 65, 0.18);
+            color: var(--accent);
+        }
+        .wt-cta:visited { color: var(--accent); }
+
+        .wt-footer {
+            border-top: 1px solid rgba(0,255,65,0.12);
+            padding: 7px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6rem;
+            color: rgba(0,255,65,0.25);
             letter-spacing: 1px;
-            font-family: monospace;
-            text-decoration: none !important;
-            color: #00d4ff !important;
-            background: transparent;
-            transition: background 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
+            flex-wrap: wrap;
+            gap: 4px;
         }
-        .channel-btn:visited {
-            color: #00d4ff !important;
+
+        [data-theme="light"] .watchtower-frame {
+            border-color: rgba(0,133,34,0.3);
+            background: rgba(0,133,34,0.02);
         }
-        .channel-btn:hover {
-            background: rgba(0, 212, 255, 0.12);
-            box-shadow: 0 0 8px rgba(0, 212, 255, 0.25);
-        }
+        [data-theme="light"] .wt-header { background: rgba(0,133,34,0.06); border-color: rgba(0,133,34,0.2); }
+        [data-theme="light"] .wt-header-text { color: var(--accent); }
+        [data-theme="light"] .wt-origin { color: rgba(0,133,34,0.5); }
+        [data-theme="light"] .wt-footer { color: rgba(0,133,34,0.3); border-color: rgba(0,133,34,0.12); }
 
         @media (max-width: 480px) {
             .stat-number { font-size: 1.2rem; }
             .cred-grid { grid-template-columns: 1fr; }
+            .wt-channels { gap: 5px; }
         }
     </style>
 </head>
@@ -423,7 +548,7 @@
                 <a href="business.html">[ BUSINESS ]</a>
                 <a href="logs.html">[ LOGS ]</a>
                 <a href="contact.html">[ CONTACT ]</a>
-                <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer">[ BLOG ]</a>
+                <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer">[ WATCH&nbsp;TOWER ]</a>
             </nav>
         </header>
 
@@ -563,40 +688,46 @@
                 </p>
             </section>
 
-            <!-- INCOMING TRANSMISSION: THE WATCH TOWER -->
-            <section aria-label="The Watch Tower by Old Texas Dude" style="margin-top: 40px; border-top: 1px dashed var(--border); padding-top: 30px;">
-                <h2>&gt; INCOMING_TRANSMISSION</h2>
-                <p style="font-size: 0.82rem; color: var(--primary-dim); margin-bottom: 18px;">
-                    Outside the office, the same operator runs <strong style="color: var(--primary);">The Watch Tower</strong> — an unfiltered field log covering the things that matter when you're not staring at a terminal. Gear reviews. Road recon. Restaurant intel. Heritage recipes. Rants. No corporate filter. No algorithm. Just honest takes from Fort Worth, TX.
-                </p>
+            <!-- THE WATCH TOWER — V64OTD.COM CROSS-LINK -->
+            <section class="watchtower-section" aria-label="The Watch Tower — V64OTD personal blog">
+                <h2>&gt; <span class="highlight-blue">EXTERNAL_NODE</span> // THE WATCH TOWER</h2>
 
-                <div class="tech-specs" style="margin-bottom: 20px;">
-                    <p style="margin: 0 0 12px 0; font-size: 0.85rem;"><strong>ACTIVE CHANNELS — click to tune in:</strong></p>
-                    <div class="watchtower-channels">
-                        <a href="https://v64otd.com?channel=dispatch"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ THE DISPATCH ]</a>
-                        <a href="https://v64otd.com?channel=gear"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ GEAR ]</a>
-                        <a href="https://v64otd.com?channel=transit"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ TRANSIT ]</a>
-                        <a href="https://v64otd.com?channel=coord"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ COORD ]</a>
-                        <a href="https://v64otd.com?channel=table"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ THE TABLE ]</a>
-                        <a href="https://v64otd.com?channel=chow"
-                           target="_blank" rel="noopener noreferrer"
-                           class="channel-btn">[ CHOW ]</a>
+                <div class="watchtower-frame">
+                    <div class="wt-header">
+                        <div class="wt-signal"></div>
+                        <div class="wt-header-text">SIGNAL ACQUIRED — V64OTD.COM // SAME OPERATOR. DIFFERENT FREQUENCY.</div>
+                        <div class="wt-badge">LIVE</div>
+                    </div>
+
+                    <div class="wt-body">
+                        <div class="wt-origin">// ORIGIN: v64otd.com &nbsp;|&nbsp; OPERATOR: OLD TEXAS DUDE&trade; &nbsp;|&nbsp; CLASSIFICATION: UNFILTERED</div>
+
+                        <p class="wt-description">
+                            The work doesn't stop when the client engagement ends. <strong>The Watch Tower</strong> is the personal field log of the same operator behind Vintage64TX — written without a client brief, without an SEO checklist, and without a filter. It is what happens when a <strong>grumpy Texan with 15 years of enterprise scars</strong> has something to say about the road, the food, the gear, or the state of the world.
+                        </p>
+                        <p class="wt-description">
+                            Expect gear that earns its place — or gets sent back. Road recon on Texas highways that TXDOT would rather you not think about. Restaurant reviews with no patience for mediocre brisket. Heritage recipes that don't need a food blogger's lighting setup. And the occasional dispatch when something in the tech world is too broken or too absurd to ignore.
+                        </p>
+
+                        <div class="wt-channels" aria-label="Content channels on The Watch Tower">
+                            <span class="wt-channel">Gear Reviews</span>
+                            <span class="wt-channel">Road Recon</span>
+                            <span class="wt-channel">Restaurant Intel</span>
+                            <span class="wt-channel">Field Recipes</span>
+                            <span class="wt-channel">Dispatch</span>
+                            <span class="wt-channel">Coordinates</span>
+                        </div>
+
+                        <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer" class="wt-cta">
+                            ACCESS THE WATCH TOWER &#8599;
+                        </a>
+                    </div>
+
+                    <div class="wt-footer">
+                        <span>NETWORK_NODE: v64otd.com</span>
+                        <span>SAME BUNKER // DIFFERENT CHANNEL</span>
                     </div>
                 </div>
-
-                <p style="font-size: 0.82rem; color: var(--primary-dim); margin: 0;">
-                    Same operator. Different frequency. &rarr; <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">v64otd.com</a>
-                </p>
             </section>
 
             <!-- FAQ -->
@@ -634,6 +765,7 @@
                     <a href="https://x.com/Vintage64TX" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on X (Twitter)">[X]</a>
                     <a href="https://www.instagram.com/vintage64tx/" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Instagram">[INSTAGRAM]</a>
                     <a href="https://share.google/Qo8gSW6aXlM2lR7Bm" target="_blank" rel="noopener noreferrer" aria-label="Vintage64TX on Google Business">[GOOGLE]</a>
+                    <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer" aria-label="The Watch Tower — Old Texas Dude blog">[WATCH&nbsp;TOWER]</a>
                 </div>
                 <div class="footer-line">
                     SYSTEM_VER: 2.2.0 &nbsp;|&nbsp; STATUS: <span style="color:#00ff41;">STABLE</span> &nbsp;|&nbsp;
@@ -662,7 +794,7 @@
             const keywords = [
                 "WHO_AM_I", "CREDENTIALS", "CAREER_HIGHLIGHTS",
                 "Agile Leadership", "AWS Cloud", "Security",
-                "VINTAGE64TX_STANDARD", "INCOMING_TRANSMISSION", "FAQ", "Cloudflare", "The Watch Tower"
+                "VINTAGE64TX_STANDARD", "FAQ", "Cloudflare"
             ];
             const container = document.querySelector('main');
             if (!container) return;

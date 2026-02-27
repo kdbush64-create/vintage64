@@ -355,7 +355,7 @@
             color: var(--primary);
         }
 
-        /* ── WATCH TOWER TRANSMISSION SECTION ───── */
+        /* ── WATCH TOWER SECTION ── */
         .watchtower-section {
             margin-top: 40px;
             border-top: 1px dashed var(--border);
@@ -363,8 +363,8 @@
         }
 
         .watchtower-frame {
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            background: rgba(0, 255, 65, 0.018);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.018);
             position: relative;
             overflow: hidden;
         }
@@ -378,15 +378,15 @@
                 0deg,
                 transparent,
                 transparent 3px,
-                rgba(0, 255, 65, 0.01) 3px,
-                rgba(0, 255, 65, 0.01) 4px
+                rgba(0, 212, 255, 0.01) 3px,
+                rgba(0, 212, 255, 0.01) 4px
             );
             pointer-events: none;
         }
 
         .wt-header {
-            background: rgba(0, 255, 65, 0.07);
-            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 212, 255, 0.07);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             padding: 9px 16px;
             display: flex;
             align-items: center;
@@ -397,8 +397,8 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent);
+            background: #00d4ff;
+            box-shadow: 0 0 8px #00d4ff;
             flex-shrink: 0;
             animation: wt-blink 1.4s ease-in-out infinite;
         }
@@ -407,7 +407,7 @@
         .wt-header-text {
             font-size: 0.68rem;
             letter-spacing: 2.5px;
-            color: var(--accent);
+            color: #00d4ff;
             text-transform: uppercase;
             flex: 1;
         }
@@ -415,8 +415,8 @@
         .wt-badge {
             font-size: 0.58rem;
             letter-spacing: 1.5px;
-            color: rgba(0,255,65,0.5);
-            border: 1px solid rgba(0,255,65,0.2);
+            color: rgba(0, 212, 255, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
             padding: 2px 7px;
             text-transform: uppercase;
         }
@@ -428,7 +428,7 @@
 
         .wt-origin {
             font-size: 0.62rem;
-            color: rgba(0,255,65,0.4);
+            color: rgba(0, 212, 255, 0.4);
             letter-spacing: 1.5px;
             font-family: 'Courier New', monospace;
             margin-bottom: 14px;
@@ -444,69 +444,90 @@
             color: var(--primary);
         }
 
+        /* Channel buttons — data-blue linked */
         .wt-channels {
             display: flex;
             flex-wrap: wrap;
-            gap: 7px;
+            gap: 8px;
             margin-bottom: 18px;
         }
-        .wt-channel {
-            font-size: 0.62rem;
+        .wt-channel-btn {
+            display: inline-block;
+            font-size: 0.68rem;
             letter-spacing: 1.5px;
-            padding: 3px 10px;
-            border: 1px solid rgba(255, 176, 0, 0.2);
-            color: var(--primary-dim);
+            padding: 5px 12px;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            color: #00d4ff !important;
+            text-decoration: none !important;
             text-transform: uppercase;
-            background: rgba(255, 176, 0, 0.03);
+            background: rgba(0, 212, 255, 0.04);
+            font-family: 'Courier New', monospace;
+            transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .wt-channel-btn:visited { color: #00d4ff !important; }
+        .wt-channel-btn:hover {
+            background: rgba(0, 212, 255, 0.12);
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
         }
 
+        /* CTA — data-blue */
         .wt-cta {
             display: inline-block;
-            color: var(--accent);
-            text-decoration: none;
+            color: #00d4ff !important;
+            text-decoration: none !important;
             font-size: 0.78rem;
             letter-spacing: 2px;
-            border: 1px solid rgba(0, 255, 65, 0.4);
-            padding: 8px 18px;
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            padding: 9px 20px;
             text-transform: uppercase;
             transition: all 0.2s ease;
-            background: rgba(0, 255, 65, 0.04);
-            position: relative;
+            background: rgba(0, 212, 255, 0.04);
+            font-family: 'Courier New', monospace;
         }
+        .wt-cta:visited { color: #00d4ff !important; }
         .wt-cta:hover {
-            background: rgba(0, 255, 65, 0.09);
-            border-color: var(--accent);
-            box-shadow: 0 0 14px rgba(0, 255, 65, 0.18);
-            color: var(--accent);
+            background: rgba(0, 212, 255, 0.12);
+            border-color: #00d4ff;
+            box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
         }
-        .wt-cta:visited { color: var(--accent); }
 
         .wt-footer {
-            border-top: 1px solid rgba(0,255,65,0.12);
+            border-top: 1px solid rgba(0, 212, 255, 0.12);
             padding: 7px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.6rem;
-            color: rgba(0,255,65,0.25);
+            color: rgba(0, 212, 255, 0.25);
             letter-spacing: 1px;
             flex-wrap: wrap;
             gap: 4px;
         }
 
         [data-theme="light"] .watchtower-frame {
-            border-color: rgba(0,133,34,0.3);
-            background: rgba(0,133,34,0.02);
+            border-color: rgba(0, 100, 180, 0.3);
+            background: rgba(0, 100, 180, 0.02);
         }
-        [data-theme="light"] .wt-header { background: rgba(0,133,34,0.06); border-color: rgba(0,133,34,0.2); }
-        [data-theme="light"] .wt-header-text { color: var(--accent); }
-        [data-theme="light"] .wt-origin { color: rgba(0,133,34,0.5); }
-        [data-theme="light"] .wt-footer { color: rgba(0,133,34,0.3); border-color: rgba(0,133,34,0.12); }
+        [data-theme="light"] .wt-header {
+            background: rgba(0, 100, 180, 0.06);
+            border-color: rgba(0, 100, 180, 0.2);
+        }
+        [data-theme="light"] .wt-header-text { color: #0070b8; }
+        [data-theme="light"] .wt-signal { background: #0070b8; box-shadow: 0 0 8px #0070b8; }
+        [data-theme="light"] .wt-origin { color: rgba(0, 100, 180, 0.5); }
+        [data-theme="light"] .wt-footer { color: rgba(0, 100, 180, 0.3); border-color: rgba(0, 100, 180, 0.12); }
+        [data-theme="light"] .wt-channel-btn { color: #0070b8 !important; border-color: rgba(0, 100, 180, 0.4); background: rgba(0, 100, 180, 0.04); }
+        [data-theme="light"] .wt-channel-btn:hover { background: rgba(0, 100, 180, 0.1); border-color: #0070b8; box-shadow: 0 0 10px rgba(0, 100, 180, 0.2); }
+        [data-theme="light"] .wt-cta { color: #0070b8 !important; border-color: rgba(0, 100, 180, 0.5); background: rgba(0, 100, 180, 0.04); }
+        [data-theme="light"] .wt-cta:hover { background: rgba(0, 100, 180, 0.1); border-color: #0070b8; box-shadow: 0 0 16px rgba(0, 100, 180, 0.2); }
+        [data-theme="light"] .wt-badge { color: rgba(0, 100, 180, 0.5); border-color: rgba(0, 100, 180, 0.2); }
 
         @media (max-width: 480px) {
             .stat-number { font-size: 1.2rem; }
             .cred-grid { grid-template-columns: 1fr; }
-            .wt-channels { gap: 5px; }
+            .wt-channels { gap: 6px; }
+            .wt-channel-btn { font-size: 0.62rem; padding: 4px 10px; }
         }
     </style>
 </head>
@@ -688,7 +709,7 @@
                 </p>
             </section>
 
-            <!-- THE WATCH TOWER — V64OTD.COM CROSS-LINK -->
+            <!-- THE WATCH TOWER — EXTERNAL NODE -->
             <section class="watchtower-section" aria-label="The Watch Tower — V64OTD personal blog">
                 <h2>&gt; <span class="highlight-blue">EXTERNAL_NODE</span> // THE WATCH TOWER</h2>
 
@@ -710,12 +731,12 @@
                         </p>
 
                         <div class="wt-channels" aria-label="Content channels on The Watch Tower">
-                            <span class="wt-channel">Gear Reviews</span>
-                            <span class="wt-channel">Road Recon</span>
-                            <span class="wt-channel">Restaurant Intel</span>
-                            <span class="wt-channel">Field Recipes</span>
-                            <span class="wt-channel">Dispatch</span>
-                            <span class="wt-channel">Coordinates</span>
+                            <a href="https://v64otd.com?channel=gear"       target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ GEAR REVIEWS ]</a>
+                            <a href="https://v64otd.com?channel=transit"    target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ ROAD RECON ]</a>
+                            <a href="https://v64otd.com?channel=table"      target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ RESTAURANT INTEL ]</a>
+                            <a href="https://v64otd.com?channel=chow"       target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ FIELD RECIPES ]</a>
+                            <a href="https://v64otd.com?channel=dispatch"   target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ DISPATCH ]</a>
+                            <a href="https://v64otd.com?channel=coord"      target="_blank" rel="noopener noreferrer" class="wt-channel-btn">[ COORDINATES ]</a>
                         </div>
 
                         <a href="https://v64otd.com" target="_blank" rel="noopener noreferrer" class="wt-cta">

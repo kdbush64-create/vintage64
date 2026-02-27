@@ -363,8 +363,8 @@
         }
 
         .watchtower-frame {
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            background: rgba(0, 212, 255, 0.018);
+            border: 1px solid rgba(0, 255, 65, 0.5);
+            background: rgba(0, 255, 65, 0.018);
             position: relative;
             overflow: hidden;
         }
@@ -378,15 +378,15 @@
                 0deg,
                 transparent,
                 transparent 3px,
-                rgba(0, 212, 255, 0.01) 3px,
-                rgba(0, 212, 255, 0.01) 4px
+                rgba(0, 255, 65, 0.01) 3px,
+                rgba(0, 255, 65, 0.01) 4px
             );
             pointer-events: none;
         }
 
         .wt-header {
-            background: rgba(0, 212, 255, 0.07);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            background: rgba(0, 255, 65, 0.07);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
             padding: 9px 16px;
             display: flex;
             align-items: center;
@@ -397,8 +397,8 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #00d4ff;
-            box-shadow: 0 0 8px #00d4ff;
+            background: #00ff41;
+            box-shadow: 0 0 8px #00ff41;
             flex-shrink: 0;
             animation: wt-blink 1.4s ease-in-out infinite;
         }
@@ -407,7 +407,7 @@
         .wt-header-text {
             font-size: 0.68rem;
             letter-spacing: 2.5px;
-            color: #00d4ff;
+            color: #00ff41;
             text-transform: uppercase;
             flex: 1;
         }
@@ -415,8 +415,8 @@
         .wt-badge {
             font-size: 0.58rem;
             letter-spacing: 1.5px;
-            color: rgba(0, 212, 255, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: rgba(0, 255, 65, 0.6);
+            border: 1px solid rgba(0, 255, 65, 0.3);
             padding: 2px 7px;
             text-transform: uppercase;
         }
@@ -428,7 +428,7 @@
 
         .wt-origin {
             font-size: 0.62rem;
-            color: rgba(0, 212, 255, 0.4);
+            color: rgba(0, 255, 65, 0.5);
             letter-spacing: 1.5px;
             font-family: 'Courier New', monospace;
             margin-bottom: 14px;
@@ -444,7 +444,7 @@
             color: var(--primary);
         }
 
-        /* Channel buttons — data-blue linked */
+        /* Channel buttons — neon-green */
         .wt-channels {
             display: flex;
             flex-wrap: wrap;
@@ -456,7 +456,7 @@
             font-size: 0.68rem;
             letter-spacing: 1.5px;
             padding: 5px 12px;
-            border: 1px solid rgba(0, 212, 255, 0.4);
+            border: 1px solid rgba(0, 255, 65, 0.4);
             color: #00d4ff !important;
             text-decoration: none !important;
             text-transform: uppercase;
@@ -493,35 +493,35 @@
         }
 
         .wt-footer {
-            border-top: 1px solid rgba(0, 212, 255, 0.12);
+            border-top: 1px solid rgba(0, 255, 65, 0.2);
             padding: 7px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.6rem;
-            color: rgba(0, 212, 255, 0.25);
+            color: rgba(0, 255, 65, 0.35);
             letter-spacing: 1px;
             flex-wrap: wrap;
             gap: 4px;
         }
 
         [data-theme="light"] .watchtower-frame {
-            border-color: rgba(0, 100, 180, 0.3);
-            background: rgba(0, 100, 180, 0.02);
+            border-color: rgba(0, 180, 60, 0.4);
+            background: rgba(0, 180, 60, 0.02);
         }
         [data-theme="light"] .wt-header {
-            background: rgba(0, 100, 180, 0.06);
-            border-color: rgba(0, 100, 180, 0.2);
+            background: rgba(0, 180, 60, 0.06);
+            border-color: rgba(0, 180, 60, 0.25);
         }
-        [data-theme="light"] .wt-header-text { color: #0070b8; }
-        [data-theme="light"] .wt-signal { background: #0070b8; box-shadow: 0 0 8px #0070b8; }
-        [data-theme="light"] .wt-origin { color: rgba(0, 100, 180, 0.5); }
-        [data-theme="light"] .wt-footer { color: rgba(0, 100, 180, 0.3); border-color: rgba(0, 100, 180, 0.12); }
+        [data-theme="light"] .wt-header-text { color: #007a20; }
+        [data-theme="light"] .wt-signal { background: #007a20; box-shadow: 0 0 8px #007a20; }
+        [data-theme="light"] .wt-origin { color: rgba(0, 130, 40, 0.55); }
+        [data-theme="light"] .wt-footer { color: rgba(0, 130, 40, 0.4); border-color: rgba(0, 130, 40, 0.18); }
+        [data-theme="light"] .wt-badge { color: rgba(0, 130, 40, 0.55); border-color: rgba(0, 130, 40, 0.25); }
         [data-theme="light"] .wt-channel-btn { color: #0070b8 !important; border-color: rgba(0, 100, 180, 0.4); background: rgba(0, 100, 180, 0.04); }
         [data-theme="light"] .wt-channel-btn:hover { background: rgba(0, 100, 180, 0.1); border-color: #0070b8; box-shadow: 0 0 10px rgba(0, 100, 180, 0.2); }
         [data-theme="light"] .wt-cta { color: #0070b8 !important; border-color: rgba(0, 100, 180, 0.5); background: rgba(0, 100, 180, 0.04); }
         [data-theme="light"] .wt-cta:hover { background: rgba(0, 100, 180, 0.1); border-color: #0070b8; box-shadow: 0 0 16px rgba(0, 100, 180, 0.2); }
-        [data-theme="light"] .wt-badge { color: rgba(0, 100, 180, 0.5); border-color: rgba(0, 100, 180, 0.2); }
 
         @media (max-width: 480px) {
             .stat-number { font-size: 1.2rem; }

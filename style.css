@@ -263,7 +263,6 @@ a.brand:hover { color: var(--text) !important; text-decoration: none !important;
 
 .hero-media {
   border-radius: var(--radius);
-  overflow: hidden;
   border: 1px solid var(--border);
   background: var(--bg-elevated);
   min-height: 260px;
@@ -724,6 +723,18 @@ footer {
 
 @media (max-width: 900px) {
   .wrap { padding: 0 24px; }
+
+  /*
+   * Remove backdrop-filter from header on mobile.
+   * WebKit bug: backdrop-filter creates a stacking context that traps
+   * position:fixed children, preventing the nav drawer from painting
+   * above page content regardless of z-index.
+   */
+  header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg);
+  }
 
   /* Hero */
   .hero { padding: 48px 0 52px; }

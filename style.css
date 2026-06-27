@@ -110,7 +110,7 @@ p { color: var(--text-muted); }
 header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: rgba(11,14,18,0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -261,7 +261,6 @@ a.brand:hover { color: var(--text) !important; text-decoration: none !important;
 }
 
 .hero-media {
-  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -779,7 +778,7 @@ footer {
     gap: 4px;
     border-top: 1px solid var(--border);
     overflow-y: auto;
-    z-index: 99;
+    z-index: 999;
   }
   .nav-links.open { display: flex; }
 

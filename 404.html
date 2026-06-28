@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | Vintage64TX</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Head back to Vintage64TX home, services, or contact.">
+  <meta name="author" content="DeWayne Bush – Vintage64TX">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#3E7BFA">
+  <link rel="icon" type="image/png" href="favicon-texas-v.png">
+  <link rel="apple-touch-icon" href="favicon-texas-v.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a href="/" class="brand" aria-label="Vintage64TX home">VINTAGE64<span class="tx">TX</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn btn-rust">Contact Us</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- 404 HERO -->
+    <section class="hero" aria-label="Page not found">
+      <div class="wrap" style="max-width:760px;">
+        <div class="eyebrow">ERROR 404</div>
+        <h1>This page doesn't exist.<br><span class="accent">Unlike your old PC.</span></h1>
+        <p class="sub">Whatever you were looking for got moved, renamed, or never existed in the first place. The rest of the site's still right where it should be — here's where to go instead.</p>
+        <div class="hero-ctas">
+          <a href="/" class="btn btn-rust btn-lg">Back to Home &#8594;</a>
+          <a href="services.html" class="btn btn-ghost btn-lg">View Services</a>
+        </div>
+        <div class="trust-mini">LOOKING FOR SOMETHING SPECIFIC? &nbsp;&middot;&nbsp; <a href="contact.html" style="color:inherit;text-decoration:underline;">SEND A MESSAGE</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">VINTAGE64<span class="tx">TX</span></div>
+          <p>Linux conversions for hardware Microsoft gave up on — serving North Fort Worth, Keller, Southlake, Roanoke, Haslet, Watauga, Grapevine &amp; North Richland Hills — plus static websites small businesses actually own, nationwide.</p>
+        </div>
+        <div class="footer-col">
+          <h5>SERVICES</h5>
+          <a href="services.html#matrix">Phoenix Conversion</a>
+          <a href="services.html#matrix">Website Design</a>
+          <a href="about.html">About DeWayne</a>
+        </div>
+        <div class="footer-col">
+          <h5>GET IN TOUCH</h5>
+          <a href="contact.html">Contact Page</a>
+          <a href="#" class="email-link" data-u="dewayne" data-d="vintage64tx" data-t="com">[email protected]</a>
+          <a href="#" class="phone-link" data-cc="1" data-ac="469" data-pre="665" data-line="9191">CALL/TEXT</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <h5 style="margin-top:20px;">FOLLOW</h5>
+          <a href="https://www.facebook.com/profile.php?id=61588403712210" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/vintage64tx/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://share.google/Qo8gSW6aXlM2lR7Bm" target="_blank" rel="noopener noreferrer">Google Business</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 VINTAGE64TX. ALL RIGHTS RESERVED.</span>
+        <span>BUILT WITHOUT A FRAMEWORK &mdash; STATIC HTML, ON PURPOSE.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+  <script>
+    (function() {
+      // Mobile nav toggle
+      var toggle = document.getElementById('menuToggle');
+      var links = document.getElementById('navLinks');
+      toggle.addEventListener('click', function() {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+      });
+      links.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // Email obfuscation
+      document.querySelectorAll('.email-link').forEach(function(el) {
+        var addr = el.getAttribute('data-u') + '@' + el.getAttribute('data-d') + '.' + el.getAttribute('data-t');
+        el.href = 'mailto:' + addr;
+        el.textContent = addr;
+      });
+      // Phone obfuscation
+      document.querySelectorAll('.phone-link').forEach(function(el) {
+        var cc = el.getAttribute('data-cc');
+        var ac = el.getAttribute('data-ac');
+        var pre = el.getAttribute('data-pre');
+        var line = el.getAttribute('data-line');
+        el.href = 'tel:+' + cc + ac + pre + line;
+        el.textContent = ac + '-' + pre + '-' + line;
+      });
+    })();
+  </script>
+</body>
+</html>

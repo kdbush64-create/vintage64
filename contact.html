@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Vintage64TX — Fort Worth, TX</title>
-  <meta name="description" content="Contact DeWayne Bush at Vintage64TX. Linux migration and website design for small businesses in the DFW Metroplex. Flat-fee, no recurring charges.">
+  <meta name="description" content="Contact DeWayne Bush at Vintage64TX. Linux migration for North Fort Worth, Keller, Southlake &amp; North Tarrant County, plus website design nationwide.">
   <meta name="author" content="DeWayne Bush – Vintage64TX">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#3E7BFA">
@@ -14,6 +14,8 @@
   <meta property="og:title" content="Contact | Vintage64TX — Fort Worth, TX">
   <meta property="og:description" content="Get in touch with DeWayne Bush. Linux migration and static website design, DFW Metroplex.">
   <meta property="og:image" content="https://vintage64tx.com/media/logo.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://vintage64tx.com/contact.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact | Vintage64TX">
@@ -65,7 +67,7 @@
             <a href="services.html" class="btn btn-ghost btn-lg">View Services</a>
           </div>
           <div class="scope-row">
-            <span class="badge rust">DFW DROP-OFF</span>
+            <span class="badge rust">NORTH TARRANT DROP-OFF</span>
             <span class="badge">REMOTE AVAILABLE</span>
             <span class="badge">FLAT-FEE QUOTES</span>
           </div>
@@ -90,6 +92,10 @@
             <span class="tag mono">EMAIL</span>
             <a href="#" class="email-link" data-u="dewayne" data-d="vintage64tx" data-t="com">[email protected]</a>
           </div>
+          <div class="direct-line" style="margin-top:16px;">
+            <span class="tag mono">PHONE</span>
+            <a href="#" class="phone-link" data-cc="1" data-ac="469" data-pre="665" data-line="9191">CALL/TEXT</a>
+          </div>
           <div class="note-box">
             <p><strong>Typical response time: 24&ndash;48 hours.</strong> I'm a one-person shop — I'll get back to you as soon as I can, and I won't leave you hanging.</p>
           </div>
@@ -99,7 +105,7 @@
           </div>
           <div class="note-box" style="margin-top:16px;">
             <span class="tag mono" style="margin-bottom:8px;display:block;">SERVICE AREA</span>
-            <p>Linux conversions require DFW-area drop-off. Website projects are fully remote — anywhere in the country.</p>
+            <p>Linux conversions are available for drop-off in North Fort Worth, Keller, Southlake, Roanoke, Haslet, Watauga, Grapevine, and North Richland Hills. Website projects are fully remote — anywhere in the country.</p>
           </div>
         </aside>
 
@@ -162,7 +168,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="brand">VINTAGE64<span class="tx">TX</span></div>
-          <p>Linux conversions for hardware Microsoft gave up on, and static websites small businesses actually own. DFW Metroplex and beyond.</p>
+          <p>Linux conversions for hardware Microsoft gave up on — serving North Fort Worth, Keller, Southlake, Roanoke, Haslet, Watauga, Grapevine &amp; North Richland Hills — plus static websites small businesses actually own, nationwide.</p>
         </div>
         <div class="footer-col">
           <h5>SERVICES</h5>
@@ -174,6 +180,7 @@
           <h5>GET IN TOUCH</h5>
           <a href="contact.html">Contact Page</a>
           <a href="#" class="email-link" data-u="dewayne" data-d="vintage64tx" data-t="com">[email protected]</a>
+          <a href="#" class="phone-link" data-cc="1" data-ac="469" data-pre="665" data-line="9191">CALL/TEXT</a>
           <a href="privacy-policy.html">Privacy Policy</a>
           <h5 style="margin-top:20px;">FOLLOW</h5>
           <a href="https://www.facebook.com/profile.php?id=61588403712210" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -213,6 +220,16 @@
       var addr = el.getAttribute('data-u') + '@' + el.getAttribute('data-d') + '.' + el.getAttribute('data-t');
       el.href = 'mailto:' + addr;
       el.textContent = addr;
+    });
+
+    // Phone obfuscation
+    document.querySelectorAll('.phone-link').forEach(function(el) {
+      var cc = el.getAttribute('data-cc');
+      var ac = el.getAttribute('data-ac');
+      var pre = el.getAttribute('data-pre');
+      var line = el.getAttribute('data-line');
+      el.href = 'tel:+' + cc + ac + pre + line;
+      el.textContent = ac + '-' + pre + '-' + line;
     });
 
     // Contact form submission

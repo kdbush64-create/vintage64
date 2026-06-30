@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background: near-black slate -->
+  <rect width="32" height="32" rx="3" fill="#0B0E12"/>
+
+  <!-- Chip body -->
+  <rect x="9" y="9" width="14" height="14" rx="1" fill="#12161C" stroke="#3E7BFA" stroke-width="1"/>
+
+  <!-- Internal die grid lines — subtle -->
+  <line x1="13" y1="9" x2="13" y2="23" stroke="#232A33" stroke-width="0.5"/>
+  <line x1="16" y1="9" x2="16" y2="23" stroke="#232A33" stroke-width="0.5"/>
+  <line x1="19" y1="9" x2="19" y2="23" stroke="#232A33" stroke-width="0.5"/>
+  <line x1="9"  y1="13" x2="23" y2="13" stroke="#232A33" stroke-width="0.5"/>
+  <line x1="9"  y1="16" x2="23" y2="16" stroke="#232A33" stroke-width="0.5"/>
+  <line x1="9"  y1="19" x2="23" y2="19" stroke="#232A33" stroke-width="0.5"/>
+
+  <!-- Contact pads — TOP (3 pads) -->
+  <rect x="11" y="6" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+  <rect x="14.75" y="6" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+  <rect x="18.5" y="6" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+
+  <!-- Contact pads — BOTTOM (3 pads) -->
+  <rect x="11" y="23.5" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+  <rect x="14.75" y="23.5" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+  <rect x="18.5" y="23.5" width="2.5" height="2.5" rx="0.5" fill="#3E7BFA"/>
+
+  <!-- Contact pads — LEFT (3 pads) -->
+  <rect x="6" y="11" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+  <rect x="6" y="14.75" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+  <rect x="6" y="18.5" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+
+  <!-- Contact pads — RIGHT (3 pads) -->
+  <rect x="23.5" y="11" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+  <rect x="23.5" y="14.75" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+  <rect x="23.5" y="18.5" width="2.5" height="2.5" rx="0.5" fill="#C1572E"/>
+
+  <!-- "TX" burned into center of die -->
+  <text x="10.5" y="18.5" font-family="monospace" font-size="7" font-weight="700" fill="#3E7BFA">T</text>
+  <text x="16" y="18.5" font-family="monospace" font-size="7" font-weight="700" fill="#C1572E">X</text>
+</svg>

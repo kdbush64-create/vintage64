@@ -2,7 +2,6 @@
 # Controls HTTP response headers for all routes on vintage64tx.com.
 # Cloudflare Pages reads this file automatically from the repo root.
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
-
 # ── Global security headers (applied to every page) ──────────────────────────
 /*
   X-Content-Type-Options: nosniff
@@ -10,17 +9,14 @@
   Referrer-Policy: no-referrer-when-downgrade
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *.googleusercontent.com; connect-src 'self' PLACEHOLDER_WORKER_URL cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' PLACEHOLDER_WORKER_URL;
-
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *.googleusercontent.com; connect-src 'self' https://vintage64tx-worker.kdbush64.workers.dev cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://vintage64tx-worker.kdbush64.workers.dev;
 # ── HTML pages: short cache so updates deploy immediately ────────────────────
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
-
 # ── CSS: keep at 1 hour to match HTML — style.css is not filename-versioned.
 #    If you add a ?v=x query string to <link> tags, bump this back to 604800.
 /*.css
   Cache-Control: public, max-age=3600, must-revalidate
-
 # ── Images: long cache — change filename if you update an image ──────────────
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
@@ -30,11 +26,9 @@
   Cache-Control: public, max-age=31536000, immutable
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
-
 # ── JavaScript: 1-week cache ─────────────────────────────────────────────────
 /*.js
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-
 # ── Sitemap & robots: short cache so search engines see updates quickly ───────
 /sitemap.xml
   Cache-Control: public, max-age=3600, must-revalidate

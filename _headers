@@ -9,7 +9,7 @@
   Referrer-Policy: no-referrer-when-downgrade
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *.googleusercontent.com; connect-src 'self' https://vintage64tx-worker.kdbush64.workers.dev cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://vintage64tx-worker.kdbush64.workers.dev;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *.googleusercontent.com; connect-src 'self' https://vintage64-contact.kdbush64.workers.dev cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://vintage64-contact.kdbush64.workers.dev;
 # ── HTML pages: short cache so updates deploy immediately ────────────────────
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate

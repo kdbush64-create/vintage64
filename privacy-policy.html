@@ -128,7 +128,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="brand">VINTAGE64<span class="tx">TX</span></div>
-          <p>Linux conversions for hardware Microsoft gave up on, and static websites small businesses actually own. DFW Metroplex and beyond.</p>
+          <p>Linux conversions for hardware Microsoft gave up on — serving North Fort Worth, Keller, Southlake, Roanoke, Haslet, Watauga, Grapevine &amp; North Richland Hills — plus static websites small businesses actually own, nationwide.</p>
         </div>
         <div class="footer-col">
           <h5>SERVICES</h5>
@@ -140,6 +140,7 @@
           <h5>GET IN TOUCH</h5>
           <a href="contact.html">Contact Page</a>
           <a href="#" class="email-link" data-u="dewayne" data-d="vintage64tx" data-t="com">[email protected]</a>
+          <a href="#" class="phone-link" data-cc="1" data-ac="469" data-pre="665" data-line="9191">CALL/TEXT</a>
           <a href="privacy-policy.html" aria-current="page">Privacy Policy</a>
           <h5 style="margin-top:20px;">FOLLOW</h5>
           <a href="https://www.facebook.com/profile.php?id=61588403712210" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -154,7 +155,7 @@
     </div>
   </footer>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PLACEHOLDER_CF_ANALYTICS_TOKEN"}'></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "60df2ef5bdd04551a429ef530bdb680f"}'></script>
   <script>
     (function() {
       var toggle = document.getElementById('menuToggle');
@@ -169,10 +170,20 @@
           toggle.setAttribute('aria-expanded', 'false');
         });
       });
+      // Email obfuscation
       document.querySelectorAll('.email-link').forEach(function(el) {
         var addr = el.getAttribute('data-u') + '@' + el.getAttribute('data-d') + '.' + el.getAttribute('data-t');
         el.href = 'mailto:' + addr;
         el.textContent = addr;
+      });
+      // Phone obfuscation
+      document.querySelectorAll('.phone-link').forEach(function(el) {
+        var cc = el.getAttribute('data-cc');
+        var ac = el.getAttribute('data-ac');
+        var pre = el.getAttribute('data-pre');
+        var line = el.getAttribute('data-line');
+        el.href = 'tel:+' + cc + ac + pre + line;
+        el.textContent = ac + '-' + pre + '-' + line;
       });
     })();
   </script>

@@ -1,3 +1,3 @@
-name = "vintage64tx-contact"
+name = "vintage64-contact"
 main = "worker.js"
 compatibility_date = "2026-03-11"

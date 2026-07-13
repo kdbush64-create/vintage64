@@ -34,3 +34,8 @@
   Cache-Control: public, max-age=3600, must-revalidate
 /robots.txt
   Cache-Control: public, max-age=3600, must-revalidate
+# ── CORS for Post Template Generator media library ────────────────────────────
+# Allows the generator (opened locally or from another origin) to read these
+# images into a <canvas> for PNG export. Does not affect any other route.
+/media/background/*
+  Access-Control-Allow-Origin: *

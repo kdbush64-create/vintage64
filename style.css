@@ -36,13 +36,13 @@
   --danger: #B3261E;
   --success: #1E7A55;
 
-  /* Footer (unchanged dark slate from v3) */
-  --footer-bg: #12161C;
-  --footer-border: #262C36;
-  --footer-text: #8893A1;
-  --footer-dim: #6E7887;
-  --footer-strong: #E7EAEE;
-  --footer-rust: #C1572E;
+  /* Footer — warm charcoal, Retro '64 */
+  --footer-bg: #22262A;
+  --footer-border: rgba(255,253,244,0.16);
+  --footer-text: #E9E4D3;     /* warm cream */
+  --footer-dim: #B9B3A2;      /* softer cream */
+  --footer-strong: #FFFDF4;
+  --footer-rust: #E0703F;     /* brighter rust, readable on charcoal */
 
   /* Shape */
   --radius: 8px;
@@ -187,9 +187,9 @@ a.brand:hover { color: var(--ink) !important; text-decoration: none !important; 
 .nav-links a:hover { background: rgba(34,38,42,0.07); color: var(--ink); text-decoration: none; }
 .nav-links a.active { text-decoration: underline; text-decoration-color: var(--rust); text-decoration-thickness: 3px; text-underline-offset: 8px; }
 
-/* Contact Us button in nav */
-.nav-links .btn-rust { margin-left: 16px; }
-.nav-links .btn-rust:hover { background: var(--rust); color: #fff; }
+/* Contact Us button in nav (white text must beat the plain nav-link color) */
+.nav-links a.btn-rust { margin-left: 16px; color: #FFFFFF; }
+.nav-links a.btn-rust:hover { background: var(--rust); color: #FFFFFF; }
 
 /* Hamburger — HIDDEN on desktop */
 .menu-toggle {
@@ -662,18 +662,26 @@ a.brand:hover { color: var(--ink) !important; text-decoration: none !important; 
 .form-feedback.error { background: #FBE7E5; border-color: var(--danger); color: var(--danger); }
 
 /* =========================================================
-   FOOTER — dark slate, same layout as before
+   FOOTER — warm charcoal, same layout as before
    ========================================================= */
 
 footer {
   background: var(--footer-bg);
-  border-top: 4px solid var(--ink);
-  padding: 64px 0 0;
+  padding: 0;
+}
+/* Same four-color stripe as the top of the page */
+footer::before {
+  content: '';
+  display: block;
+  height: 8px;
+  margin-bottom: 64px;
+  background: linear-gradient(90deg,
+    var(--rust) 0 25%, var(--mustard) 25% 50%, var(--teal-soft) 50% 75%, #FFFDF4 75% 100%);
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 200px 220px;
+  grid-template-columns: 1fr 200px 230px;
   gap: 48px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--footer-border);
@@ -681,32 +689,33 @@ footer {
 
 .footer-brand .brand {
   display: block;
-  margin-bottom: 14px;
-  font-size: 28px;
+  margin-bottom: 16px;
+  font-size: 32px;
   color: var(--footer-strong) !important;
   text-decoration: none;
 }
 .footer-brand .brand .tx { color: var(--footer-rust) !important; }
-.footer-brand p { font-size: 15px; line-height: 1.7; max-width: 340px; color: var(--footer-text); }
+.footer-brand p { font-size: 16px; line-height: 1.7; max-width: 360px; color: var(--footer-dim); }
 
 .footer-col h5 {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--footer-dim);
+  color: var(--mustard);
   margin-bottom: 14px;
 }
 .footer-col a {
   display: block;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
   color: var(--footer-text);
   margin-bottom: 10px;
   text-decoration: none;
   transition: color 0.15s;
 }
-.footer-col a:hover { color: var(--footer-strong); }
+.footer-col a:hover { color: var(--mustard); text-decoration: underline; text-underline-offset: 4px; }
 
 .footer-bottom {
   display: flex;
@@ -714,12 +723,12 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 20px 0;
+  padding: 22px 0 26px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--footer-dim);
 }
 
